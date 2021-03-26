@@ -158,6 +158,7 @@
     <ClCompile Include="input.cpp" />
     <ClCompile Include="joystick.cpp" />
     <ClCompile Include="keyboard.cpp" />
+    <ClCompile Include="logo_button.cpp" />
     <ClCompile Include="logo_clear.cpp" />
     <ClCompile Include="logo_over.cpp" />
     <ClCompile Include="logo_ranking.cpp" />
@@ -193,6 +194,7 @@
     <ClInclude Include="input.h" />
     <ClInclude Include="joystick.h" />
     <ClInclude Include="keyboard.h" />
+    <ClInclude Include="logo_button.h" />
     <ClInclude Include="logo_clear.h" />
     <ClInclude Include="logo_over.h" />
     <ClInclude Include="logo_ranking.h" />

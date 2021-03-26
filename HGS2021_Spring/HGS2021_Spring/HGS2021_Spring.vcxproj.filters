@@ -162,6 +162,9 @@
     <ClCompile Include="logo_ranking.cpp">
       <Filter>ソース ファイル\Polygon2d</Filter>
     </ClCompile>
+    <ClCompile Include="logo_button.cpp">
+      <Filter>ソース ファイル\Polygon2d</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="scene.h">
@@ -261,6 +264,9 @@
       <Filter>ヘッダー ファイル\Polygon2d</Filter>
     </ClInclude>
     <ClInclude Include="logo_ranking.h">
+      <Filter>ヘッダー ファイル\Polygon2d</Filter>
+    </ClInclude>
+    <ClInclude Include="logo_button.h">
       <Filter>ヘッダー ファイル\Polygon2d</Filter>
     </ClInclude>
   </ItemGroup>

@@ -20,8 +20,7 @@
 //*****************************************************************************
 #define TEXTURE_PASS ("Data/Texture/title_logo.png")
 #define POSITION (D3DXVECTOR3(SCREEN_WIDTH / 2,SCREEN_HEIGHT / 2 - 100.0f,0.0f))
-#define SIZE (D3DXVECTOR3(1000.0f,200.0f,0.0f))
-#define COLOR (D3DXCOLOR(0.4f,0.6f,0.3f,1.0f))
+#define SIZE (D3DXVECTOR3(1100.0f,300.0f,0.0f))
 
 //*****************************************************************************
 // 静的メンバ変数の初期化
@@ -92,8 +91,6 @@ CTitleLogo * CTitleLogo::Create()
 			pTitleLogo->SetPosition(POSITION);
 			//タイトルロゴのサイズ設定
 			pTitleLogo->SetSize(SIZE);
-			//タイトルロゴの色設定
-			pTitleLogo->SetColor(COLOR);
 			//タイトルロゴの初期化処理関数呼び出し
 			pTitleLogo->Init();
 		}

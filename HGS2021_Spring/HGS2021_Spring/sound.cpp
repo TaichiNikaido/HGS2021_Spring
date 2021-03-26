@@ -21,13 +21,13 @@
 //*****************************************************************************
 CSound::PARAM CSound::m_aParam[SOUND_LABEL_MAX] =
 {
-	{ "Data/Music/BGM/TitleBGM.wav", -1 },
-	{ "Data/Music/BGM/GameBGM.wav", -1 },
-	{ "Data/Music/BGM/ResultBGM.wav", -1 },
-	{ "Data/Music/SE/Player/Jump.wav", 0 },
-	{ "Data/Music/SE/Enemy/EnemyWalk.wav", 0 },
-	{ "Data/Music/SE/System/Button_Select.wav", 0 },
-	{ "Data/Music/SE/System/Button_Press.wav", 0 },
+	{ "Data/Sound/title.wav", -1 },
+	{ "Data/Sound/tutorial.wav", -1 },
+	{ "Data/Sound/game.wav", -1 },
+	{ "Data/Sound/ranking.wav", -1 },
+	{ "Data/Sound/jump.wav", 0 },
+	{ "Data/Sound/damage.wav", 0 },
+	{ "Data/Sound/button.wav", 0 },
 };
 
 //=============================================================================

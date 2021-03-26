@@ -18,6 +18,7 @@
 #include "board.h"
 #include "background.h"
 #include "map_manager.h"
+
 //*****************************************************************************
 // マクロ定義
 //*****************************************************************************
@@ -77,8 +78,8 @@ HRESULT CGameMode::Init(void)
 	//もしサウンドのポインタがNULLじゃない場合
 	if (pSound != NULL)
 	{
-		//タイトルBGMの再生
-		//pSound->PlaySoundA(CSound::SOUND_LABEL_BGM_GAME);
+		//ゲームBGMの再生
+		pSound->PlaySoundA(CSound::SOUND_LABEL_BGM_GAME);
 	}
 	//全初期生成処理関数呼び出し
 	InitCreateAll();
