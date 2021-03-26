@@ -18,7 +18,7 @@
 //*****************************************************************************
 // É}ÉNÉçíËã`
 //*****************************************************************************
-#define TEXTURE_PASS ("Data/Texture/title_bg.png")
+#define TEXTURE_PASS ("Data/Texture/speed_up.png")
 #define POSITION (D3DXVECTOR3(-200.0f,SCREEN_HEIGHT/2,0.0f))
 #define SIZE (D3DXVECTOR3(500,100,0.0f))
 #define ADD_MOVE (50.0f)

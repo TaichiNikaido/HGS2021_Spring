@@ -1,4 +1,9 @@
 <<<<<<< HEAD
+﻿  speedup.cpp
+  HGS2021_Spring.vcxproj -> C:\Users\81902\Desktop\saisinHGS\HGS2021_Spring\HGS2021_Spring\Debug\HGS2021_Spring.exe
+  HGS2021_Spring.vcxproj -> C:\Users\81902\Desktop\saisinHGS\HGS2021_Spring\HGS2021_Spring\Debug\HGS2021_Spring.pdb (Full PDB)
+=======
+<<<<<<< HEAD
 ﻿  particle.cpp
 =======
 <<<<<<< HEAD
@@ -11,3 +16,4 @@ cl : コマンド ライン warning D9028: 簡易リビルド時のエラーで�
   HGS2021_Spring.vcxproj -> C:\Users\gsp025\Desktop\HGS2021_Spring\HGS2021_Spring\Debug\HGS2021_Spring.exe
   HGS2021_Spring.vcxproj -> C:\Users\gsp025\Desktop\HGS2021_Spring\HGS2021_Spring\Debug\HGS2021_Spring.pdb (Full PDB)
 >>>>>>> 60587719ed552b32493635a6f18337839fe17bbf
+>>>>>>> df2334f5e0e180f23d963c42638c4544f05f872b

@@ -75,6 +75,7 @@ private:
 	int m_nPattarnAnim;						//アニメーションカウンタ
 	int m_nCounterAnim;						//フレームカウンタ
 	int m_nCreateCount;
-	int m_nCreateCount;
+	float m_fAddSpeed;
+	bool m_bSyagami;
 };
 #endif
