@@ -32,6 +32,8 @@
 #define SIZE (D3DXVECTOR3(150.0f,150.0f,0.0))
 #define SPEED (0.0f)
 #define CAMERA_DISTANCE (500.0f)
+#define GRAVITY (50.5f)
+#define JUMP_POWER (150.0f)
 
 //*****************************************************************************
 // 静的メンバ変数の初期化
@@ -46,8 +48,8 @@ CPlayer3d::CPlayer3d(int nPriority)
 	m_Move = INITIAL_D3DXVECTOR3;						//移動量
 	m_PositionOld = INITIAL_D3DXVECTOR3;				//過去の位置
 	m_fCameraDistance = 0.0f;							//カメラとの距離
+	m_bJump = false;									//ジャンプ
 	m_State = STATE_NONE;								//状態
-	m_Input = INPUT_NONE;								//入力キー情報
 }
 
 //=============================================================================
@@ -161,12 +163,10 @@ void CPlayer3d::Update(void)
 	m_PositionOld = GetPosition();
 	//ポリゴン3Dの更新処理関数呼び出し
 	CPolygon3d::Update();
-	////位置を取得
-	//D3DXVECTOR3 Position = GetPosition();
-	////位置更新
-	//Position += m_Move;
-	////位置の設定
-	//SetPosition(Position);
+	//移動処理関数呼び出し
+	Move();
+	//入力処理関数呼び出し
+	Input();
 }
 
 //=============================================================================
@@ -198,39 +198,20 @@ void CPlayer3d::Input(void)
 	}
 	//ゲームモードの取得
 	CGameMode * pGameMode = CManager::GetGameMode();
-	//プレイヤーが移動していないとき
-	m_Move = INITIAL_D3DXVECTOR3;
-	//上移動処理
-	if (pKeyboard->GetKeyboardPress(DIK_W) || lpDIDevice != NULL &&js.lY == -1000)
+
+	if (pJoystick->GetJoystickTrigger(JS_A))
 	{
-		//入力キー情報を上にする
-		m_Input = INPUT_UP;
-		//移動処理関数呼び出し
-		Move();
 	}
-	//下移動処理
-	if (pKeyboard->GetKeyboardPress(DIK_S) || lpDIDevice != NULL &&js.lY == 1000)
+	if (pJoystick->GetJoystickTrigger(JS_Y))
 	{
-		//入力キー情報を下にする
-		m_Input = INPUT_DOWN;
-		//移動処理関数呼び出し
-		Move();
-	}
-	//左移動処理
-	if (pKeyboard->GetKeyboardPress(DIK_A) || lpDIDevice != NULL &&js.lX == -1000)
-	{
-		//入力キー情報を左にする
-		m_Input = INPUT_LEFT;
-		//移動処理関数呼び出し
-		Move();
-	}
-	//右移動処理
-	if (pKeyboard->GetKeyboardPress(DIK_D) || lpDIDevice != NULL &&js.lX == 1000)
-	{
-		//入力キー情報を右にする
-		m_Input = INPUT_RIGHT;
-		//移動処理関数呼び出し
-		Move();
+		//もしジャンプしていなかったら
+		if (m_bJump == false)
+		{
+			//ジャンプする
+			m_Move.y += JUMP_POWER;
+			//ジャンプ状態にする
+			m_bJump = true;
+		}
 	}
 }
 
@@ -239,35 +220,37 @@ void CPlayer3d::Input(void)
 //=============================================================================
 void CPlayer3d::Move(void)
 {
+	//位置を取得
+	D3DXVECTOR3 Position = GetPosition();
 	//もし死亡状態じゃないとき
 	if (m_State != STATE_DEATH)
 	{
-		switch (m_Input)
+		//移動させる
+		m_Move.x += m_fSpeed;
+		//ジャンプしてるとき
+		if (m_bJump == true)
 		{
-			//もし入力情報が上の時
-		case INPUT_UP:
-			//Y軸の上方向に移動量を加算
-			m_Move.y = cosf(D3DX_PI) * m_fSpeed;
-			break;
-			//もし入力情報が下の時
-		case INPUT_DOWN:
-			//Y軸の下方向に移動量を加算
-			m_Move.y = cosf(D3DX_PI) * -m_fSpeed;
-			break;
-			//もし入力情報が左の時
-		case INPUT_LEFT:
-			//X軸の左方向に移動量を加算
-			m_Move.x = cosf(D3DX_PI) * m_fSpeed;
-			break;
-			//もし入力情報が右の時
-		case INPUT_RIGHT:
-			//X軸の右方向に移動量を加算
-			m_Move.x = cosf(D3DX_PI) * -m_fSpeed;
-			break;
-		default:
-			break;
+			//重力をかける
+			m_Move.y -= GRAVITY;
 		}
 	}
+	//位置更新
+	Position += m_Move;
+	//位置の設定
+	SetPosition(Position);
+	//ジャンプしてるとき
+	if (m_bJump == true)
+	{
+		//重力をかける
+		m_Move.y -= GRAVITY;
+	}
+	if (Position.y <= 0.0f)
+	{
+		m_Move.y = 0.0f;
+		//ジャンプ状態にする
+		m_bJump = false;
+	}
+
 }
 
 //=============================================================================
@@ -279,29 +262,10 @@ D3DXVECTOR3 CPlayer3d::MovableRange()
 	D3DXVECTOR3 Position = GetPosition();
 	//サイズを取得する
 	D3DXVECTOR3 Size = GetSize();
-	//もしプレイヤーが上画面外に行ったら
-	if (Position.y - Size.y / 2 < 0)
+	if (Position.y >= SCREEN_HEIGHT)
 	{
-		//位置が画面外に移動しないように制御する
-		Position.y = Size.y / 2;
-	}
-	//もしプレイヤーが下画面外に行ったら
-	if (Position.y + Size.y / 2 > SCREEN_HEIGHT)
-	{
-		//位置が画面外に移動しないように制御する
-		Position.y = SCREEN_HEIGHT - Size.y / 2;
-	}
-	//もしプレイヤーが左画面外に行ったら
-	if (Position.x - Size.y / 2 < 0)
-	{
-		//位置が画面外に移動しないように制御する
-		Position.x = Size.y / 2 + 0;
-	}
-	//もしプレイヤーが右画面外に行ったら
-	if (Position.x + Size.y / 2 > SCREEN_WIDTH)
-	{
-		//位置が画面外に移動しないように制御する
-		Position.x = SCREEN_WIDTH - Size.y / 2;
+		m_Move.y = 0.0f;
+
 	}
 	return Position;
 }

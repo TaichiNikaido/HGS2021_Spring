@@ -136,7 +136,7 @@ void CGameMode::InitCreateAll(void)
 		//プレイヤー3Dを生成する
 		m_pPlayer3d = CPlayer3d::Create(D3DXVECTOR3(0.0f, 0.0f, 0.0f));
 	}
-	CBackground::Create();
+	//CBackground::Create();
 	//もしカメラのポインタがNULLの場合
 	if (m_pCamera == NULL)
 	{
