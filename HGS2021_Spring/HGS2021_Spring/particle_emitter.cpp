@@ -8,6 +8,9 @@
 //******************************************************************************
 #include "particle.h"
 #include "particle_emitter.h"
+#include "mode_game.h"
+#include "player_3d.h"
+
 //******************************************************************************
 // マクロ定義
 //******************************************************************************
@@ -83,8 +86,14 @@ void CParticle_Emitter::Uninit(void)
 //******************************************************************************
 void CParticle_Emitter::Update(void)
 {
+	CPlayer3d * pPlayer = CGameMode::GetPlayer3d();
 	// インクリメント
 	m_nCount++;
+	if (pPlayer != NULL)
+	{
+		D3DXVECTOR3 PlayerPosition = pPlayer->GetPosition();
+		m_pos = PlayerPosition;
+	}
 
 	// 余りが0の場合
 	if (m_nCount % m_nCreateCount == REMAINDER)
