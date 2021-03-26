@@ -35,6 +35,7 @@ CPlayer3d * CGameMode::m_pPlayer3d = NULL;		//プレイヤー3Dのポインタ
 //=============================================================================
 CGameMode::CGameMode()
 {
+	m_pPlayer3d = NULL;
 	m_pLight = NULL;	//ライト
 }
 

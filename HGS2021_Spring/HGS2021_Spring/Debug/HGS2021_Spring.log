@@ -1,9 +1,3 @@
-<<<<<<< HEAD
-﻿  HGS2021_Spring.vcxproj -> C:\Users\81902\Desktop\saisinHGS\HGS2021_Spring\HGS2021_Spring\Debug\HGS2021_Spring.exe
+﻿  speedup.cpp
+  HGS2021_Spring.vcxproj -> C:\Users\81902\Desktop\saisinHGS\HGS2021_Spring\HGS2021_Spring\Debug\HGS2021_Spring.exe
   HGS2021_Spring.vcxproj -> C:\Users\81902\Desktop\saisinHGS\HGS2021_Spring\HGS2021_Spring\Debug\HGS2021_Spring.pdb (Full PDB)
-=======
-﻿  particle_emitter.cpp
-cl : コマンド ライン warning D9028: 簡易リビルド時のエラーです、通常のビルドに戻します
-  HGS2021_Spring.vcxproj -> C:\Users\gsp025\Desktop\HGS2021_Spring\HGS2021_Spring\Debug\HGS2021_Spring.exe
-  HGS2021_Spring.vcxproj -> C:\Users\gsp025\Desktop\HGS2021_Spring\HGS2021_Spring\Debug\HGS2021_Spring.pdb (Full PDB)
->>>>>>> 60587719ed552b32493635a6f18337839fe17bbf
