@@ -110,7 +110,7 @@ void CBlock::Update(void)
 	Tex[2] = D3DXVECTOR2(0.0f, 1.0f);
 	Tex[3] = D3DXVECTOR2(1.0f, 1.0f);
 	SetTexture(Tex);
-	/*Collisaon();*/
+	Collision();
 }
 
 //=============================================================================
@@ -130,63 +130,123 @@ CBlock::IS_COLLISION CBlock::Collision(void)
 	D3DXVECTOR3 Size;
 	D3DXVECTOR3 PosOld;
 	CPlayer3d * pPlayer = CGameMode::GetPlayer3d();
+	bool bIsTop = false;
+	bool bIsBottom = false;
+	bool bIsRight = false;
+	bool bIsLeft = false;
+	bool bIsFront = false;
+	bool bIsBack = false;
 	if (pPlayer != nullptr)
 	{
 		Pos = pPlayer->GetPosition();
 		Size = pPlayer->GetSize();
-		Size = pPlayer->GetSize();
 		PosOld = pPlayer->GetPositionOld();
-		/*bCollision.bIsTop = pCharactor->GetIsCollision().bIsTop;
-		bCollision.bIsBottom = pCharactor->GetIsCollision().bIsBottom;
-		bCollision.bIsRight = pCharactor->GetIsCollision().bIsRight;
-		bCollision.bIsLeft = pCharactor->GetIsCollision().bIsLeft;
-		bCollision.bIsFront = pCharactor->GetIsCollision().bIsFront;
-		bCollision.bIsBack = pCharactor->GetIsCollision().bIsBack;*/
-		bool bIsTop = false;
-		bool bIsBottom = false;
-		bool bIsRight = false;
-		bool bIsLeft = false;
-		bool bIsFront = false;
-		bool bIsBack = false;
+		Move = pPlayer->GetMove();
+		bCollision.bIsTop = pPlayer->GetIsCollision().bIsTop;
+		bCollision.bIsBottom = pPlayer->GetIsCollision().bIsBottom;
+		bCollision.bIsRight = pPlayer->GetIsCollision().bIsRight;
+		bCollision.bIsLeft = pPlayer->GetIsCollision().bIsLeft;
+		bCollision.bIsFront = pPlayer->GetIsCollision().bIsFront;
+		bCollision.bIsBack = pPlayer->GetIsCollision().bIsBack;
+
 
 		D3DXVECTOR3 box1Max = D3DXVECTOR3(Size.x / 2, Size.y / 2, Size.z / 2) + Pos;
 		D3DXVECTOR3 box1Min = D3DXVECTOR3(-Size.x / 2, -Size.y / 2, -Size.z / 2) + Pos;
-		D3DXVECTOR3 box2Max = D3DXVECTOR3((GetSize().x / 2), (GetSize().y / 2), (GetSize().z / 2));
-		D3DXVECTOR3 box2Min = D3DXVECTOR3((-GetSize().x / 2), (-GetSize().y / 2), (-GetSize().z / 2));
+		D3DXVECTOR3 box2Max = D3DXVECTOR3((GetSize().x / 2), (GetSize().y / 2), (GetSize().z / 2)) + GetPosition();
+		D3DXVECTOR3 box2Min = D3DXVECTOR3((-GetSize().x / 2), (-GetSize().y / 2), (-GetSize().z / 2)) + GetPosition();
 
 		if (
-			box1Max.y >= box2Min.y && //ècè„
-			box1Min.y <= box2Max.y && //ècâ∫
-			box1Max.x >= box2Min.x && //â°ç∂
-			box1Min.x <= box2Max.x //â°âE
+			box1Max.y > box2Min.y && //ècè„
+			box1Min.y < box2Max.y && //ècâ∫
+			box1Max.x > box2Min.x && //â°ç∂
+			box1Min.x < box2Max.x //â°âE
 			)
 		{
-			if (box1Max.y >= box2Min.y && PosOld.y <= box2Min.y)//ècâ∫
+			if (box1Max.y > box2Min.y && PosOld.y <= box2Min.y)//ècè„
 			{
 				Pos.y = box2Min.y - Size.y / 2;
-				bIsBottom = true;
+				Move.y = 0.0f;
+				bCollision.bIsTop = true;
 			}
 
-			else if (box1Min.y <= box2Max.y && PosOld.y >= box2Max.y)//ècè„
+			else if (box1Min.y < box2Max.y && PosOld.y >= box2Max.y)//ècâ∫
 			{
 				Pos.y = box2Max.y + Size.y / 2;
-				bIsTop = true;
+				Move.y = 0.0f;
+				bCollision.bIsBottom = true;
 			}
 
-			else if (box1Max.x >= box2Min.x && PosOld.x <= box2Min.x)//âEÇ©ÇÁ
+			else if (box1Max.x > box2Min.x && PosOld.x <= box2Min.x)//âEÇ©ÇÁ
 			{
 				Pos.x = box2Min.x - Size.x / 2;
-				bIsRight = true;
+				Move.x = 0.0f;
+				bCollision.bIsRight = true;
 			}
 
-			else if (box1Min.x <= box2Max.x && PosOld.x >= box2Max.x)//ç∂Ç©ÇÁ
+			else if (box1Min.x < box2Max.x && PosOld.x >= box2Max.x)//ç∂Ç©ÇÁ
 			{
 				Pos.x = box2Max.x + Size.x / 2;
-				bIsLeft = true;
+ 				Move.x = 0.0f;
+				bCollision.bIsLeft = true;
 			}
 		}
 	}
+	////ëOâÒà íuÇ©ÇÁïœÇÌÇ¡ÇƒÇ¢ÇΩÇÁìñÇΩÇ¡ÇƒÇ¢ÇÈñ ÇÃîªíËÇÇ∑ÇÈ
+	//if (fabsf(PosOld.x) >= 0.0f ||
+	//	fabsf(PosOld.y) >= 0.0f )
+	//{
+	//	if (bIsTop == false)
+	//	{
+	//		bCollision.bIsTop = false;
+	//	}
+	//	else
+	//	{
+	//		bCollision.bIsTop = true;
+	//	}
+	//	if (bIsBottom == false)
+	//	{
+	//		bCollision.bIsBottom = false;
+	//	}
+	//	else
+	//	{
+	//		bCollision.bIsBottom = true;
+	//	}
+	//	if (bIsRight == false)
+	//	{
+	//		bCollision.bIsRight = false;
+	//	}
+	//	else
+	//	{
+	//		bCollision.bIsRight = true;
+	//	}
+	//	if (bIsLeft == false)
+	//	{
+	//		bCollision.bIsLeft = false;
+	//	}
+	//	else
+	//	{
+	//		bCollision.bIsLeft = true;
+	//	}
+	//	if (bIsFront == false)
+	//	{
+	//		bCollision.bIsFront = false;
+	//	}
+	//	else
+	//	{
+	//		bCollision.bIsFront = true;
+	//	}
+	//	if (bIsBack == false)
+	//	{
+	//		bCollision.bIsBack = false;
+	//	}
+	//	else
+	//	{
+	//		bCollision.bIsBack = true;
+	//	}
+	//}
 
+	pPlayer->SetMove(Move);
+	pPlayer->SetIsCollision(bCollision);
 	pPlayer->SetPosition(Pos);
 	return bCollision;
 }
