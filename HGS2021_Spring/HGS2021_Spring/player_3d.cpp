@@ -31,7 +31,7 @@
 #define TEXTURE ("")
 #define SIZE (D3DXVECTOR3(150.0f,150.0f,0.0))
 #define SPEED (0.0f)
-#define CAMERA_DISTANCE (100.0f)
+#define CAMERA_DISTANCE (500.0f)
 
 //*****************************************************************************
 // 静的メンバ変数の初期化
@@ -102,14 +102,14 @@ CPlayer3d * CPlayer3d::Create(D3DXVECTOR3 Position)
 		//プレイヤーがNULLではない場合
 		if (pPlayer != NULL)
 		{
-			//プレイヤーの初期化処理関数呼び出し
-			pPlayer->Init();
 			//プレイヤーの位置を設定する
 			pPlayer->SetPosition(Position);
 			//プレイヤーの向きを設定する
 			pPlayer->SetRotation(D3DXVECTOR3(D3DXToRadian(0.0f), D3DXToRadian(0.0f), D3DXToRadian(0.0f)));
 			//プレイヤーのサイズを設定する
 			pPlayer->SetSize(SIZE);
+			//プレイヤーの初期化処理関数呼び出し
+			pPlayer->Init();
 		}
 	}
 	//プレイヤーのポインタを返す
@@ -135,6 +135,8 @@ HRESULT CPlayer3d::Init(void)
 	m_fCameraDistance = CAMERA_DISTANCE;
 	//テクスチャの設定
 	SetTexture(aTexture);
+	SetScale(1.0f);
+	SetColor(D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f));
 	//テクスチャの割り当て
 	BindTexture(m_pTexture);
 	return S_OK;
@@ -154,24 +156,14 @@ void CPlayer3d::Uninit(void)
 //=============================================================================
 void CPlayer3d::Update(void)
 {
-	//テクスチャのUV座標の設定
-	D3DXVECTOR2 aTexture[NUM_VERTEX];
-	aTexture[0] = D3DXVECTOR2(0.0f, 0.0f);
-	aTexture[1] = D3DXVECTOR2(1.0f, 0.0f);
-	aTexture[2] = D3DXVECTOR2(0.0f, 1.0f);
-	aTexture[3] = D3DXVECTOR2(1.0f, 1.0f);
 	//ポリゴン3Dの更新処理関数呼び出し
 	CPolygon3d::Update();
-	//位置を取得
-	D3DXVECTOR3 Position = GetPosition();
-	//移動可能範囲処理関数呼び出し
-	Position = MovableRange();
-	//位置更新
-	Position += m_Move;
-	//位置の設定
-	SetPosition(Position);
-	//テクスチャの設定
-	SetTexture(aTexture);
+	////位置を取得
+	//D3DXVECTOR3 Position = GetPosition();
+	////位置更新
+	//Position += m_Move;
+	////位置の設定
+	//SetPosition(Position);
 }
 
 //=============================================================================

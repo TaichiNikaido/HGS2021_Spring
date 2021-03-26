@@ -1,15 +1,16 @@
 //=============================================================================
 //
-// ライト [light.h]
+// 背景 [background.h]
 // Author : 二階堂汰一
 //
 //=============================================================================
-#ifndef _LIGHT_H_
-#define _LIGHT_H_
+#ifndef _BACKGROUND_H_
+#define _BACKGROUND_H_
 
 //*****************************************************************************
 // ヘッダファイルのインクルード
 //*****************************************************************************
+#include "polygon3d.h"
 
 //*****************************************************************************
 // マクロ定義
@@ -22,15 +23,19 @@
 //*****************************************************************************
 // クラス定義
 //*****************************************************************************
-class CLight
+class CBackground : public CPolygon3d
 {
 public:
-	CLight();
-	~CLight();
+	CBackground();
+	~CBackground();
+	static HRESULT TextureLoad(void);
+	static void TextureUnload(void);
+	static CBackground * Create();
 	HRESULT Init(void);
 	void Uninit(void);
 	void Update(void);
+	void Draw(void);
 private:
-	D3DLIGHT9 m_Light;	//ライト
+	static LPDIRECT3DTEXTURE9 m_pTexture;	//テクスチャ
 };
 #endif

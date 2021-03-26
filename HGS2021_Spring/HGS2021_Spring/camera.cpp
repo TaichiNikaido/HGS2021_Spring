@@ -38,6 +38,8 @@ CCamera::CCamera()
 	m_VectorU = INITIAL_D3DXVECTOR3;	//上方向ベクトル
 	m_Rotation = INITIAL_ROTATION;		//回転
 	m_fDistance = INIT_FLOAT;			//距離
+	memset(m_MtxView, NULL, sizeof(m_MtxView));
+	memset(m_MtxProjection, NULL, sizeof(m_MtxProjection));
 }
 
 //=============================================================================
@@ -61,14 +63,14 @@ HRESULT CCamera::Init(void)
 		//プレイヤーとの距離を設定
 		float PlayerDistance = pPlayer3d->GetCameraDistance();
 		//視点を設定する
-		m_PositionV = D3DXVECTOR3(PlayerPosition.x, PlayerPosition.y, PlayerPosition.z + PlayerDistance);
+		m_PositionV = D3DXVECTOR3(0.0f,0.0f,-1000.0f);
 		//注視点の設定
-		m_PositionR = D3DXVECTOR3(PlayerPosition.x, PlayerPosition.y, PlayerPosition.z);
+		m_PositionR = D3DXVECTOR3(0.0f, 0.0f, 1000.0f);
 	}
 	//上方向ベクトルの初期設定
 	m_VectorU = VECTOR;
 	//回転方向の初期設定
-	m_Rotation = ROTATION;
+	//m_Rotation = ROTATION;
 	return S_OK;
 }
 
@@ -93,14 +95,14 @@ void CCamera::Update(void)
 		//プレイヤーとの距離を設定
 		float PlayerDistance = pPlayer3d->GetCameraDistance();
 		//視点を設定する
-		m_PositionV = D3DXVECTOR3(PlayerPosition.x, PlayerPosition.y, PlayerPosition.z + PlayerDistance);
+		m_PositionV = D3DXVECTOR3(0.0f, 0.0f, -1000.0f);
 		//注視点の設定
-		m_PositionR = D3DXVECTOR3(PlayerPosition.x, PlayerPosition.y, PlayerPosition.z);
+		m_PositionR = D3DXVECTOR3(0.0f, 0.0f, 1000.0f);
 	}
 	//上方向ベクトルの初期設定
 	m_VectorU = VECTOR;
 	//回転方向の初期設定
-	m_Rotation = ROTATION;
+	//m_Rotation = ROTATION;
 }
 
 //=============================================================================
@@ -119,7 +121,7 @@ void CCamera::SetCamera(void)
 	//プロジェクションマトリックスの初期化
 	D3DXMatrixIdentity(&m_MtxProjection);
 	//プロジェクションマトリックスの作成
-	D3DXMatrixPerspectiveFovLH(&m_MtxProjection, D3DXToRadian(45.0f), (float)SCREEN_WIDTH / (float)SCREEN_HEIGHT, 10.0f, 10000.0f);
+	D3DXMatrixPerspectiveFovLH(&m_MtxProjection, D3DXToRadian(90.0f), (float)SCREEN_WIDTH / (float)SCREEN_HEIGHT, 10.0f, 10000.0f);
 	//プロジェクションマトリックスの設定
 	pDevice->SetTransform(D3DTS_PROJECTION, &m_MtxProjection);
 }

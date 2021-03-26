@@ -33,7 +33,7 @@ CPolygon3d::CPolygon3d(int nPriority) : CScene3d(nPriority)
 {
 	m_pTexture = NULL;	//テクスチャへのポインタ
 	m_pVtxBuff = NULL;	//頂点バッファへのポインタ
-	//テクスチャ座標
+						//テクスチャ座標
 	m_aTex[0] = D3DXVECTOR2(0.0f, 0.0f);
 	m_aTex[1] = D3DXVECTOR2(1.0f, 0.0f);
 	m_aTex[2] = D3DXVECTOR2(0.0f, 1.0f);

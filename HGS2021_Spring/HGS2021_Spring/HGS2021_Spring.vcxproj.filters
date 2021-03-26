@@ -43,6 +43,12 @@
     <Filter Include="ヘッダー ファイル\Player">
       <UniqueIdentifier>{25a169ef-ba6d-4c5e-93e4-59382e3d57de}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\Background">
+      <UniqueIdentifier>{031d4b72-7f19-42c5-b826-7807c8565b33}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Background">
+      <UniqueIdentifier>{0283d625-d85a-47d0-bcbc-f4754e6ecbe5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="scene.cpp">
@@ -90,9 +96,6 @@
     <ClCompile Include="camera.cpp">
       <Filter>ソース ファイル\Base</Filter>
     </ClCompile>
-    <ClCompile Include="light.cpp">
-      <Filter>ソース ファイル\Base</Filter>
-    </ClCompile>
     <ClCompile Include="billboard.cpp">
       <Filter>ソース ファイル\Base</Filter>
     </ClCompile>
@@ -107,6 +110,9 @@
     </ClCompile>
     <ClCompile Include="scene3d.cpp">
       <Filter>ソース ファイル\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="background.cpp">
+      <Filter>ソース ファイル\Background</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -155,9 +161,6 @@
     <ClInclude Include="camera.h">
       <Filter>ヘッダー ファイル\Base</Filter>
     </ClInclude>
-    <ClInclude Include="light.h">
-      <Filter>ヘッダー ファイル\Base</Filter>
-    </ClInclude>
     <ClInclude Include="billboard.h">
       <Filter>ヘッダー ファイル\Base</Filter>
     </ClInclude>
@@ -172,6 +175,9 @@
     </ClInclude>
     <ClInclude Include="scene3d.h">
       <Filter>ヘッダー ファイル\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="background.h">
+      <Filter>ヘッダー ファイル\Background</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
