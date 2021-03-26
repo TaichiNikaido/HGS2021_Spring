@@ -1,12 +1,2 @@
-<<<<<<< HEAD
 #TargetFrameworkVersion=v4.0:PlatformToolSet=v140:EnableManagedIncrementalBuild=false:VCToolArchitecture=Native32Bit:WindowsTargetPlatformVersion=8.1
 Debug|Win32|C:\Users\81902\Desktop\saisinHGS\HGS2021_Spring\HGS2021_Spring\|
-=======
-<<<<<<< HEAD
-#TargetFrameworkVersion=v4.0:PlatformToolSet=v140:EnableManagedIncrementalBuild=false:VCToolArchitecture=Native32Bit:WindowsTargetPlatformVersion=8.1
-Debug|Win32|C:\Users\gsp015\Desktop\新しいフォルダー (3)\HGS2021_Spring\HGS2021_Spring\|
-=======
-#TargetFrameworkVersion=v4.0:PlatformToolSet=v140:EnableManagedIncrementalBuild=false:VCToolArchitecture=Native32Bit:WindowsTargetPlatformVersion=8.1
-Debug|Win32|C:\Users\gsp025\Desktop\HGS2021_Spring\HGS2021_Spring\|
->>>>>>> fe036598864e59002f8114b0bc229a4c6cb3031e
->>>>>>> c95e15af14d389854a43c08283bc7988ae0d6595

@@ -30,6 +30,9 @@ CNormalBlock::CNormalBlock(int nPriority) : CBlock(nPriority)
 	m_Move = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
 	m_nLife = ICE_LIFE;
 	m_IsFall = true;
+	m_RandColorR = 255;
+	m_RandColorG = 255;
+	m_RandColorB = 255;
 }
 
 //=============================================================================
@@ -92,7 +95,17 @@ CNormalBlock * CNormalBlock::Create(D3DXVECTOR3 Pos, D3DXVECTOR3 Size)
 HRESULT CNormalBlock::Init(void)
 {
 	SetObjType(CScene::OBJTYPE_NONE);
+	int nRandSeed = 0;//ランダムシード値（時間毎変更ではなくクリック毎変更にするため）
+	nRandSeed = rand() % 255;
+	srand((unsigned int)time(NULL)*nRandSeed);
 
+	//ランダムな色の数値取得
+	m_RandColorR = rand() % 255;
+	m_RandColorG = rand() % 255;
+	m_RandColorB = rand() % 255;
+
+	//色のセット
+	SetColor(D3DCOLOR_RGBA(m_RandColorR, m_RandColorG, m_RandColorB, 255));
 	CBlock::Init();
 
 	return S_OK;

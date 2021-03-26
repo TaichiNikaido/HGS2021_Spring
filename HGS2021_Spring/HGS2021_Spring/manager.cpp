@@ -23,9 +23,7 @@
 #include "joystick.h"
 #include "fade.h"
 #include "background.h"
-<<<<<<< HEAD
 #include "particle_texture.h"
-=======
 #include "board.h"
 #include "block.h"
 #include "player_3d.h"
@@ -38,8 +36,7 @@
 #include "logo_clear.h"
 #include "logo_ranking.h"
 #include "logo_button.h"
-
->>>>>>> fe036598864e59002f8114b0bc229a4c6cb3031e
+#include "speedup.h"
 //*****************************************************************************
 // É}ÉNÉçíËã`
 //*****************************************************************************
@@ -262,6 +259,7 @@ void CManager::LoadAll(void)
 	CClearLogo::TextureLoad();
 	CRankingLogo::TextureLoad();
 	CButtonLogo::TextureLoad();
+	CSpeedUp::TextureLoad();
 }
 
 //=============================================================================
@@ -282,6 +280,7 @@ void CManager::UnloadAll(void)
 	CClearLogo::TextureUnload();
 	CRankingLogo::TextureUnload();
 	CButtonLogo::TextureUnload();
+	CSpeedUp::TextureUnload();
 }
 
 //=============================================================================

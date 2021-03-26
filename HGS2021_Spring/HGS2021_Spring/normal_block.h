@@ -37,6 +37,9 @@ private:
 	D3DXVECTOR3             m_Move;
 	int                     m_nLife; //ライフ
 	bool                    m_IsFall; //落下可能か
+	int                     m_RandColorR;   //ランダムカラーR
+	int                     m_RandColorG;   //ランダムカラーG
+	int                     m_RandColorB;   //ランダムカラーB
 };
 #endif // !_BLOCK_H_
 

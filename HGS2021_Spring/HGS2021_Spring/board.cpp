@@ -123,7 +123,7 @@ HRESULT CBoard::Init(void)
 		//プレイヤーのサイズを取得する
 		D3DXVECTOR3 PlayerSize = pPlayer->GetSize();
 		//位置を設定する
-		SetPosition(D3DXVECTOR3(PlayerPosition.x, PlayerPosition.y, PlayerPosition.z));
+		SetPosition(D3DXVECTOR3(PlayerPosition.x, 900.0f, PlayerPosition.z));
 	}
 	//テクスチャのUV座標の設定
 	D3DXVECTOR2 aTexture[NUM_VERTEX];
@@ -161,12 +161,16 @@ void CBoard::Update(void)
 	//もしプレイヤーのポジションがNULLじゃない場合
 	if (pPlayer != NULL)
 	{
-		//プレイヤーの位置を取得する
-		D3DXVECTOR3 PlayerPosition = pPlayer->GetPosition();
-		//プレイヤーのサイズを取得する
-		D3DXVECTOR3 PlayerSize = pPlayer->GetSize();
-		//位置を設定する
-		SetPosition(D3DXVECTOR3(PlayerPosition.x, PlayerPosition.y + PlayerSize.y / 2 + 20.0f, PlayerPosition.z));
+		if (pPlayer->GetState() != CPlayer3d::STATE_DEATH)
+		{
+			//プレイヤーの位置を取得する
+			D3DXVECTOR3 PlayerPosition = pPlayer->GetPosition();
+			//プレイヤーのサイズを取得する
+			D3DXVECTOR3 PlayerSize = pPlayer->GetSize();
+			//位置を設定する
+			SetPosition(D3DXVECTOR3(PlayerPosition.x, 900.0f, PlayerPosition.z));
+		}
+		
 	}
 }
 

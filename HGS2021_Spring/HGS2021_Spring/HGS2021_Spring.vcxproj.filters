@@ -1,321 +1,85 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="ソース ファイル">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="ヘッダー ファイル">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
-    </Filter>
-    <Filter Include="リソース ファイル">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
-    <Filter Include="ソース ファイル\Base">
-      <UniqueIdentifier>{f4f16cfc-44fb-44a9-b6e3-008903a157ae}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ヘッダー ファイル\Base">
-      <UniqueIdentifier>{332ee01f-90c7-46d9-8752-9c54e961a36f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\Input">
-      <UniqueIdentifier>{89ff3f7b-9a1b-4d99-a9f1-609667698420}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ヘッダー ファイル\Input">
-      <UniqueIdentifier>{ec188749-4bde-489c-ba0d-b03861d1c666}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\Mode">
-      <UniqueIdentifier>{c71d7e1e-95f6-48a8-aa2c-f0c465321981}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ヘッダー ファイル\Mode">
-      <UniqueIdentifier>{411ab11e-157c-45dd-b0e7-36cf2d2587be}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\Enemy">
-      <UniqueIdentifier>{a578d871-fe62-4f5f-9de4-bd78f27a7f0d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ヘッダー ファイル\Enemy">
-      <UniqueIdentifier>{a4605933-42e4-4f4b-9615-29756111c42d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\Player">
-      <UniqueIdentifier>{5771e5a0-60a2-443d-956a-0a8db127a5e4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ヘッダー ファイル\Player">
-      <UniqueIdentifier>{25a169ef-ba6d-4c5e-93e4-59382e3d57de}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\Background">
-      <UniqueIdentifier>{031d4b72-7f19-42c5-b826-7807c8565b33}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ヘッダー ファイル\Background">
-      <UniqueIdentifier>{0283d625-d85a-47d0-bcbc-f4754e6ecbe5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\Map">
-      <UniqueIdentifier>{abba1a38-31a1-47de-b96c-ed6adc9c35b7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ヘッダー ファイル\Map">
-      <UniqueIdentifier>{11bb259d-b134-4e3f-90b1-b15bc74f3f1d}</UniqueIdentifier>
-    </Filter>
-<<<<<<< HEAD
-    <Filter Include="ソース ファイル\Particle">
-      <UniqueIdentifier>{062564e3-4048-4014-ace2-e90c702c3141}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ヘッダー ファイル\Particle">
-      <UniqueIdentifier>{a4ef6d3d-2928-4e7e-9b7e-95cf496a859d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\Particle\Particle_Emitter">
-      <UniqueIdentifier>{a17ec2ed-6fb9-48de-9551-0c76569dcb23}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\Particle\Particle_Effect">
-      <UniqueIdentifier>{bec7c528-c16f-4dd3-b69c-7dcdaeefb461}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ヘッダー ファイル\Particle\Particle_Emitter">
-      <UniqueIdentifier>{3d4ffc0b-fc48-4099-89de-59f01fd8fb1c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ヘッダー ファイル\Particle\Particle_Effect">
-      <UniqueIdentifier>{51034b51-f6e5-4c88-b0ba-5210fa791cd0}</UniqueIdentifier>
-=======
-    <Filter Include="ソース ファイル\Polygon2d">
-      <UniqueIdentifier>{2bce29a6-a1f6-44ea-8975-f1800da6ebe3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ヘッダー ファイル\Polygon2d">
-      <UniqueIdentifier>{a5c48a5b-4bd3-40da-80d8-842463b14166}</UniqueIdentifier>
->>>>>>> fe036598864e59002f8114b0bc229a4c6cb3031e
-    </Filter>
+    <ClCompile Include="background.cpp" />
+    <ClCompile Include="bg_ranking.cpp" />
+    <ClCompile Include="bg_title.cpp" />
+    <ClCompile Include="bg_tutorial.cpp" />
+    <ClCompile Include="billboard.cpp" />
+    <ClCompile Include="block.cpp" />
+    <ClCompile Include="board.cpp" />
+    <ClCompile Include="camera.cpp" />
+    <ClCompile Include="fade.cpp" />
+    <ClCompile Include="input.cpp" />
+    <ClCompile Include="joystick.cpp" />
+    <ClCompile Include="keyboard.cpp" />
+    <ClCompile Include="logo_button.cpp" />
+    <ClCompile Include="logo_clear.cpp" />
+    <ClCompile Include="logo_over.cpp" />
+    <ClCompile Include="logo_ranking.cpp" />
+    <ClCompile Include="logo_start.cpp" />
+    <ClCompile Include="logo_title.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="manager.cpp" />
+    <ClCompile Include="map_manager.cpp" />
+    <ClCompile Include="mode_game.cpp" />
+    <ClCompile Include="mode_result.cpp" />
+    <ClCompile Include="mode_title.cpp" />
+    <ClCompile Include="mode_tutorial.cpp" />
+    <ClCompile Include="normal_block.cpp" />
+    <ClCompile Include="particle.cpp" />
+    <ClCompile Include="particle_effect.cpp" />
+    <ClCompile Include="particle_emitter.cpp" />
+    <ClCompile Include="particle_texture.cpp" />
+    <ClCompile Include="player_2d.cpp" />
+    <ClCompile Include="player_3d.cpp" />
+    <ClCompile Include="polygon3d.cpp" />
+    <ClCompile Include="renderer.cpp" />
+    <ClCompile Include="scene.cpp" />
+    <ClCompile Include="scene2d.cpp" />
+    <ClCompile Include="scene3d.cpp" />
+    <ClCompile Include="sound.cpp" />
+    <ClCompile Include="speedup.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="scene.cpp">
-      <Filter>ソース ファイル\Base</Filter>
-    </ClCompile>
-    <ClCompile Include="scene2d.cpp">
-      <Filter>ソース ファイル\Base</Filter>
-    </ClCompile>
-    <ClCompile Include="main.cpp">
-      <Filter>ソース ファイル\Base</Filter>
-    </ClCompile>
-    <ClCompile Include="manager.cpp">
-      <Filter>ソース ファイル\Base</Filter>
-    </ClCompile>
-    <ClCompile Include="sound.cpp">
-      <Filter>ソース ファイル\Base</Filter>
-    </ClCompile>
-    <ClCompile Include="input.cpp">
-      <Filter>ソース ファイル\Base</Filter>
-    </ClCompile>
-    <ClCompile Include="renderer.cpp">
-      <Filter>ソース ファイル\Base</Filter>
-    </ClCompile>
-    <ClCompile Include="keyboard.cpp">
-      <Filter>ソース ファイル\Input</Filter>
-    </ClCompile>
-    <ClCompile Include="joystick.cpp">
-      <Filter>ソース ファイル\Input</Filter>
-    </ClCompile>
-    <ClCompile Include="mode_title.cpp">
-      <Filter>ソース ファイル\Mode</Filter>
-    </ClCompile>
-    <ClCompile Include="mode_tutorial.cpp">
-      <Filter>ソース ファイル\Mode</Filter>
-    </ClCompile>
-    <ClCompile Include="mode_game.cpp">
-      <Filter>ソース ファイル\Mode</Filter>
-    </ClCompile>
-    <ClCompile Include="mode_result.cpp">
-      <Filter>ソース ファイル\Mode</Filter>
-    </ClCompile>
-    <ClCompile Include="fade.cpp">
-      <Filter>ソース ファイル\Base</Filter>
-    </ClCompile>
-    <ClCompile Include="camera.cpp">
-      <Filter>ソース ファイル\Base</Filter>
-    </ClCompile>
-    <ClCompile Include="billboard.cpp">
-      <Filter>ソース ファイル\Base</Filter>
-    </ClCompile>
-    <ClCompile Include="polygon3d.cpp">
-      <Filter>ソース ファイル\Base</Filter>
-    </ClCompile>
-    <ClCompile Include="player_2d.cpp">
-      <Filter>ソース ファイル\Player</Filter>
-    </ClCompile>
-    <ClCompile Include="player_3d.cpp">
-      <Filter>ソース ファイル\Player</Filter>
-    </ClCompile>
-    <ClCompile Include="scene3d.cpp">
-      <Filter>ソース ファイル\Base</Filter>
-    </ClCompile>
-    <ClCompile Include="background.cpp">
-      <Filter>ソース ファイル\Background</Filter>
-    </ClCompile>
-    <ClCompile Include="block.cpp">
-      <Filter>ソース ファイル\Map</Filter>
-    </ClCompile>
-    <ClCompile Include="map_manager.cpp">
-      <Filter>ソース ファイル\Map</Filter>
-    </ClCompile>
-    <ClCompile Include="normal_block.cpp">
-      <Filter>ソース ファイル\Map</Filter>
-    </ClCompile>
-<<<<<<< HEAD
-    <ClCompile Include="particle.cpp">
-      <Filter>ソース ファイル\Particle</Filter>
-    </ClCompile>
-    <ClCompile Include="particle_texture.cpp">
-      <Filter>ソース ファイル\Particle</Filter>
-    </ClCompile>
-    <ClCompile Include="particle_emitter.cpp">
-      <Filter>ソース ファイル\Particle\Particle_Emitter</Filter>
-    </ClCompile>
-    <ClCompile Include="particle_effect.cpp">
-      <Filter>ソース ファイル\Particle\Particle_Effect</Filter>
-=======
-    <ClCompile Include="board.cpp">
-      <Filter>ソース ファイル\Player</Filter>
-    </ClCompile>
-    <ClCompile Include="bg_title.cpp">
-      <Filter>ソース ファイル\Polygon2d</Filter>
-    </ClCompile>
-    <ClCompile Include="bg_ranking.cpp">
-      <Filter>ソース ファイル\Polygon2d</Filter>
-    </ClCompile>
-    <ClCompile Include="bg_tutorial.cpp">
-      <Filter>ソース ファイル\Polygon2d</Filter>
-    </ClCompile>
-    <ClCompile Include="logo_title.cpp">
-      <Filter>ソース ファイル\Polygon2d</Filter>
-    </ClCompile>
-    <ClCompile Include="logo_start.cpp">
-      <Filter>ソース ファイル\Polygon2d</Filter>
-    </ClCompile>
-    <ClCompile Include="logo_over.cpp">
-      <Filter>ソース ファイル\Polygon2d</Filter>
-    </ClCompile>
-    <ClCompile Include="logo_clear.cpp">
-      <Filter>ソース ファイル\Polygon2d</Filter>
-    </ClCompile>
-    <ClCompile Include="logo_ranking.cpp">
-      <Filter>ソース ファイル\Polygon2d</Filter>
->>>>>>> fe036598864e59002f8114b0bc229a4c6cb3031e
-    </ClCompile>
-    <ClCompile Include="logo_button.cpp">
-      <Filter>ソース ファイル\Polygon2d</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="scene.h">
-      <Filter>ヘッダー ファイル\Base</Filter>
-    </ClInclude>
-    <ClInclude Include="scene2d.h">
-      <Filter>ヘッダー ファイル\Base</Filter>
-    </ClInclude>
-    <ClInclude Include="manager.h">
-      <Filter>ヘッダー ファイル\Base</Filter>
-    </ClInclude>
-    <ClInclude Include="main.h">
-      <Filter>ヘッダー ファイル\Base</Filter>
-    </ClInclude>
-    <ClInclude Include="sound.h">
-      <Filter>ヘッダー ファイル\Base</Filter>
-    </ClInclude>
-    <ClInclude Include="input.h">
-      <Filter>ヘッダー ファイル\Base</Filter>
-    </ClInclude>
-    <ClInclude Include="renderer.h">
-      <Filter>ヘッダー ファイル\Base</Filter>
-    </ClInclude>
-    <ClInclude Include="keyboard.h">
-      <Filter>ヘッダー ファイル\Input</Filter>
-    </ClInclude>
-    <ClInclude Include="joystick.h">
-      <Filter>ヘッダー ファイル\Input</Filter>
-    </ClInclude>
-    <ClInclude Include="mode_game.h">
-      <Filter>ヘッダー ファイル\Mode</Filter>
-    </ClInclude>
-    <ClInclude Include="mode_result.h">
-      <Filter>ヘッダー ファイル\Mode</Filter>
-    </ClInclude>
-    <ClInclude Include="mode_title.h">
-      <Filter>ヘッダー ファイル\Mode</Filter>
-    </ClInclude>
-    <ClInclude Include="mode_tutorial.h">
-      <Filter>ヘッダー ファイル\Mode</Filter>
-    </ClInclude>
-    <ClInclude Include="fade.h">
-      <Filter>ヘッダー ファイル\Base</Filter>
-    </ClInclude>
-    <ClInclude Include="camera.h">
-      <Filter>ヘッダー ファイル\Base</Filter>
-    </ClInclude>
-    <ClInclude Include="billboard.h">
-      <Filter>ヘッダー ファイル\Base</Filter>
-    </ClInclude>
-    <ClInclude Include="polygon3d.h">
-      <Filter>ヘッダー ファイル\Base</Filter>
-    </ClInclude>
-    <ClInclude Include="player_2d.h">
-      <Filter>ヘッダー ファイル\Player</Filter>
-    </ClInclude>
-    <ClInclude Include="player_3d.h">
-      <Filter>ヘッダー ファイル\Player</Filter>
-    </ClInclude>
-    <ClInclude Include="scene3d.h">
-      <Filter>ヘッダー ファイル\Base</Filter>
-    </ClInclude>
-    <ClInclude Include="background.h">
-      <Filter>ヘッダー ファイル\Background</Filter>
-    </ClInclude>
-    <ClInclude Include="block.h">
-      <Filter>ヘッダー ファイル\Map</Filter>
-    </ClInclude>
-    <ClInclude Include="map_manager.h">
-      <Filter>ヘッダー ファイル\Map</Filter>
-    </ClInclude>
-    <ClInclude Include="normal_block.h">
-      <Filter>ヘッダー ファイル\Map</Filter>
-    </ClInclude>
-<<<<<<< HEAD
-    <ClInclude Include="particle.h">
-      <Filter>ヘッダー ファイル\Particle</Filter>
-    </ClInclude>
-    <ClInclude Include="particle_texture.h">
-      <Filter>ヘッダー ファイル\Particle</Filter>
-    </ClInclude>
-    <ClInclude Include="particle_emitter.h">
-      <Filter>ヘッダー ファイル\Particle\Particle_Emitter</Filter>
-    </ClInclude>
-    <ClInclude Include="particle_effect.h">
-      <Filter>ヘッダー ファイル\Particle\Particle_Effect</Filter>
-=======
-    <ClInclude Include="board.h">
-      <Filter>ヘッダー ファイル\Player</Filter>
-    </ClInclude>
-    <ClInclude Include="bg_title.h">
-      <Filter>ヘッダー ファイル\Polygon2d</Filter>
-    </ClInclude>
-    <ClInclude Include="bg_tutorial.h">
-      <Filter>ヘッダー ファイル\Polygon2d</Filter>
-    </ClInclude>
-    <ClInclude Include="bg_ranking.h">
-      <Filter>ヘッダー ファイル\Polygon2d</Filter>
-    </ClInclude>
-    <ClInclude Include="logo_title.h">
-      <Filter>ヘッダー ファイル\Polygon2d</Filter>
-    </ClInclude>
-    <ClInclude Include="logo_start.h">
-      <Filter>ヘッダー ファイル\Polygon2d</Filter>
-    </ClInclude>
-    <ClInclude Include="logo_over.h">
-      <Filter>ヘッダー ファイル\Polygon2d</Filter>
-    </ClInclude>
-    <ClInclude Include="logo_clear.h">
-      <Filter>ヘッダー ファイル\Polygon2d</Filter>
-    </ClInclude>
-    <ClInclude Include="logo_ranking.h">
-      <Filter>ヘッダー ファイル\Polygon2d</Filter>
->>>>>>> fe036598864e59002f8114b0bc229a4c6cb3031e
-    </ClInclude>
-    <ClInclude Include="logo_button.h">
-      <Filter>ヘッダー ファイル\Polygon2d</Filter>
-    </ClInclude>
+    <ClInclude Include="background.h" />
+    <ClInclude Include="bg_ranking.h" />
+    <ClInclude Include="bg_title.h" />
+    <ClInclude Include="bg_tutorial.h" />
+    <ClInclude Include="billboard.h" />
+    <ClInclude Include="block.h" />
+    <ClInclude Include="board.h" />
+    <ClInclude Include="camera.h" />
+    <ClInclude Include="fade.h" />
+    <ClInclude Include="input.h" />
+    <ClInclude Include="joystick.h" />
+    <ClInclude Include="keyboard.h" />
+    <ClInclude Include="logo_button.h" />
+    <ClInclude Include="logo_clear.h" />
+    <ClInclude Include="logo_over.h" />
+    <ClInclude Include="logo_ranking.h" />
+    <ClInclude Include="logo_start.h" />
+    <ClInclude Include="logo_title.h" />
+    <ClInclude Include="main.h" />
+    <ClInclude Include="manager.h" />
+    <ClInclude Include="map_manager.h" />
+    <ClInclude Include="mode_game.h" />
+    <ClInclude Include="mode_result.h" />
+    <ClInclude Include="mode_title.h" />
+    <ClInclude Include="mode_tutorial.h" />
+    <ClInclude Include="normal_block.h" />
+    <ClInclude Include="particle.h" />
+    <ClInclude Include="particle_effect.h" />
+    <ClInclude Include="particle_emitter.h" />
+    <ClInclude Include="particle_texture.h" />
+    <ClInclude Include="player_2d.h" />
+    <ClInclude Include="player_3d.h" />
+    <ClInclude Include="polygon3d.h" />
+    <ClInclude Include="renderer.h" />
+    <ClInclude Include="scene.h" />
+    <ClInclude Include="scene2d.h" />
+    <ClInclude Include="scene3d.h" />
+    <ClInclude Include="sound.h" />
+    <ClInclude Include="speedup.h" />
   </ItemGroup>
 </Project>
