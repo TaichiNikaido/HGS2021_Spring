@@ -25,11 +25,11 @@
 //*****************************************************************************
 #define TEXTURE ("Data/Texture/Player.png")
 #define SIZE (D3DXVECTOR3(150.0f,150.0f,0.0))
-#define SPEED (0.01f)
+#define SPEED (5.0f)
 #define CAMERA_DISTANCE (500.0f)
-#define GRAVITY (50.5f)
-#define JUMP_POWER (150.0f)
-
+#define GRAVITY (-5.5f)
+#define JUMP_POWER (70.0f)
+#define FLOOR (900.0f)
 //*****************************************************************************
 // 静的メンバ変数の初期化
 //*****************************************************************************
@@ -47,6 +47,7 @@ CPlayer3d::CPlayer3d(int nPriority)
 	m_fCameraDistance = 0.0f;							//カメラとの距離
 	m_bJump = false;									//ジャンプ
 	m_State = STATE_NONE;								//状態
+	memset(&m_bIsCollision, 0, sizeof(m_bIsCollision));//当たったか
 }
 
 //=============================================================================
@@ -160,13 +161,14 @@ void CPlayer3d::Update(void)
 	m_PositionOld = GetPosition();
 	//ポリゴン3Dの更新処理関数呼び出し
 	CPolygon3d::Update();
+	//位置の設定
+	SetPosition(GetPosition() + m_Move);
 	//移動処理関数呼び出し
 	Move();
 	//入力処理関数呼び出し
 	Input();
 	//生存時間を加算する
-	m_nSurvivalTime++;
-}
+	m_nSurvivalTime++;}
 
 //=============================================================================
 // 描画処理関数
@@ -175,6 +177,19 @@ void CPlayer3d::Draw(void)
 {
 	//ポリゴン3Dの描画処理関数呼び出し
 	CPolygon3d::Draw();
+}
+
+//=============================================================================
+// 移動量セット
+//=============================================================================
+void CPlayer3d::SetMove(D3DXVECTOR3 Move)
+{
+	m_Move = Move;
+}
+
+void CPlayer3d::SetIsCollision(CBlock::IS_COLLISION isCollision)
+{
+	m_bIsCollision = isCollision;
 }
 
 //=============================================================================
@@ -206,8 +221,9 @@ void CPlayer3d::Input(void)
 		//もしジャンプしていなかったら
 		if (m_bJump == false)
 		{
-			//ジャンプする
-			m_Move.y += JUMP_POWER;
+			m_bIsCollision.bIsTop = false;
+			//ジャンプす
+			m_Move.y -= JUMP_POWER;
 			//ジャンプ状態にする
 			m_bJump = true;
 		}
@@ -225,29 +241,24 @@ void CPlayer3d::Move(void)
 	if (m_State != STATE_DEATH)
 	{
 		//移動させる
-		m_Move.x += m_fSpeed;
-		//ジャンプしてるとき
-		if (m_bJump == true)
-		{
-			//重力をかける
-			m_Move.y -= GRAVITY;
-		}
+		m_Move.x = m_fSpeed;
+		////ジャンプしてるとき
+		//if (m_bJump == true)
+		//{
+		//	//重力をかける
+		//	m_Move.y -= GRAVITY;
+		//}
 	}
-	//位置更新
-	Position += m_Move;
-	//位置の設定
-	SetPosition(Position);
-	//ジャンプしてるとき
-	if (m_bJump == true)
-	{
-		//重力をかける
-		m_Move.y -= GRAVITY;
-	}
-	if (Position.y <= 0.0f)
+	if (Position.y >= FLOOR - GetSize().y / 2 || m_bIsCollision.bIsTop == true)
 	{
 		m_Move.y = 0.0f;
+		SetPosition(D3DXVECTOR3(GetPosition().x, FLOOR - GetSize().y / 2, 0.0f));
 		//ジャンプ状態にする
 		m_bJump = false;
+	}
+	else
+	{
+		m_Move.y -= GRAVITY;
 	}
 }
 

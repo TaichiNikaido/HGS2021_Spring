@@ -11,7 +11,7 @@
 // ヘッダファイルのインクルード
 //*****************************************************************************
 #include "polygon3d.h"
-
+#include "block.h"
 //*****************************************************************************
 // マクロ定義
 //*****************************************************************************
@@ -48,6 +48,10 @@ public:
 	void Draw(void);
 	float GetCameraDistance(void) { return m_fCameraDistance; }
 	D3DXVECTOR3 GetPositionOld(void) { return m_PositionOld; }
+	D3DXVECTOR3 GetMove(void) { return m_Move; };
+	void SetMove(D3DXVECTOR3 Move);
+	CBlock::IS_COLLISION GetIsCollision(void) { return m_bIsCollision; };
+	void SetIsCollision(CBlock::IS_COLLISION isCollision);
 private:
 	void Input(void);
 	void Move(void);
@@ -61,5 +65,6 @@ private:
 	float m_fCameraDistance;				//カメラとの距離
 	bool m_bJump;							//ジャンプしたかどうか
 	STATE m_State;							//状態
+	CBlock::IS_COLLISION m_bIsCollision;	//どの面に当たってるか
 };
 #endif
