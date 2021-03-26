@@ -22,6 +22,7 @@ class CTitleMode;
 class CGameMode;
 class CResultMode;
 class CFade;
+class CParticle_Texture;
 
 //*****************************************************************************
 // ç\ë¢ëÃíËã`
@@ -59,6 +60,7 @@ public:
 	static CGameMode * GetGameMode(void) { return m_pGameMode; }
 	static CResultMode * GetResultMode(void) { return m_pResultMode; }
 	static CFade * GetFade(void) { return m_pFade; }
+	static CParticle_Texture *GetParticle_Texture(void) { return m_pParticle_Texture; }
 private:
 	void LoadAll(void);
 	void UnloadAll(void);
@@ -71,6 +73,7 @@ private:
 	static CResultMode * m_pResultMode;
 	static CFade * m_pFade;
 	static MODE m_Mode;
+	static CParticle_Texture *m_pParticle_Texture;
 	static bool m_bUseFade;
 };
 #endif

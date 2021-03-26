@@ -17,8 +17,15 @@
 #include "player_3d.h"
 #include "board.h"
 #include "background.h"
+<<<<<<< HEAD
+#include "particle_emitter.h"
+=======
 #include "map_manager.h"
+<<<<<<< HEAD
 
+=======
+>>>>>>> fe036598864e59002f8114b0bc229a4c6cb3031e
+>>>>>>> b4c50c05c9d1e9244a5539929a8f26a0c649e5ee
 //*****************************************************************************
 // ƒ}ƒNƒ’è‹`
 //*****************************************************************************
@@ -155,8 +162,12 @@ void CGameMode::InitCreateAll(void)
 			m_pCamera->Init();
 		}
 	}
+<<<<<<< HEAD
+	CParticle_Emitter::Create(D3DXVECTOR3(0.0f, 0.0f, 50.0f),CParticle_Emitter::TYPE_BOAD);
+=======
 
 	CMap::Create();
+>>>>>>> fe036598864e59002f8114b0bc229a4c6cb3031e
 }
 
 //=============================================================================

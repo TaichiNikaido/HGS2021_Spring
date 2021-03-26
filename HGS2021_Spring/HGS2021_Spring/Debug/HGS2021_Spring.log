@@ -1,3 +1,28 @@
+<<<<<<< HEAD
 ﻿  logo_title.cpp
   HGS2021_Spring.vcxproj -> C:\Users\gsp025\Desktop\HGS2021_Spring\HGS2021_Spring\Debug\HGS2021_Spring.exe
   HGS2021_Spring.vcxproj -> C:\Users\gsp025\Desktop\HGS2021_Spring\HGS2021_Spring\Debug\HGS2021_Spring.pdb (Full PDB)
+=======
+<<<<<<< HEAD
+﻿  mode_game.cpp
+  HGS2021_Spring.vcxproj -> C:\Users\gsp015\Desktop\新しいフォルダー (3)\HGS2021_Spring\HGS2021_Spring\Debug\HGS2021_Spring.exe
+  HGS2021_Spring.vcxproj -> C:\Users\gsp015\Desktop\新しいフォルダー (3)\HGS2021_Spring\HGS2021_Spring\Debug\HGS2021_Spring.pdb (Full PDB)
+=======
+<<<<<<< HEAD
+﻿  player_3d.cpp
+cl : コマンド ライン warning D9028: 簡易リビルド時のエラーです、通常のビルドに戻します
+  HGS2021_Spring.vcxproj -> C:\Users\81902\Desktop\saisinHGS\HGS2021_Spring\HGS2021_Spring\Debug\HGS2021_Spring.exe
+  HGS2021_Spring.vcxproj -> C:\Users\81902\Desktop\saisinHGS\HGS2021_Spring\HGS2021_Spring\Debug\HGS2021_Spring.pdb (Full PDB)
+=======
+﻿  polygon3d.cpp
+  manager.cpp
+  logo_start.cpp
+  logo_ranking.cpp
+  logo_over.cpp
+  logo_clear.cpp
+  コードを生成中...
+  HGS2021_Spring.vcxproj -> C:\Users\gsp025\Desktop\HGS2021_Spring\HGS2021_Spring\Debug\HGS2021_Spring.exe
+  HGS2021_Spring.vcxproj -> C:\Users\gsp025\Desktop\HGS2021_Spring\HGS2021_Spring\Debug\HGS2021_Spring.pdb (Full PDB)
+>>>>>>> 191fac5180dfac7797bea71ae256bc1177ae4ad1
+>>>>>>> fe036598864e59002f8114b0bc229a4c6cb3031e
+>>>>>>> b4c50c05c9d1e9244a5539929a8f26a0c649e5ee

@@ -172,6 +172,10 @@
     <ClCompile Include="mode_title.cpp" />
     <ClCompile Include="mode_tutorial.cpp" />
     <ClCompile Include="normal_block.cpp" />
+    <ClCompile Include="particle.cpp" />
+    <ClCompile Include="particle_effect.cpp" />
+    <ClCompile Include="particle_emitter.cpp" />
+    <ClCompile Include="particle_texture.cpp" />
     <ClCompile Include="player_2d.cpp" />
     <ClCompile Include="player_3d.cpp" />
     <ClCompile Include="polygon3d.cpp" />
@@ -208,6 +212,10 @@
     <ClInclude Include="mode_title.h" />
     <ClInclude Include="mode_tutorial.h" />
     <ClInclude Include="normal_block.h" />
+    <ClInclude Include="particle.h" />
+    <ClInclude Include="particle_effect.h" />
+    <ClInclude Include="particle_emitter.h" />
+    <ClInclude Include="particle_texture.h" />
     <ClInclude Include="player_2d.h" />
     <ClInclude Include="player_3d.h" />
     <ClInclude Include="polygon3d.h" />
