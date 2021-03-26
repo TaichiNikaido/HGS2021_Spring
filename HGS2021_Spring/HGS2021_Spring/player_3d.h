@@ -74,5 +74,6 @@ private:
 	CBlock::IS_COLLISION m_bIsCollision;	//どの面に当たってるか
 	int m_nPattarnAnim;						//アニメーションカウンタ
 	int m_nCounterAnim;						//フレームカウンタ
+	int m_nCreateCount;
 };
 #endif

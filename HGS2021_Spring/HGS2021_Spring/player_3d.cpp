@@ -19,6 +19,8 @@
 #include "scene2d.h"
 #include "mode_game.h"
 #include "player_3d.h"
+#include "logo_over.h"
+#include "logo_clear.h"
 
 //*****************************************************************************
 // マクロ定義
@@ -54,6 +56,7 @@ CPlayer3d::CPlayer3d(int nPriority)
 	memset(&m_bIsCollision, 0, sizeof(m_bIsCollision));//当たったか
 	m_nCounterAnim = 0;
 	m_nPattarnAnim = 0;
+	m_nCreateCount = 0;
 }
 
 //=============================================================================
@@ -201,6 +204,14 @@ void CPlayer3d::Update(void)
 	Input();
 	//生存時間を加算する
 	m_nSurvivalTime++;
+	if (m_nSurvivalTime >= 7200)
+	{
+		if (m_nCreateCount == 0)
+		{
+			CClearLogo::Create();
+			m_nCreateCount++;
+		}
+	}
 }
 
 //=============================================================================
@@ -241,17 +252,23 @@ void CPlayer3d::SetState(STATE state)
 //=============================================================================
 void CPlayer3d::Death(D3DXVECTOR3 HitPos)
 {
+	CSound * pSound = CManager::GetSound();
 	float fKnockBackRot = 0.0f; //ノックバック方向
 	D3DXVECTOR3 distance; //プレイヤーと敵の距離
 	if (m_State != STATE_DEATH)
 	{
 		m_State = STATE_DEATH;
+		if (pSound != NULL)
+		{
+			pSound->PlaySoundA(CSound::SOUND_LABEL_SE_PLAYER_DAMAGE);
+		}
 
 		distance = GetPosition() - HitPos;
 
 		fKnockBackRot = atan2f((HitPos.x - GetPosition().x), (HitPos.y - GetPosition().y));	//プレイヤーから見た当たった敵のいる向きを計算
 		//その逆方向にぶっ飛ばす
 		SetMove(D3DXVECTOR3(sinf(fKnockBackRot - D3DXToRadian(180))*KNOCKBACK_VALUE, KNOCKBACK_VALUE_UP, cosf(fKnockBackRot - D3DXToRadian(180))*KNOCKBACK_VALUE));
+		COverLogo::Create();
 	}
 }
 
@@ -283,10 +300,15 @@ void CPlayer3d::Input(void)
 
 	if (m_State != STATE_DEATH)
 	{
-		if (pJoystick->GetJoystickTrigger(JS_A))
+		if (pKeyboard->GetKeyboardPress(DIK_LSHIFT) ||pKeyboard->GetKeyboardPress(DIK_RSHIFT) || pJoystick->GetJoystickPress(JS_A))
 		{
+			m_CollisionSize.y = 50;
 		}
-		if (pKeyboard->GetKeyboardTrigger(DIK_SPACE))
+		else
+		{
+			m_CollisionSize = COLLISION_SIZE;
+		}
+		if (pKeyboard->GetKeyboardTrigger(DIK_SPACE) || pJoystick->GetJoystickTrigger(JS_X))
 		{
 			//もしジャンプしていなかったら
 			if (m_bJump == false)
