@@ -7,8 +7,8 @@
 
 #include "polygon3d.h"
 
-#define TEXTURE_BLOCK "Data/TEXTURE/BLOCK/ice_block.png"
-#define BLOCK_SIZE (10.0f)
+#define TEXTURE_BLOCK "Data/Textrue/ookamitex.png"
+#define BLOCK_SIZE (100.0f)
 #define ICE_LIFE 3
 #define HARD_ICE_LIFE 6
 
@@ -33,7 +33,8 @@ public:
 		bool bIsFront;
 		bool bIsBack;
 	}IS_COLLISION;
-
+	static HRESULT Load(void);
+	static void Unload(void);
 	HRESULT Init(void);
 	void Uninit(void);
 	void Update(void);
@@ -42,6 +43,7 @@ public:
 	void AddBreakIces(int nBreakIce) { m_nBreakIces += nBreakIce; }
 	int GetBreakIces(void) { return m_nBreakIces; }
 private:
+	static LPDIRECT3DTEXTURE9 m_apTexture[1];//テクスチャのポインタ
 	int                     m_nPatternAnim; //アニメーションパターン
 	int                     m_nCountAnim; //アニメーションパターン
 	int m_nBreakIces;

@@ -23,6 +23,7 @@
 #include "joystick.h"
 #include "fade.h"
 #include "background.h"
+#include "block.h"
 
 //*****************************************************************************
 // É}ÉNÉçíËã`
@@ -224,6 +225,7 @@ void CManager::SetMode(MODE Mode)
 void CManager::LoadAll(void)
 {
 	CBackground::TextureLoad();
+	CBlock::Load();
 }
 
 //=============================================================================
@@ -231,6 +233,7 @@ void CManager::LoadAll(void)
 //=============================================================================
 void CManager::UnloadAll(void)
 {
+	CBlock::Unload();
 	CBackground::TextureUnload();
 }
 
