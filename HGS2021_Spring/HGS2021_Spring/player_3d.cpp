@@ -24,12 +24,16 @@
 // マクロ定義
 //*****************************************************************************
 #define TEXTURE ("Data/Texture/Player.png")
-#define SIZE (D3DXVECTOR3(150.0f,150.0f,0.0))
-#define SPEED (5.0f)
-#define CAMERA_DISTANCE (500.0f)
-#define GRAVITY (-5.5f)
-#define JUMP_POWER (70.0f)
+#define SIZE (D3DXVECTOR3(180.0f,180.0f,0.0))
+#define SPEED (15.0f)
+#define CAMERA_DISTANCE (1500.0f)
+#define GRAVITY (-4.5f)
+#define JUMP_POWER (80.0f)
 #define FLOOR (900.0f)
+#define COLLISION_SIZE (D3DXVECTOR3(100.0f,300.0f,0.0f))
+#define KNOCKBACK_VALUE (10.0f) //ノックバック移動量(横)
+#define KNOCKBACK_VALUE_UP (-60.0f) //ノックバック移動量(上方向)
+#define DEATH_ADD_ROT (0.3f)//死んだ時の回転量
 //*****************************************************************************
 // 静的メンバ変数の初期化
 //*****************************************************************************
@@ -48,6 +52,8 @@ CPlayer3d::CPlayer3d(int nPriority)
 	m_bJump = false;									//ジャンプ
 	m_State = STATE_NONE;								//状態
 	memset(&m_bIsCollision, 0, sizeof(m_bIsCollision));//当たったか
+	m_nCounterAnim = 0;
+	m_nPattarnAnim = 0;
 }
 
 //=============================================================================
@@ -124,14 +130,14 @@ HRESULT CPlayer3d::Init(void)
 {
 	//テクスチャのUV座標の設定
 	D3DXVECTOR2 aTexture[NUM_VERTEX];
-	aTexture[0] = D3DXVECTOR2(0.0f, 0.0f);
-	aTexture[1] = D3DXVECTOR2(1.0f, 0.0f);
-	aTexture[2] = D3DXVECTOR2(0.0f, 1.0f);
-	aTexture[3] = D3DXVECTOR2(1.0f, 1.0f);
+	aTexture[0] = D3DXVECTOR2(m_nPattarnAnim * 0.2f, 0.0f);
+	aTexture[1] = D3DXVECTOR2(m_nPattarnAnim * 0.2f + 0.2f, 0.0f);
+	aTexture[2] = D3DXVECTOR2(m_nPattarnAnim * 0.2f, 1.0f);
+	aTexture[3] = D3DXVECTOR2(m_nPattarnAnim * 0.2f + 0.2f, 1.0f);
 	//ポリゴン3Dの初期化処理関数呼び出し
 	CPolygon3d::Init();
 	//衝突判定用サイズの取得
-	m_CollisionSize = GetSize();
+	m_CollisionSize = COLLISION_SIZE;
 	//移動速度の初期設定
 	m_fSpeed = SPEED;
 	//カメラとの距離を初期設定
@@ -159,8 +165,34 @@ void CPlayer3d::Update(void)
 {
 	//過去の位置を保存する
 	m_PositionOld = GetPosition();
+	m_nCounterAnim++;
+	//アニメーションカウンタ
+	if (m_nCounterAnim % 5 == 0)
+	{
+		m_nPattarnAnim++;
+	}
+	if (m_nPattarnAnim > 5)
+	{
+		m_nCounterAnim = 0;
+		m_nPattarnAnim = 0;
+	}
+	if (m_State == STATE_DEATH)//死んだときくるくるさせる
+	{
+		D3DXVECTOR3 Rot = GetRotation();
+
+		Rot.z += DEATH_ADD_ROT;
+		SetRotation(Rot);
+	}
+	//テクスチャのUV座標の設定
+	D3DXVECTOR2 aTexture[NUM_VERTEX];
+	aTexture[0] = D3DXVECTOR2(m_nPattarnAnim * 0.2f, 0.0f);
+	aTexture[1] = D3DXVECTOR2(m_nPattarnAnim * 0.2f + 0.2f, 0.0f);
+	aTexture[2] = D3DXVECTOR2(m_nPattarnAnim * 0.2f, 1.0f);
+	aTexture[3] = D3DXVECTOR2(m_nPattarnAnim * 0.2f + 0.2f, 1.0f);
 	//ポリゴン3Dの更新処理関数呼び出し
 	CPolygon3d::Update();
+	//テクスチャの設定
+	SetTexture(aTexture);
 	//位置の設定
 	SetPosition(GetPosition() + m_Move);
 	//移動処理関数呼び出し
@@ -168,7 +200,8 @@ void CPlayer3d::Update(void)
 	//入力処理関数呼び出し
 	Input();
 	//生存時間を加算する
-	m_nSurvivalTime++;}
+	m_nSurvivalTime++;
+}
 
 //=============================================================================
 // 描画処理関数
@@ -185,6 +218,41 @@ void CPlayer3d::Draw(void)
 void CPlayer3d::SetMove(D3DXVECTOR3 Move)
 {
 	m_Move = Move;
+}
+
+//=============================================================================
+// 当たり判定セット
+//=============================================================================
+void CPlayer3d::SetCollisionSize(D3DXVECTOR3 CollisionSize)
+{
+	m_CollisionSize = CollisionSize;
+}
+
+//=============================================================================
+// 状態
+//=============================================================================
+void CPlayer3d::SetState(STATE state)
+{
+	m_State = state;
+}
+
+//=============================================================================
+// 死亡処理
+//=============================================================================
+void CPlayer3d::Death(D3DXVECTOR3 HitPos)
+{
+	float fKnockBackRot = 0.0f; //ノックバック方向
+	D3DXVECTOR3 distance; //プレイヤーと敵の距離
+	if (m_State != STATE_DEATH)
+	{
+		m_State = STATE_DEATH;
+
+		distance = GetPosition() - HitPos;
+
+		fKnockBackRot = atan2f((HitPos.x - GetPosition().x), (HitPos.y - GetPosition().y));	//プレイヤーから見た当たった敵のいる向きを計算
+		//その逆方向にぶっ飛ばす
+		SetMove(D3DXVECTOR3(sinf(fKnockBackRot - D3DXToRadian(180))*KNOCKBACK_VALUE, KNOCKBACK_VALUE_UP, cosf(fKnockBackRot - D3DXToRadian(180))*KNOCKBACK_VALUE));
+	}
 }
 
 void CPlayer3d::SetIsCollision(CBlock::IS_COLLISION isCollision)
@@ -213,19 +281,22 @@ void CPlayer3d::Input(void)
 	//ゲームモードの取得
 	CGameMode * pGameMode = CManager::GetGameMode();
 
-	if (pJoystick->GetJoystickTrigger(JS_A))
+	if (m_State != STATE_DEATH)
 	{
-	}
-	if (pKeyboard->GetKeyboardTrigger(DIK_SPACE))
-	{
-		//もしジャンプしていなかったら
-		if (m_bJump == false)
+		if (pJoystick->GetJoystickTrigger(JS_A))
 		{
-			m_bIsCollision.bIsTop = false;
-			//ジャンプす
-			m_Move.y -= JUMP_POWER;
-			//ジャンプ状態にする
-			m_bJump = true;
+		}
+		if (pKeyboard->GetKeyboardTrigger(DIK_SPACE))
+		{
+			//もしジャンプしていなかったら
+			if (m_bJump == false)
+			{
+				m_bIsCollision.bIsTop = false;
+				//ジャンプす
+				m_Move.y -= JUMP_POWER;
+				//ジャンプ状態にする
+				m_bJump = true;
+			}
 		}
 	}
 }
@@ -249,7 +320,7 @@ void CPlayer3d::Move(void)
 		//	m_Move.y -= GRAVITY;
 		//}
 	}
-	if (Position.y >= FLOOR - GetSize().y / 2 || m_bIsCollision.bIsTop == true)
+	if (Position.y >= FLOOR - GetSize().y / 2 && m_State != STATE_DEATH)
 	{
 		m_Move.y = 0.0f;
 		SetPosition(D3DXVECTOR3(GetPosition().x, FLOOR - GetSize().y / 2, 0.0f));

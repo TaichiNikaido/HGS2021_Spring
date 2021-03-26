@@ -90,12 +90,15 @@ void CCamera::Update(void)
 	//もしプレイヤーがNULLじゃない場合
 	if (pPlayer != NULL)
 	{
-		//プレイヤーの位置を設定
-		D3DXVECTOR3 PlayerPosition = pPlayer->GetPosition();
-		//上方向ベクトルを指定する
-		m_VectorU = D3DXVECTOR3(0.0f, 1.0f, 0.0f);
-		m_PositionV = D3DXVECTOR3(PlayerPosition.x + 550.0f, 0.0f, PlayerPosition.z + m_fPlayerDistance);
-		m_PositionR = D3DXVECTOR3(PlayerPosition.x + 550.0f, 0.0f, PlayerPosition.z);
+		if (pPlayer->GetState() != CPlayer3d::STATE_DEATH)
+		{
+			//プレイヤーの位置を設定
+			D3DXVECTOR3 PlayerPosition = pPlayer->GetPosition();
+			//上方向ベクトルを指定する
+			m_VectorU = D3DXVECTOR3(0.0f, 1.0f, 0.0f);
+			m_PositionV = D3DXVECTOR3(PlayerPosition.x + 550.0f, 0.0f, PlayerPosition.z + m_fPlayerDistance);
+			m_PositionR = D3DXVECTOR3(PlayerPosition.x + 550.0f, 0.0f, PlayerPosition.z);
+		}
 	}
 }
 

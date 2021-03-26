@@ -58,13 +58,13 @@ void CMap::MapLoad(void)
 	FILE * pfile = fopen("Data/Text/maptest.csv", "r");
 
 	//csv“Ç‚İæ‚èˆ—
-	char str[1024];
+	char str[2048];
 	int nRowIndex = 0; //s
 	int nColIndex = 0; //—ñ
 	if (pfile != NULL)
 	{
 		//ˆêsæ“¾
-		while (fgets(str, 1024, pfile) != NULL)
+		while (fgets(str, 2048, pfile) != NULL)
 		{
 			char * cTokStr;
 			cTokStr = strtok(str, ",");

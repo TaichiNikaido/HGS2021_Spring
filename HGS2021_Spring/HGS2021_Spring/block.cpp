@@ -121,7 +121,7 @@ void CBlock::Draw(void)
 	CPolygon3d::Draw();
 }
 
-CBlock::IS_COLLISION CBlock::Collision(void)
+void CBlock::Collision(void)
 {
 	IS_COLLISION bCollision;
 
@@ -130,25 +130,13 @@ CBlock::IS_COLLISION CBlock::Collision(void)
 	D3DXVECTOR3 Size;
 	D3DXVECTOR3 PosOld;
 	CPlayer3d * pPlayer = CGameMode::GetPlayer3d();
-	bool bIsTop = false;
-	bool bIsBottom = false;
-	bool bIsRight = false;
-	bool bIsLeft = false;
-	bool bIsFront = false;
-	bool bIsBack = false;
+
 	if (pPlayer != nullptr)
 	{
 		Pos = pPlayer->GetPosition();
-		Size = pPlayer->GetSize();
+		Size = pPlayer->GetCollisionSize();
 		PosOld = pPlayer->GetPositionOld();
 		Move = pPlayer->GetMove();
-		bCollision.bIsTop = pPlayer->GetIsCollision().bIsTop;
-		bCollision.bIsBottom = pPlayer->GetIsCollision().bIsBottom;
-		bCollision.bIsRight = pPlayer->GetIsCollision().bIsRight;
-		bCollision.bIsLeft = pPlayer->GetIsCollision().bIsLeft;
-		bCollision.bIsFront = pPlayer->GetIsCollision().bIsFront;
-		bCollision.bIsBack = pPlayer->GetIsCollision().bIsBack;
-
 
 		D3DXVECTOR3 box1Max = D3DXVECTOR3(Size.x / 2, Size.y / 2, Size.z / 2) + Pos;
 		D3DXVECTOR3 box1Min = D3DXVECTOR3(-Size.x / 2, -Size.y / 2, -Size.z / 2) + Pos;
@@ -162,91 +150,10 @@ CBlock::IS_COLLISION CBlock::Collision(void)
 			box1Min.x < box2Max.x //‰¡‰E
 			)
 		{
-			if (box1Max.y > box2Min.y && PosOld.y <= box2Min.y)//cã
+			if (pPlayer->GetState() != CPlayer3d::STATE_DEATH)
 			{
-				Pos.y = box2Min.y - Size.y / 2;
-				Move.y = 0.0f;
-				bCollision.bIsTop = true;
-			}
-
-			else if (box1Min.y < box2Max.y && PosOld.y >= box2Max.y)//c‰º
-			{
-				Pos.y = box2Max.y + Size.y / 2;
-				Move.y = 0.0f;
-				bCollision.bIsBottom = true;
-			}
-
-			else if (box1Max.x > box2Min.x && PosOld.x <= box2Min.x)//‰E‚©‚ç
-			{
-				Pos.x = box2Min.x - Size.x / 2;
-				Move.x = 0.0f;
-				bCollision.bIsRight = true;
-			}
-
-			else if (box1Min.x < box2Max.x && PosOld.x >= box2Max.x)//¶‚©‚ç
-			{
-				Pos.x = box2Max.x + Size.x / 2;
- 				Move.x = 0.0f;
-				bCollision.bIsLeft = true;
+				pPlayer->Death(GetPosition());//“–‚½‚Á‚½‚çŽ€–S
 			}
 		}
 	}
-	////‘O‰ñˆÊ’u‚©‚ç•Ï‚í‚Á‚Ä‚¢‚½‚ç“–‚½‚Á‚Ä‚¢‚é–Ê‚Ì”»’è‚ð‚·‚é
-	//if (fabsf(PosOld.x) >= 0.0f ||
-	//	fabsf(PosOld.y) >= 0.0f )
-	//{
-	//	if (bIsTop == false)
-	//	{
-	//		bCollision.bIsTop = false;
-	//	}
-	//	else
-	//	{
-	//		bCollision.bIsTop = true;
-	//	}
-	//	if (bIsBottom == false)
-	//	{
-	//		bCollision.bIsBottom = false;
-	//	}
-	//	else
-	//	{
-	//		bCollision.bIsBottom = true;
-	//	}
-	//	if (bIsRight == false)
-	//	{
-	//		bCollision.bIsRight = false;
-	//	}
-	//	else
-	//	{
-	//		bCollision.bIsRight = true;
-	//	}
-	//	if (bIsLeft == false)
-	//	{
-	//		bCollision.bIsLeft = false;
-	//	}
-	//	else
-	//	{
-	//		bCollision.bIsLeft = true;
-	//	}
-	//	if (bIsFront == false)
-	//	{
-	//		bCollision.bIsFront = false;
-	//	}
-	//	else
-	//	{
-	//		bCollision.bIsFront = true;
-	//	}
-	//	if (bIsBack == false)
-	//	{
-	//		bCollision.bIsBack = false;
-	//	}
-	//	else
-	//	{
-	//		bCollision.bIsBack = true;
-	//	}
-	//}
-
-	pPlayer->SetMove(Move);
-	pPlayer->SetIsCollision(bCollision);
-	pPlayer->SetPosition(Pos);
-	return bCollision;
 }

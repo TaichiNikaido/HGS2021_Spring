@@ -48,9 +48,15 @@ public:
 	void Draw(void);
 	float GetCameraDistance(void) { return m_fCameraDistance; }
 	D3DXVECTOR3 GetPositionOld(void) { return m_PositionOld; }
+	D3DXVECTOR3 GetCollisionSize(void) { return m_CollisionSize; }
 	D3DXVECTOR3 GetMove(void) { return m_Move; };
 	void SetMove(D3DXVECTOR3 Move);
+	void SetCollisionSize(D3DXVECTOR3 CollisionSize);
+	void SetState(STATE state);
+	STATE GetState(void) { return m_State; };
+	void Death(D3DXVECTOR3 HitPos);
 	CBlock::IS_COLLISION GetIsCollision(void) { return m_bIsCollision; };
+
 	void SetIsCollision(CBlock::IS_COLLISION isCollision);
 private:
 	void Input(void);
@@ -66,5 +72,7 @@ private:
 	bool m_bJump;							//ジャンプしたかどうか
 	STATE m_State;							//状態
 	CBlock::IS_COLLISION m_bIsCollision;	//どの面に当たってるか
+	int m_nPattarnAnim;						//アニメーションカウンタ
+	int m_nCounterAnim;						//フレームカウンタ
 };
 #endif

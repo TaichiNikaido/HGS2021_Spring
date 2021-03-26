@@ -7,7 +7,7 @@
 
 #include "polygon3d.h"
 
-#define TEXTURE_BLOCK "Data/Textrue/bakuhatsu.png"
+#define TEXTURE_BLOCK "Data/Texture/block.png"
 #define BLOCK_SIZE (100.0f)
 #define ICE_LIFE 3
 #define HARD_ICE_LIFE 6
@@ -39,9 +39,7 @@ public:
 	void Uninit(void);
 	void Update(void);
 	void Draw(void);
-	IS_COLLISION Collision(void);
-	void AddBreakIces(int nBreakIce) { m_nBreakIces += nBreakIce; }
-	int GetBreakIces(void) { return m_nBreakIces; }
+	void Collision(void);
 private:
 	static LPDIRECT3DTEXTURE9 m_apTexture[1];//テクスチャのポインタ
 	int                     m_nPatternAnim; //アニメーションパターン
