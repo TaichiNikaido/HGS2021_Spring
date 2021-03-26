@@ -1,0 +1,33 @@
+#**********************************************************************************
+# テクスチャ読み込み用テキスト [texture.txt]
+# Author : 管原司
+#**********************************************************************************
+SCRIPT
+#**********************************************************************************
+# テクスチャファイル数
+#**********************************************************************************
+TEXTURE_NUM = 20
+#**********************************************************************************
+# テクスチャファイル名
+#**********************************************************************************
+TEXTURE_FILENAME = data/TEXTURE/Circle01.png		# [1]
+TEXTURE_FILENAME = data/TEXTURE/Circle02.png		# [2]
+TEXTURE_FILENAME = data/TEXTURE/Circle03.png		# [3]
+TEXTURE_FILENAME = data/TEXTURE/Circle04.png		# [4]
+TEXTURE_FILENAME = data/TEXTURE/Circle05.png		# [5]
+TEXTURE_FILENAME = data/TEXTURE/Star01.png			# [6]
+TEXTURE_FILENAME = data/TEXTURE/Star02.png			# [7]
+TEXTURE_FILENAME = data/TEXTURE/Star03.png			# [8]
+TEXTURE_FILENAME = data/TEXTURE/Star04.png			# [9]
+TEXTURE_FILENAME = data/TEXTURE/Star05.png			# [10]
+TEXTURE_FILENAME = data/TEXTURE/Square01.png		# [11]
+TEXTURE_FILENAME = data/TEXTURE/Square02.png		# [12]
+TEXTURE_FILENAME = data/TEXTURE/Square03.png		# [13]
+TEXTURE_FILENAME = data/TEXTURE/Square04.png		# [14]
+TEXTURE_FILENAME = data/TEXTURE/Square05.png		# [15]
+TEXTURE_FILENAME = data/TEXTURE/Triangle01.png		# [16]
+TEXTURE_FILENAME = data/TEXTURE/Triangle02.png		# [17]
+TEXTURE_FILENAME = data/TEXTURE/Triangle03.png		# [18]
+TEXTURE_FILENAME = data/TEXTURE/Triangle04.png		# [19]
+TEXTURE_FILENAME = data/TEXTURE/Triangle05.png		# [20]
+END_SCRIPT
