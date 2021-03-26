@@ -149,6 +149,7 @@
     <ClCompile Include="background.cpp" />
     <ClCompile Include="billboard.cpp" />
     <ClCompile Include="block.cpp" />
+    <ClCompile Include="board.cpp" />
     <ClCompile Include="camera.cpp" />
     <ClCompile Include="fade.cpp" />
     <ClCompile Include="input.cpp" />
@@ -175,6 +176,7 @@
     <ClInclude Include="background.h" />
     <ClInclude Include="billboard.h" />
     <ClInclude Include="block.h" />
+    <ClInclude Include="board.h" />
     <ClInclude Include="camera.h" />
     <ClInclude Include="fade.h" />
     <ClInclude Include="input.h" />

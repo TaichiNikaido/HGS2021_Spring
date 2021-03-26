@@ -183,7 +183,7 @@ void CPolygon3d::Draw(void)
 	//デバイスにレンダラーのデバイスを代入
 	LPDIRECT3DDEVICE9 pDevice = pRenderer->GetDevice();
 	D3DXMATRIX mtxRot, mtxTrans;
-	pDevice->SetRenderState(D3DRS_LIGHTING, false);
+	pDevice->SetRenderState(D3DRS_LIGHTING,false);
 	D3DXMatrixIdentity(&m_mtxWorld);
 	D3DXMatrixRotationYawPitchRoll(&mtxRot, GetRotation().y, GetRotation().x, GetRotation().z);
 	D3DXMatrixMultiply(&m_mtxWorld, &m_mtxWorld, &mtxRot);
