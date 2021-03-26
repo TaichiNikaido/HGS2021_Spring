@@ -24,6 +24,7 @@
 #include "fade.h"
 #include "background.h"
 #include "block.h"
+#include "player_3d.h"
 
 //*****************************************************************************
 // É}ÉNÉçíËã`
@@ -226,6 +227,7 @@ void CManager::LoadAll(void)
 {
 	CBackground::TextureLoad();
 	CBlock::Load();
+	CPlayer3d::TextureLoad();
 }
 
 //=============================================================================
@@ -235,6 +237,7 @@ void CManager::UnloadAll(void)
 {
 	CBlock::Unload();
 	CBackground::TextureUnload();
+	CPlayer3d::TextureUnload();
 }
 
 //=============================================================================

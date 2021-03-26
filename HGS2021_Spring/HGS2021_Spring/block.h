@@ -7,7 +7,7 @@
 
 #include "polygon3d.h"
 
-#define TEXTURE_BLOCK "Data/Textrue/ookamitex.png"
+#define TEXTURE_BLOCK "Data/Textrue/bakuhatsu.png"
 #define BLOCK_SIZE (100.0f)
 #define ICE_LIFE 3
 #define HARD_ICE_LIFE 6

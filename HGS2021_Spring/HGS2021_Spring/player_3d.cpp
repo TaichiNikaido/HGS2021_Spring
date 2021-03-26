@@ -28,9 +28,9 @@
 //*****************************************************************************
 // マクロ定義
 //*****************************************************************************
-#define TEXTURE ("")
+#define TEXTURE ("Data/Textrue/bakuhatsu.png")
 #define SIZE (D3DXVECTOR3(150.0f,150.0f,0.0))
-#define SPEED (0.0f)
+#define SPEED (0.01f)
 #define CAMERA_DISTANCE (500.0f)
 #define GRAVITY (50.5f)
 #define JUMP_POWER (150.0f)
@@ -202,7 +202,7 @@ void CPlayer3d::Input(void)
 	if (pJoystick->GetJoystickTrigger(JS_A))
 	{
 	}
-	if (pJoystick->GetJoystickTrigger(JS_Y))
+	if (pKeyboard->GetKeyboardTrigger(DIK_SPACE))
 	{
 		//もしジャンプしていなかったら
 		if (m_bJump == false)
@@ -250,7 +250,6 @@ void CPlayer3d::Move(void)
 		//ジャンプ状態にする
 		m_bJump = false;
 	}
-
 }
 
 //=============================================================================
