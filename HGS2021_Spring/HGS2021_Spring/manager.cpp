@@ -36,6 +36,8 @@
 #include "logo_clear.h"
 #include "logo_ranking.h"
 #include "logo_button.h"
+
+#include "speedup.h"
 //*****************************************************************************
 // É}ÉNÉçíËã`
 //*****************************************************************************
@@ -258,6 +260,7 @@ void CManager::LoadAll(void)
 	CClearLogo::TextureLoad();
 	CRankingLogo::TextureLoad();
 	CButtonLogo::TextureLoad();
+	CSpeedUp::TextureLoad();
 }
 
 //=============================================================================
@@ -278,6 +281,7 @@ void CManager::UnloadAll(void)
 	CClearLogo::TextureUnload();
 	CRankingLogo::TextureUnload();
 	CButtonLogo::TextureUnload();
+	CSpeedUp::TextureUnload();
 }
 
 //=============================================================================

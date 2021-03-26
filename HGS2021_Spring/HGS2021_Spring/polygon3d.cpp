@@ -183,6 +183,8 @@ void CPolygon3d::Draw(void)
 	//デバイスにレンダラーのデバイスを代入
 	LPDIRECT3DDEVICE9 pDevice = pRenderer->GetDevice();
 	D3DXMATRIX mtxRot, mtxTrans;
+	D3DMATERIAL9 matDef;
+	ZeroMemory(&matDef, sizeof(matDef));
 	pDevice->SetRenderState(D3DRS_LIGHTING,false);
 	D3DXMatrixIdentity(&m_mtxWorld);
 	D3DXMatrixRotationYawPitchRoll(&mtxRot, GetRotation().y, GetRotation().x, GetRotation().z);
@@ -191,10 +193,14 @@ void CPolygon3d::Draw(void)
 	D3DXMatrixMultiply(&m_mtxWorld, &m_mtxWorld, &mtxTrans);
 	pDevice->SetTransform(D3DTS_WORLD, &m_mtxWorld);
 	pDevice->SetTexture(0, m_pTexture);
+	matDef.Ambient = m_Color;
+	pDevice->SetMaterial(&matDef);
 	pDevice->SetStreamSource(0, m_pVtxBuff, 0, sizeof(VERTEX_3D));
 	pDevice->SetFVF(FVF_VERTEX_3D);
 	pDevice->DrawPrimitive(D3DPT_TRIANGLESTRIP, 0, 2);
 	pDevice->SetRenderState(D3DRS_LIGHTING, true);
+	ZeroMemory(&matDef, sizeof(matDef));
+	pDevice->SetMaterial(&matDef);
 }
 
 //=============================================================================

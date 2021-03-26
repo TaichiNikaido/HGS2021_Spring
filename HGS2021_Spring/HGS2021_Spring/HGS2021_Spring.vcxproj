@@ -154,6 +154,7 @@
     <ClCompile Include="block.cpp" />
     <ClCompile Include="board.cpp" />
     <ClCompile Include="camera.cpp" />
+    <ClCompile Include="speedup.cpp" />
     <ClCompile Include="fade.cpp" />
     <ClCompile Include="input.cpp" />
     <ClCompile Include="joystick.cpp" />
@@ -194,6 +195,7 @@
     <ClInclude Include="block.h" />
     <ClInclude Include="board.h" />
     <ClInclude Include="camera.h" />
+    <ClInclude Include="speedup.h" />
     <ClInclude Include="fade.h" />
     <ClInclude Include="input.h" />
     <ClInclude Include="joystick.h" />

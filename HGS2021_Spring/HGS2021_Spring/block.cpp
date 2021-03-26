@@ -123,7 +123,6 @@ void CBlock::Draw(void)
 
 void CBlock::Collision(void)
 {
-	IS_COLLISION bCollision;
 
 	D3DXVECTOR3 Move;
 	D3DXVECTOR3 Pos;

@@ -1,2 +1,6 @@
 #TargetFrameworkVersion=v4.0:PlatformToolSet=v140:EnableManagedIncrementalBuild=false:VCToolArchitecture=Native32Bit:WindowsTargetPlatformVersion=8.1
+<<<<<<< HEAD
+Debug|Win32|C:\Users\81902\Desktop\saisinHGS\HGS2021_Spring\HGS2021_Spring\|
+=======
 Debug|Win32|C:\Users\gsp025\Desktop\HGS2021_Spring\HGS2021_Spring\|
+>>>>>>> 60587719ed552b32493635a6f18337839fe17bbf
