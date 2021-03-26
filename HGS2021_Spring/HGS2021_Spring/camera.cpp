@@ -22,7 +22,7 @@
 //*****************************************************************************
 #define INITIAL_DISTANCE (0.0f)																	//距離の初期値
 #define VECTOR (D3DXVECTOR3(0.0f, 1.0f, 0.0f))													//上方向ベクトル
-#define ROTATION (D3DXVECTOR3(D3DXToRadian(0.0f), D3DXToRadian(90.0f), D3DXToRadian(80.0f)))	//回転
+#define ROTATION (D3DXVECTOR3(D3DXToRadian(0.0f), D3DXToRadian(0.0f), D3DXToRadian(0.0f)))		//回転
 
 //*****************************************************************************
 // 静的メンバ変数の初期化
@@ -58,17 +58,17 @@ HRESULT CCamera::Init(void)
 	{
 		//プレイヤーの位置位置を取得する
 		D3DXVECTOR3 PlayerPosition = pPlayer3d->GetPosition();
+		//プレイヤーとの距離を設定
 		float PlayerDistance = pPlayer3d->GetCameraDistance();
 		//視点を設定する
 		m_PositionV = D3DXVECTOR3(PlayerPosition.x, PlayerPosition.y, PlayerPosition.z + PlayerDistance);
 		//注視点の設定
 		m_PositionR = D3DXVECTOR3(PlayerPosition.x, PlayerPosition.y, PlayerPosition.z);
 	}
-		//上方向ベクトルの初期設定
-		m_VectorU = VECTOR;
-		//回転方向の初期設定
-		m_Rotation = ROTATION;
-		//視点と注視点の距離を設定
+	//上方向ベクトルの初期設定
+	m_VectorU = VECTOR;
+	//回転方向の初期設定
+	m_Rotation = ROTATION;
 	return S_OK;
 }
 
@@ -84,6 +84,23 @@ void CCamera::Uninit(void)
 //=============================================================================
 void CCamera::Update(void)
 {
+	//プレイヤーの取得
+	CPlayer3d * pPlayer3d = CGameMode::GetPlayer3d();
+	if (pPlayer3d != NULL)
+	{
+		//プレイヤーの位置位置を取得する
+		D3DXVECTOR3 PlayerPosition = pPlayer3d->GetPosition();
+		//プレイヤーとの距離を設定
+		float PlayerDistance = pPlayer3d->GetCameraDistance();
+		//視点を設定する
+		m_PositionV = D3DXVECTOR3(PlayerPosition.x, PlayerPosition.y, PlayerPosition.z + PlayerDistance);
+		//注視点の設定
+		m_PositionR = D3DXVECTOR3(PlayerPosition.x, PlayerPosition.y, PlayerPosition.z);
+	}
+	//上方向ベクトルの初期設定
+	m_VectorU = VECTOR;
+	//回転方向の初期設定
+	m_Rotation = ROTATION;
 }
 
 //=============================================================================

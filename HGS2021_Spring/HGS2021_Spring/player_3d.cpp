@@ -106,6 +106,8 @@ CPlayer3d * CPlayer3d::Create(D3DXVECTOR3 Position)
 			pPlayer->Init();
 			//プレイヤーの位置を設定する
 			pPlayer->SetPosition(Position);
+			//プレイヤーの向きを設定する
+			pPlayer->SetRotation(D3DXVECTOR3(D3DXToRadian(0.0f), D3DXToRadian(0.0f), D3DXToRadian(0.0f)));
 			//プレイヤーのサイズを設定する
 			pPlayer->SetSize(SIZE);
 		}
@@ -125,8 +127,8 @@ HRESULT CPlayer3d::Init(void)
 	aTexture[1] = D3DXVECTOR2(1.0f, 0.0f);
 	aTexture[2] = D3DXVECTOR2(0.0f, 1.0f);
 	aTexture[3] = D3DXVECTOR2(1.0f, 1.0f);
-	//ビルボードの初期化処理関数呼び出し
-	CBillboard::Init();
+	//ポリゴン3Dの初期化処理関数呼び出し
+	CPolygon3d::Init();
 	//移動速度の初期設定
 	m_fSpeed = SPEED;
 	//カメラとの距離を初期設定
@@ -143,8 +145,8 @@ HRESULT CPlayer3d::Init(void)
 //=============================================================================
 void CPlayer3d::Uninit(void)
 {
-	//2Dシーン管理終了処理関数呼び出し
-	CBillboard::Uninit();
+	//ポリゴン3Dの終了処理関数呼び出し
+	CPolygon3d::Uninit();
 }
 
 //=============================================================================
@@ -152,14 +154,14 @@ void CPlayer3d::Uninit(void)
 //=============================================================================
 void CPlayer3d::Update(void)
 {
-	//2Dシーン管理更新処理関数呼び出し
-	CBillboard::Update();
 	//テクスチャのUV座標の設定
 	D3DXVECTOR2 aTexture[NUM_VERTEX];
 	aTexture[0] = D3DXVECTOR2(0.0f, 0.0f);
 	aTexture[1] = D3DXVECTOR2(1.0f, 0.0f);
 	aTexture[2] = D3DXVECTOR2(0.0f, 1.0f);
 	aTexture[3] = D3DXVECTOR2(1.0f, 1.0f);
+	//ポリゴン3Dの更新処理関数呼び出し
+	CPolygon3d::Update();
 	//位置を取得
 	D3DXVECTOR3 Position = GetPosition();
 	//移動可能範囲処理関数呼び出し
@@ -177,8 +179,8 @@ void CPlayer3d::Update(void)
 //=============================================================================
 void CPlayer3d::Draw(void)
 {
-	//2Dシーン管理描画処理関数呼び出し
-	CBillboard::Draw();
+	//ポリゴン3Dの描画処理関数呼び出し
+	CPolygon3d::Draw();
 }
 
 //=============================================================================

@@ -12,6 +12,8 @@
 #include "manager.h"
 #include "sound.h"
 #include "mode_game.h"
+#include "light.h"
+#include "camera.h"
 #include "player_2d.h"
 #include "player_3d.h"
 
@@ -22,6 +24,7 @@
 //*****************************************************************************
 // 静的メンバ変数の初期化
 //*****************************************************************************
+CCamera * CGameMode::m_pCamera = NULL;			//カメラのポインタ
 CPlayer2d * CGameMode::m_pPlayer2d = NULL;		//プレイヤー2Dのポインタ
 CPlayer3d * CGameMode::m_pPlayer3d = NULL;		//プレイヤー3Dのポインタ
 
@@ -30,6 +33,7 @@ CPlayer3d * CGameMode::m_pPlayer3d = NULL;		//プレイヤー3Dのポインタ
 //=============================================================================
 CGameMode::CGameMode()
 {
+	m_pLight = NULL;	//ライト
 }
 
 //=============================================================================
@@ -85,6 +89,26 @@ HRESULT CGameMode::Init(void)
 //=============================================================================
 void CGameMode::Uninit(void)
 {
+	//もしカメラのポインタがNULLじゃない場合
+	if (m_pCamera != NULL)
+	{
+		//カメラの初期化処理関数呼び出し
+		m_pCamera->Uninit();
+		//カメラのメモリ破棄
+		delete m_pCamera;
+		//カメラのポインタをNULLにする
+		m_pCamera = NULL;
+	}
+	//もしライトのポインタがNULLじゃない場合
+	if (m_pLight != NULL)
+	{
+		//ライトの初期化処理関数呼び出し
+		m_pLight->Uninit();
+		//ライトのメモリ破棄
+		delete m_pLight;
+		//ライトのポインタをNULLにする
+		m_pLight = NULL;
+	}
 }
 
 //=============================================================================
@@ -94,6 +118,14 @@ void CGameMode::Update(void)
 {
 	//全更新生成処理関数呼び出し
 	UpdateCreateAll();
+	//もしカメラのポインタがNULLじゃない場合
+	if (m_pCamera != NULL)
+	{
+		//カメラを設定する
+		m_pCamera->SetCamera();
+		//カメラの更新処理関数呼び出し
+		m_pCamera->Update();
+	}
 }
 
 //=============================================================================
@@ -108,7 +140,36 @@ void CGameMode::Draw(void)
 //=============================================================================
 void CGameMode::InitCreateAll(void)
 {
-	m_pPlayer3d = CPlayer3d::Create(D3DXVECTOR3(SCREEN_WIDTH / 4,300.0f,0.0f));
+	//もしライトのポインタがNULLの場合
+	if (m_pLight == NULL)
+	{
+		//ライトのメモリ確保
+		m_pLight = new CLight;
+	}
+	//もしライトのポインタがNULLじゃない場合
+	if (m_pLight != NULL)
+	{
+		//ライトの初期化処理関数呼び出し
+		m_pLight->Init();
+	}
+	//もしプレイヤー3DのポインタがNULLの場合
+	if (m_pPlayer3d == NULL)
+	{
+		//プレイヤー3Dを生成する
+		m_pPlayer3d = CPlayer3d::Create(D3DXVECTOR3(0.0f, 0.0f, 0.0f));
+	}
+	//もしカメラのポインタがNULLの場合
+	if (m_pCamera == NULL)
+	{
+		//カメラのメモリ確保
+		m_pCamera = new CCamera;
+		//もしカメラのポインタがNULLじゃない場合
+		if (m_pCamera != NULL)
+		{
+			//カメラの初期化処理関数呼び出し
+			m_pCamera->Init();
+		}
+	}
 }
 
 //=============================================================================
