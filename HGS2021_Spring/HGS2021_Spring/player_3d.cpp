@@ -6,11 +6,6 @@
 //=============================================================================
 
 //*****************************************************************************
-// 警告制御
-//*****************************************************************************
-#define _CRT_SECURE_NO_WARNINGS
-
-//*****************************************************************************
 // ヘッダファイルのインクルード
 //*****************************************************************************
 #include <stdio.h>
@@ -28,7 +23,7 @@
 //*****************************************************************************
 // マクロ定義
 //*****************************************************************************
-#define TEXTURE ("")
+#define TEXTURE ("Data/Texture/Player.png")
 #define SIZE (D3DXVECTOR3(150.0f,150.0f,0.0))
 #define SPEED (0.0f)
 #define CAMERA_DISTANCE (500.0f)
@@ -47,6 +42,8 @@ CPlayer3d::CPlayer3d(int nPriority)
 {
 	m_Move = INITIAL_D3DXVECTOR3;						//移動量
 	m_PositionOld = INITIAL_D3DXVECTOR3;				//過去の位置
+	m_CollisionSize = INITIAL_D3DXVECTOR3;				//衝突判定用サイズ
+	m_nSurvivalTime = 0;										//生存時間
 	m_fCameraDistance = 0.0f;							//カメラとの距離
 	m_bJump = false;									//ジャンプ
 	m_State = STATE_NONE;								//状態
@@ -132,14 +129,14 @@ HRESULT CPlayer3d::Init(void)
 	aTexture[3] = D3DXVECTOR2(1.0f, 1.0f);
 	//ポリゴン3Dの初期化処理関数呼び出し
 	CPolygon3d::Init();
+	//衝突判定用サイズの取得
+	m_CollisionSize = GetSize();
 	//移動速度の初期設定
 	m_fSpeed = SPEED;
 	//カメラとの距離を初期設定
 	m_fCameraDistance = CAMERA_DISTANCE;
 	//テクスチャの設定
 	SetTexture(aTexture);
-	SetScale(1.0f);
-	SetColor(D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f));
 	//テクスチャの割り当て
 	BindTexture(m_pTexture);
 	return S_OK;
@@ -167,6 +164,8 @@ void CPlayer3d::Update(void)
 	Move();
 	//入力処理関数呼び出し
 	Input();
+	//生存時間を加算する
+	m_nSurvivalTime++;
 }
 
 //=============================================================================
