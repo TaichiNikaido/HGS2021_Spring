@@ -18,7 +18,7 @@
 //*****************************************************************************
 // É}ÉNÉçíËã`
 //*****************************************************************************
-#define TEXTURE_PASS ("Data/Texture/Logo/Logo_Title.png")
+#define TEXTURE_PASS ("Data/Texture/tutorial_bg.png")
 #define POSITION (D3DXVECTOR3(SCREEN_WIDTH/2,SCREEN_HEIGHT/2,0.0f))
 #define SIZE (D3DXVECTOR3(SCREEN_WIDTH,SCREEN_HEIGHT,0.0f))
 

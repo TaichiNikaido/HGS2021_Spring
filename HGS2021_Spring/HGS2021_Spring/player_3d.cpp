@@ -19,22 +19,39 @@
 #include "scene2d.h"
 #include "mode_game.h"
 #include "player_3d.h"
+<<<<<<< HEAD
 #include "speedup.h"
+=======
+#include "logo_over.h"
+#include "logo_clear.h"
+
+>>>>>>> 60587719ed552b32493635a6f18337839fe17bbf
 //*****************************************************************************
 // マクロ定義
 //*****************************************************************************
 #define TEXTURE ("Data/Texture/Player.png")
+<<<<<<< HEAD
 #define SIZE (D3DXVECTOR3(200.0f,200.0f,0.0))
+=======
+#define SIZE (D3DXVECTOR3(180.0f,180.0f,0.0))
+>>>>>>> 60587719ed552b32493635a6f18337839fe17bbf
 #define SPEED (15.0f)
 #define CAMERA_DISTANCE (1500.0f)
 #define GRAVITY (-4.5f)
 #define JUMP_POWER (80.0f)
 #define FLOOR (900.0f)
+<<<<<<< HEAD
 #define COLLISION_SIZE (D3DXVECTOR3(100.0f,100.0f,0.0f))
 #define KNOCKBACK_VALUE (10.0f) //ノックバック移動量(横)
 #define KNOCKBACK_VALUE_UP (-60.0f) //ノックバック移動量(上方向)
 #define DEATH_ADD_ROT (0.3f)//死んだ時の回転量
 #define ADD_SPEED_VALUE (0.2f)
+=======
+#define COLLISION_SIZE (D3DXVECTOR3(100.0f,300.0f,0.0f))
+#define KNOCKBACK_VALUE (10.0f) //ノックバック移動量(横)
+#define KNOCKBACK_VALUE_UP (-60.0f) //ノックバック移動量(上方向)
+#define DEATH_ADD_ROT (0.3f)//死んだ時の回転量
+>>>>>>> 60587719ed552b32493635a6f18337839fe17bbf
 //*****************************************************************************
 // 静的メンバ変数の初期化
 //*****************************************************************************
@@ -55,7 +72,11 @@ CPlayer3d::CPlayer3d(int nPriority)
 	memset(&m_bIsCollision, 0, sizeof(m_bIsCollision));//当たったか
 	m_nCounterAnim = 0;
 	m_nPattarnAnim = 0;
+<<<<<<< HEAD
 	m_fAddSpeed = 1.0f;
+=======
+	m_nCreateCount = 0;
+>>>>>>> 60587719ed552b32493635a6f18337839fe17bbf
 }
 
 //=============================================================================
@@ -167,6 +188,7 @@ void CPlayer3d::Update(void)
 {
 	//過去の位置を保存する
 	m_PositionOld = GetPosition();
+<<<<<<< HEAD
 
 	//通常状態のテクスチャ
 	m_nPattarnAnim = 0;
@@ -193,6 +215,26 @@ void CPlayer3d::Update(void)
 		m_nPattarnAnim = 0;
 	}
 
+=======
+	m_nCounterAnim++;
+	//アニメーションカウンタ
+	if (m_nCounterAnim % 5 == 0)
+	{
+		m_nPattarnAnim++;
+	}
+	if (m_nPattarnAnim > 5)
+	{
+		m_nCounterAnim = 0;
+		m_nPattarnAnim = 0;
+	}
+	if (m_State == STATE_DEATH)//死んだときくるくるさせる
+	{
+		D3DXVECTOR3 Rot = GetRotation();
+
+		Rot.z += DEATH_ADD_ROT;
+		SetRotation(Rot);
+	}
+>>>>>>> 60587719ed552b32493635a6f18337839fe17bbf
 	//テクスチャのUV座標の設定
 	D3DXVECTOR2 aTexture[NUM_VERTEX];
 	aTexture[0] = D3DXVECTOR2(m_nPattarnAnim * 0.2f, 0.0f);
@@ -211,10 +253,20 @@ void CPlayer3d::Update(void)
 	Input();
 	//生存時間を加算する
 	m_nSurvivalTime++;
+<<<<<<< HEAD
 	if (m_nSurvivalTime % 500 == 0 && m_nSurvivalTime != 0)
 	{
  		m_fAddSpeed += ADD_SPEED_VALUE;
 		CSpeedUp::Create();
+=======
+	if (m_nSurvivalTime >= 7200)
+	{
+		if (m_nCreateCount == 0)
+		{
+			CClearLogo::Create();
+			m_nCreateCount++;
+		}
+>>>>>>> 60587719ed552b32493635a6f18337839fe17bbf
 	}
 }
 
@@ -256,17 +308,23 @@ void CPlayer3d::SetState(STATE state)
 //=============================================================================
 void CPlayer3d::Death(D3DXVECTOR3 HitPos)
 {
+	CSound * pSound = CManager::GetSound();
 	float fKnockBackRot = 0.0f; //ノックバック方向
 	D3DXVECTOR3 distance; //プレイヤーと敵の距離
 	if (m_State != STATE_DEATH)
 	{
 		m_State = STATE_DEATH;
+		if (pSound != NULL)
+		{
+			pSound->PlaySoundA(CSound::SOUND_LABEL_SE_PLAYER_DAMAGE);
+		}
 
 		distance = GetPosition() - HitPos;
 
 		fKnockBackRot = atan2f((HitPos.x - GetPosition().x), (HitPos.y - GetPosition().y));	//プレイヤーから見た当たった敵のいる向きを計算
 		//その逆方向にぶっ飛ばす
 		SetMove(D3DXVECTOR3(sinf(fKnockBackRot - D3DXToRadian(180))*KNOCKBACK_VALUE, KNOCKBACK_VALUE_UP, cosf(fKnockBackRot - D3DXToRadian(180))*KNOCKBACK_VALUE));
+		COverLogo::Create();
 	}
 }
 
@@ -298,17 +356,33 @@ void CPlayer3d::Input(void)
 
 	if (m_State != STATE_DEATH)
 	{
+<<<<<<< HEAD
 		if (pJoystick->GetJoystickTrigger(JS_A))
 		{
 		}
 		if (pKeyboard->GetKeyboardTrigger(DIK_SPACE))
+=======
+		if (pKeyboard->GetKeyboardPress(DIK_LSHIFT) ||pKeyboard->GetKeyboardPress(DIK_RSHIFT) || pJoystick->GetJoystickPress(JS_A))
+		{
+			m_CollisionSize.y = 50;
+		}
+		else
+		{
+			m_CollisionSize = COLLISION_SIZE;
+		}
+		if (pKeyboard->GetKeyboardTrigger(DIK_SPACE) || pJoystick->GetJoystickTrigger(JS_X))
+>>>>>>> 60587719ed552b32493635a6f18337839fe17bbf
 		{
 			//もしジャンプしていなかったら
 			if (m_bJump == false)
 			{
 				m_bIsCollision.bIsTop = false;
 				//ジャンプす
+<<<<<<< HEAD
 				m_Move.y -= JUMP_POWER * m_fAddSpeed;
+=======
+				m_Move.y -= JUMP_POWER;
+>>>>>>> 60587719ed552b32493635a6f18337839fe17bbf
 				//ジャンプ状態にする
 				m_bJump = true;
 			}
@@ -327,7 +401,11 @@ void CPlayer3d::Move(void)
 	if (m_State != STATE_DEATH)
 	{
 		//移動させる
+<<<<<<< HEAD
 		m_Move.x = m_fSpeed * m_fAddSpeed;
+=======
+		m_Move.x = m_fSpeed;
+>>>>>>> 60587719ed552b32493635a6f18337839fe17bbf
 		////ジャンプしてるとき
 		//if (m_bJump == true)
 		//{
@@ -344,7 +422,11 @@ void CPlayer3d::Move(void)
 	}
 	else
 	{
+<<<<<<< HEAD
 		m_Move.y -= GRAVITY* m_fAddSpeed;
+=======
+		m_Move.y -= GRAVITY;
+>>>>>>> 60587719ed552b32493635a6f18337839fe17bbf
 	}
 }
 

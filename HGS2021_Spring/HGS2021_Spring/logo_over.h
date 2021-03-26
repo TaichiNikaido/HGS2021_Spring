@@ -37,5 +37,6 @@ public:
 	void Draw(void);
 private:
 	static LPDIRECT3DTEXTURE9 m_pTexture;	//テクスチャのポインタ
+	int m_nTime;	//時間
 };
 #endif

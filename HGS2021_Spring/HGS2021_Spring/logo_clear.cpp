@@ -18,10 +18,9 @@
 //*****************************************************************************
 // マクロ定義
 //*****************************************************************************
-#define TEXTURE_PASS ("Data/Texture/title_logo.png")
+#define TEXTURE_PASS ("Data/Texture/clear_logo.png")
 #define POSITION (D3DXVECTOR3(SCREEN_WIDTH / 2,SCREEN_HEIGHT / 2 - 100.0f,0.0f))
 #define SIZE (D3DXVECTOR3(1000.0f,200.0f,0.0f))
-#define COLOR (D3DXCOLOR(0.4f,0.6f,0.3f,1.0f))
 
 //*****************************************************************************
 // 静的メンバ変数の初期化
@@ -33,6 +32,7 @@ LPDIRECT3DTEXTURE9 CClearLogo::m_pTexture;	//テクスチャのポインタ
 //=============================================================================
 CClearLogo::CClearLogo()
 {
+	m_nTime = 0;
 }
 
 //=============================================================================
@@ -92,8 +92,6 @@ CClearLogo * CClearLogo::Create()
 			pClearLogo->SetPosition(POSITION);
 			//クリアロゴのサイズ設定
 			pClearLogo->SetSize(SIZE);
-			//クリアロゴの色設定
-			pClearLogo->SetColor(COLOR);
 			//クリアロゴの初期化処理関数呼び出し
 			pClearLogo->Init();
 		}
@@ -138,6 +136,12 @@ void CClearLogo::Update(void)
 {
 	//ボタンの更新処理関数呼び出し
 	CScene2d::Update();
+	m_nTime++;
+	if (m_nTime >= 150)
+	{
+		//ゲームに移動
+		CManager::StartFade(CManager::MODE_RESULT);
+	}
 }
 
 //=============================================================================
