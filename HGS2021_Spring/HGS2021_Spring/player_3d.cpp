@@ -330,18 +330,22 @@ void CPlayer3d::Input(void)
 			m_CollisionSize = COLLISION_SIZE;
 			m_bSyagami = false;
 		}
-		if (pKeyboard->GetKeyboardTrigger(DIK_SPACE) || pJoystick->GetJoystickTrigger(JS_X))
+		if (m_bSyagami == false)
 		{
-			//もしジャンプしていなかったら
-			if (m_bJump == false)
+			if (pKeyboard->GetKeyboardTrigger(DIK_SPACE) || pJoystick->GetJoystickTrigger(JS_X))
 			{
-				m_bIsCollision.bIsTop = false;
-				//ジャンプす
-				m_Move.y -= JUMP_POWER * m_fAddSpeed;
-				//ジャンプ状態にする
-				m_bJump = true;
+				//もしジャンプしていなかったら
+				if (m_bJump == false)
+				{
+					m_bIsCollision.bIsTop = false;
+					//ジャンプす
+					m_Move.y -= JUMP_POWER * m_fAddSpeed;
+					//ジャンプ状態にする
+					m_bJump = true;
+				}
 			}
 		}
+
 	}
 }
 
