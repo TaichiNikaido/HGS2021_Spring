@@ -95,8 +95,6 @@ HRESULT CNormalBlock::Init(void)
 
 	CBlock::Init();
 
-	BindTexture(m_apTexture[m_Type]);
-
 	return S_OK;
 }
 

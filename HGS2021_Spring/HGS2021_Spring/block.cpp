@@ -20,7 +20,7 @@
 //*****************************************************************************
 // 静的メンバ変数初期化
 //*****************************************************************************
-
+LPDIRECT3DTEXTURE9 CBlock::m_apTexture[1] = {};
 //=============================================================================
 // コンストラクタ
 //=============================================================================
@@ -37,6 +37,32 @@ CBlock::CBlock(int nPriority)
 CBlock::~CBlock()
 {
 
+}
+//=============================================================================
+// テクスチャロード
+//=============================================================================
+HRESULT CBlock::Load(void)
+{
+	CRenderer * pRenderer = CManager::GetRenderer();
+	LPDIRECT3DDEVICE9 pDevice = pRenderer->GetDevice();
+	// テクスチャの生成
+	D3DXCreateTextureFromFile(pDevice, TEXTURE_BLOCK, &m_apTexture[0]);
+	return S_OK;
+}
+
+//=============================================================================
+// テクスチャアンロード
+//=============================================================================
+void CBlock::Unload(void)
+{
+	for (int nCnt = 0; nCnt < 1; nCnt++)
+	{
+		if (m_apTexture[nCnt] != NULL)
+		{
+			m_apTexture[nCnt]->Release();
+			m_apTexture[nCnt] = NULL;
+		}
+	}
 }
 //=============================================================================
 // 初期化処理
@@ -57,7 +83,9 @@ HRESULT CBlock::Init(void)
 
 	SetColor(D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f));
 	//向きを設定
-	SetRotation(D3DXVECTOR3(D3DXToRadian(180.0f), D3DXToRadian(0.0f), D3DXToRadian(0.0f)));
+	SetRotation(D3DXVECTOR3(D3DXToRadian(0.0f), D3DXToRadian(0.0f), D3DXToRadian(0.0f)));
+
+	BindTexture(m_apTexture[0]);
 	return S_OK;
 }
 
@@ -66,7 +94,7 @@ HRESULT CBlock::Init(void)
 //=============================================================================
 void CBlock::Uninit(void)
 {
-	CScene3d::Uninit();
+	CPolygon3d::Uninit();
 }
 
 //=============================================================================
@@ -74,7 +102,7 @@ void CBlock::Uninit(void)
 //=============================================================================
 void CBlock::Update(void)
 {
-	CScene3d::Update();
+	CPolygon3d::Update();
 	//テクスチャセット
 	D3DXVECTOR2 Tex[NUM_VERTEX];
 	Tex[0] = D3DXVECTOR2(0.0f, 0.0f);
@@ -90,7 +118,7 @@ void CBlock::Update(void)
 //=============================================================================
 void CBlock::Draw(void)
 {
-	CScene3d::Draw();
+	CPolygon3d::Draw();
 }
 
 CBlock::IS_COLLISION CBlock::Collision(void)

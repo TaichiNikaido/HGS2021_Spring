@@ -23,7 +23,11 @@
 #include "joystick.h"
 #include "fade.h"
 #include "background.h"
+<<<<<<< HEAD
 #include "board.h"
+=======
+#include "block.h"
+>>>>>>> 296a8f33887d24dab4338283c2379c152acb8767
 #include "player_3d.h"
 
 //*****************************************************************************
@@ -226,7 +230,11 @@ void CManager::SetMode(MODE Mode)
 void CManager::LoadAll(void)
 {
 	CBackground::TextureLoad();
+<<<<<<< HEAD
 	CBoard::TextureLoad();
+=======
+	CBlock::Load();
+>>>>>>> 296a8f33887d24dab4338283c2379c152acb8767
 	CPlayer3d::TextureLoad();
 }
 
@@ -235,8 +243,12 @@ void CManager::LoadAll(void)
 //=============================================================================
 void CManager::UnloadAll(void)
 {
+	CBlock::Unload();
 	CBackground::TextureUnload();
+<<<<<<< HEAD
 	CBoard::TextureUnload();
+=======
+>>>>>>> 296a8f33887d24dab4338283c2379c152acb8767
 	CPlayer3d::TextureUnload();
 }
 

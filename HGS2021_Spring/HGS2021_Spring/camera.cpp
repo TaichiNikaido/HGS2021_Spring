@@ -64,7 +64,7 @@ HRESULT CCamera::Init(void)
 		//プレイヤーの位置を設定
 		D3DXVECTOR3 PlayerPosition = pPlayer->GetPosition();
 		//プレイヤーとの距離を指定する
-		m_fPlayerDistance = 500.0f;
+		m_fPlayerDistance = 1500.0f;
 		//上方向ベクトルを指定する
 		m_VectorU = D3DXVECTOR3(0.0f, 1.0f, 0.0f);
 		m_PositionV = D3DXVECTOR3(PlayerPosition.x, PlayerPosition.y, PlayerPosition.z + m_fPlayerDistance);
@@ -94,8 +94,8 @@ void CCamera::Update(void)
 		D3DXVECTOR3 PlayerPosition = pPlayer->GetPosition();
 		//上方向ベクトルを指定する
 		m_VectorU = D3DXVECTOR3(0.0f, 1.0f, 0.0f);
-		m_PositionV = D3DXVECTOR3(PlayerPosition.x - 550.0f, PlayerPosition.y, PlayerPosition.z + m_fPlayerDistance);
-		m_PositionR = D3DXVECTOR3(PlayerPosition.x - 550.0f, PlayerPosition.y, PlayerPosition.z);
+		m_PositionV = D3DXVECTOR3(PlayerPosition.x - 550.0f, 0.0f, PlayerPosition.z + m_fPlayerDistance);
+		m_PositionR = D3DXVECTOR3(PlayerPosition.x - 550.0f, 0.0f, PlayerPosition.z);
 	}
 }
 
