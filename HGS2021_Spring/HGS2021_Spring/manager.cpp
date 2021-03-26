@@ -23,7 +23,22 @@
 #include "joystick.h"
 #include "fade.h"
 #include "background.h"
+<<<<<<< HEAD
 #include "particle_texture.h"
+=======
+#include "board.h"
+#include "block.h"
+#include "player_3d.h"
+#include "bg_ranking.h"
+#include "bg_title.h"
+#include "bg_tutorial.h"
+#include "logo_title.h"
+#include "logo_start.h"
+#include "logo_over.h"
+#include "logo_clear.h"
+#include "logo_ranking.h"
+
+>>>>>>> fe036598864e59002f8114b0bc229a4c6cb3031e
 //*****************************************************************************
 // マクロ定義
 //*****************************************************************************
@@ -111,7 +126,7 @@ HRESULT CManager::Init(HINSTANCE hInsitance, HWND hWnd, bool bWindow)
 	//全読み込み関数呼び出し
 	LoadAll();
 	//モードの設定
-	SetMode(MODE_GAME);
+	SetMode(MODE_TITLE);
 	return S_OK;
 }
 
@@ -234,6 +249,17 @@ void CManager::SetMode(MODE Mode)
 void CManager::LoadAll(void)
 {
 	CBackground::TextureLoad();
+	CBoard::TextureLoad();
+	CBlock::Load();
+	CPlayer3d::TextureLoad();
+	CTitleBG::TextureLoad();
+	CTutorialBG::TextureLoad();
+	CRankingBG::TextureLoad();
+	CTitleLogo::TextureLoad();
+	CStartLogo::TextureLoad();
+	COverLogo::TextureLoad();
+	CClearLogo::TextureLoad();
+	CRankingLogo::TextureLoad();
 }
 
 //=============================================================================
@@ -241,7 +267,18 @@ void CManager::LoadAll(void)
 //=============================================================================
 void CManager::UnloadAll(void)
 {
+	CBlock::Unload();
 	CBackground::TextureUnload();
+	CBoard::TextureUnload();
+	CPlayer3d::TextureUnload();
+	CTitleBG::TextureUnload();
+	CTutorialBG::TextureUnload();
+	CRankingBG::TextureUnload();
+	CTitleLogo::TextureUnload();
+	CStartLogo::TextureUnload();
+	COverLogo::TextureUnload();
+	CClearLogo::TextureUnload();
+	CRankingLogo::TextureUnload();
 }
 
 //=============================================================================

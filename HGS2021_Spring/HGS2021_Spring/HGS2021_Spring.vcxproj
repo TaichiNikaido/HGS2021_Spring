@@ -147,13 +147,22 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="background.cpp" />
+    <ClCompile Include="bg_ranking.cpp" />
+    <ClCompile Include="bg_title.cpp" />
+    <ClCompile Include="bg_tutorial.cpp" />
     <ClCompile Include="billboard.cpp" />
     <ClCompile Include="block.cpp" />
+    <ClCompile Include="board.cpp" />
     <ClCompile Include="camera.cpp" />
     <ClCompile Include="fade.cpp" />
     <ClCompile Include="input.cpp" />
     <ClCompile Include="joystick.cpp" />
     <ClCompile Include="keyboard.cpp" />
+    <ClCompile Include="logo_clear.cpp" />
+    <ClCompile Include="logo_over.cpp" />
+    <ClCompile Include="logo_ranking.cpp" />
+    <ClCompile Include="logo_start.cpp" />
+    <ClCompile Include="logo_title.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="manager.cpp" />
     <ClCompile Include="map_manager.cpp" />
@@ -177,13 +186,22 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="background.h" />
+    <ClInclude Include="bg_ranking.h" />
+    <ClInclude Include="bg_title.h" />
+    <ClInclude Include="bg_tutorial.h" />
     <ClInclude Include="billboard.h" />
     <ClInclude Include="block.h" />
+    <ClInclude Include="board.h" />
     <ClInclude Include="camera.h" />
     <ClInclude Include="fade.h" />
     <ClInclude Include="input.h" />
     <ClInclude Include="joystick.h" />
     <ClInclude Include="keyboard.h" />
+    <ClInclude Include="logo_clear.h" />
+    <ClInclude Include="logo_over.h" />
+    <ClInclude Include="logo_ranking.h" />
+    <ClInclude Include="logo_start.h" />
+    <ClInclude Include="logo_title.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="manager.h" />
     <ClInclude Include="map_manager.h" />

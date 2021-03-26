@@ -6,11 +6,6 @@
 //=============================================================================
 
 //*****************************************************************************
-// 警告制御
-//*****************************************************************************
-#define _CRT_SECURE_NO_WARNINGS
-
-//*****************************************************************************
 // ヘッダファイルのインクルード
 //*****************************************************************************
 #include <stdio.h>
@@ -28,11 +23,13 @@
 //*****************************************************************************
 // マクロ定義
 //*****************************************************************************
-#define TEXTURE ("")
+#define TEXTURE ("Data/Texture/Player.png")
 #define SIZE (D3DXVECTOR3(150.0f,150.0f,0.0))
-#define SPEED (0.0f)
+#define SPEED (5.0f)
 #define CAMERA_DISTANCE (500.0f)
-
+#define GRAVITY (-5.5f)
+#define JUMP_POWER (70.0f)
+#define FLOOR (900.0f)
 //*****************************************************************************
 // 静的メンバ変数の初期化
 //*****************************************************************************
@@ -45,9 +42,12 @@ CPlayer3d::CPlayer3d(int nPriority)
 {
 	m_Move = INITIAL_D3DXVECTOR3;						//移動量
 	m_PositionOld = INITIAL_D3DXVECTOR3;				//過去の位置
+	m_CollisionSize = INITIAL_D3DXVECTOR3;				//衝突判定用サイズ
+	m_nSurvivalTime = 0;										//生存時間
 	m_fCameraDistance = 0.0f;							//カメラとの距離
+	m_bJump = false;									//ジャンプ
 	m_State = STATE_NONE;								//状態
-	m_Input = INPUT_NONE;								//入力キー情報
+	memset(&m_bIsCollision, 0, sizeof(m_bIsCollision));//当たったか
 }
 
 //=============================================================================
@@ -130,14 +130,14 @@ HRESULT CPlayer3d::Init(void)
 	aTexture[3] = D3DXVECTOR2(1.0f, 1.0f);
 	//ポリゴン3Dの初期化処理関数呼び出し
 	CPolygon3d::Init();
+	//衝突判定用サイズの取得
+	m_CollisionSize = GetSize();
 	//移動速度の初期設定
 	m_fSpeed = SPEED;
 	//カメラとの距離を初期設定
 	m_fCameraDistance = CAMERA_DISTANCE;
 	//テクスチャの設定
 	SetTexture(aTexture);
-	SetScale(1.0f);
-	SetColor(D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f));
 	//テクスチャの割り当て
 	BindTexture(m_pTexture);
 	return S_OK;
@@ -161,13 +161,14 @@ void CPlayer3d::Update(void)
 	m_PositionOld = GetPosition();
 	//ポリゴン3Dの更新処理関数呼び出し
 	CPolygon3d::Update();
-	////位置を取得
-	//D3DXVECTOR3 Position = GetPosition();
-	////位置更新
-	//Position += m_Move;
-	////位置の設定
-	//SetPosition(Position);
-}
+	//位置の設定
+	SetPosition(GetPosition() + m_Move);
+	//移動処理関数呼び出し
+	Move();
+	//入力処理関数呼び出し
+	Input();
+	//生存時間を加算する
+	m_nSurvivalTime++;}
 
 //=============================================================================
 // 描画処理関数
@@ -176,6 +177,19 @@ void CPlayer3d::Draw(void)
 {
 	//ポリゴン3Dの描画処理関数呼び出し
 	CPolygon3d::Draw();
+}
+
+//=============================================================================
+// 移動量セット
+//=============================================================================
+void CPlayer3d::SetMove(D3DXVECTOR3 Move)
+{
+	m_Move = Move;
+}
+
+void CPlayer3d::SetIsCollision(CBlock::IS_COLLISION isCollision)
+{
+	m_bIsCollision = isCollision;
 }
 
 //=============================================================================
@@ -198,39 +212,21 @@ void CPlayer3d::Input(void)
 	}
 	//ゲームモードの取得
 	CGameMode * pGameMode = CManager::GetGameMode();
-	//プレイヤーが移動していないとき
-	m_Move = INITIAL_D3DXVECTOR3;
-	//上移動処理
-	if (pKeyboard->GetKeyboardPress(DIK_W) || lpDIDevice != NULL &&js.lY == -1000)
+
+	if (pJoystick->GetJoystickTrigger(JS_A))
 	{
-		//入力キー情報を上にする
-		m_Input = INPUT_UP;
-		//移動処理関数呼び出し
-		Move();
 	}
-	//下移動処理
-	if (pKeyboard->GetKeyboardPress(DIK_S) || lpDIDevice != NULL &&js.lY == 1000)
+	if (pKeyboard->GetKeyboardTrigger(DIK_SPACE))
 	{
-		//入力キー情報を下にする
-		m_Input = INPUT_DOWN;
-		//移動処理関数呼び出し
-		Move();
-	}
-	//左移動処理
-	if (pKeyboard->GetKeyboardPress(DIK_A) || lpDIDevice != NULL &&js.lX == -1000)
-	{
-		//入力キー情報を左にする
-		m_Input = INPUT_LEFT;
-		//移動処理関数呼び出し
-		Move();
-	}
-	//右移動処理
-	if (pKeyboard->GetKeyboardPress(DIK_D) || lpDIDevice != NULL &&js.lX == 1000)
-	{
-		//入力キー情報を右にする
-		m_Input = INPUT_RIGHT;
-		//移動処理関数呼び出し
-		Move();
+		//もしジャンプしていなかったら
+		if (m_bJump == false)
+		{
+			m_bIsCollision.bIsTop = false;
+			//ジャンプす
+			m_Move.y -= JUMP_POWER;
+			//ジャンプ状態にする
+			m_bJump = true;
+		}
 	}
 }
 
@@ -239,34 +235,30 @@ void CPlayer3d::Input(void)
 //=============================================================================
 void CPlayer3d::Move(void)
 {
+	//位置を取得
+	D3DXVECTOR3 Position = GetPosition();
 	//もし死亡状態じゃないとき
 	if (m_State != STATE_DEATH)
 	{
-		switch (m_Input)
-		{
-			//もし入力情報が上の時
-		case INPUT_UP:
-			//Y軸の上方向に移動量を加算
-			m_Move.y = cosf(D3DX_PI) * m_fSpeed;
-			break;
-			//もし入力情報が下の時
-		case INPUT_DOWN:
-			//Y軸の下方向に移動量を加算
-			m_Move.y = cosf(D3DX_PI) * -m_fSpeed;
-			break;
-			//もし入力情報が左の時
-		case INPUT_LEFT:
-			//X軸の左方向に移動量を加算
-			m_Move.x = cosf(D3DX_PI) * m_fSpeed;
-			break;
-			//もし入力情報が右の時
-		case INPUT_RIGHT:
-			//X軸の右方向に移動量を加算
-			m_Move.x = cosf(D3DX_PI) * -m_fSpeed;
-			break;
-		default:
-			break;
-		}
+		//移動させる
+		m_Move.x = m_fSpeed;
+		////ジャンプしてるとき
+		//if (m_bJump == true)
+		//{
+		//	//重力をかける
+		//	m_Move.y -= GRAVITY;
+		//}
+	}
+	if (Position.y >= FLOOR - GetSize().y / 2 || m_bIsCollision.bIsTop == true)
+	{
+		m_Move.y = 0.0f;
+		SetPosition(D3DXVECTOR3(GetPosition().x, FLOOR - GetSize().y / 2, 0.0f));
+		//ジャンプ状態にする
+		m_bJump = false;
+	}
+	else
+	{
+		m_Move.y -= GRAVITY;
 	}
 }
 
@@ -279,29 +271,10 @@ D3DXVECTOR3 CPlayer3d::MovableRange()
 	D3DXVECTOR3 Position = GetPosition();
 	//サイズを取得する
 	D3DXVECTOR3 Size = GetSize();
-	//もしプレイヤーが上画面外に行ったら
-	if (Position.y - Size.y / 2 < 0)
+	if (Position.y >= SCREEN_HEIGHT)
 	{
-		//位置が画面外に移動しないように制御する
-		Position.y = Size.y / 2;
-	}
-	//もしプレイヤーが下画面外に行ったら
-	if (Position.y + Size.y / 2 > SCREEN_HEIGHT)
-	{
-		//位置が画面外に移動しないように制御する
-		Position.y = SCREEN_HEIGHT - Size.y / 2;
-	}
-	//もしプレイヤーが左画面外に行ったら
-	if (Position.x - Size.y / 2 < 0)
-	{
-		//位置が画面外に移動しないように制御する
-		Position.x = Size.y / 2 + 0;
-	}
-	//もしプレイヤーが右画面外に行ったら
-	if (Position.x + Size.y / 2 > SCREEN_WIDTH)
-	{
-		//位置が画面外に移動しないように制御する
-		Position.x = SCREEN_WIDTH - Size.y / 2;
+		m_Move.y = 0.0f;
+
 	}
 	return Position;
 }

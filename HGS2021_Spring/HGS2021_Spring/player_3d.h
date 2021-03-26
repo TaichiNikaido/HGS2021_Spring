@@ -11,14 +11,10 @@
 // ヘッダファイルのインクルード
 //*****************************************************************************
 #include "polygon3d.h"
-
+#include "block.h"
 //*****************************************************************************
 // マクロ定義
 //*****************************************************************************
-#define PLAYER_POS  (D3DXVECTOR3(SCREEN_WIDTH / 2, SCREEN_HEIGHT - 180, 0.0f))	//プレイヤーの位置
-#define PLAYER_SIZE (D3DXVECTOR3(65.0f,65.0f,0.0f))								//プレイヤーのサイズ													
-#define PLAYER_MAX_BOMB (5)														//プレイヤーの最大ボム数
-#define PLAYER_MAX_LIFE (5)														//プレイヤーの最大ライフ
 
 //*****************************************************************************
 // 前方宣言
@@ -41,17 +37,6 @@ public:
 		STATE_INVINCIBLE,	//無敵
 		STATE_MAX
 	}STATE;		//状態
-	typedef enum
-	{
-		INPUT_NONE = -1,
-		INPUT_UP,		//上方向
-		INPUT_DOWN,		//下方向
-		INPUT_LEFT,		//左方向
-		INPUT_RIGHT,	//右方向
-		INPUT_BOMB,		//ボム発射
-		INPUT_SHOT,		//弾発射
-		INPUT_MAX
-	}INPUT;		//入力状態
 	CPlayer3d(int nPriority = OBJTYPE_PLAYER);
 	~CPlayer3d();
 	static HRESULT TextureLoad(void);
@@ -63,6 +48,10 @@ public:
 	void Draw(void);
 	float GetCameraDistance(void) { return m_fCameraDistance; }
 	D3DXVECTOR3 GetPositionOld(void) { return m_PositionOld; }
+	D3DXVECTOR3 GetMove(void) { return m_Move; };
+	void SetMove(D3DXVECTOR3 Move);
+	CBlock::IS_COLLISION GetIsCollision(void) { return m_bIsCollision; };
+	void SetIsCollision(CBlock::IS_COLLISION isCollision);
 private:
 	void Input(void);
 	void Move(void);
@@ -70,9 +59,12 @@ private:
 	static LPDIRECT3DTEXTURE9 m_pTexture;	//テクスチャへのポインタ
 	D3DXVECTOR3 m_PositionOld;				//過去の位置
 	D3DXVECTOR3 m_Move;						//移動量
+	D3DXVECTOR3 m_CollisionSize;			//衝突判定用サイズ
+	int m_nSurvivalTime;					//生存時間
 	float m_fSpeed;							//速さ
 	float m_fCameraDistance;				//カメラとの距離
+	bool m_bJump;							//ジャンプしたかどうか
 	STATE m_State;							//状態
-	INPUT m_Input;							//入力キー情報
+	CBlock::IS_COLLISION m_bIsCollision;	//どの面に当たってるか
 };
 #endif

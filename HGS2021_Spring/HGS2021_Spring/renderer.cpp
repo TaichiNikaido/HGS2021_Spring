@@ -74,9 +74,9 @@ HRESULT CRenderer::Init(HWND hWnd, bool bWindow)
 	d3dpp.FullScreen_RefreshRateInHz = D3DPRESENT_RATE_DEFAULT;	// リフレッシュレート
 	d3dpp.PresentationInterval = D3DPRESENT_INTERVAL_DEFAULT;	// インターバル
 
-																// デバイスの生成
-																// ディスプレイアダプタを表すためのデバイスを作成
-																// 描画と頂点処理をハードウェアで行なう
+	// デバイスの生成
+	// ディスプレイアダプタを表すためのデバイスを作成
+	// 描画と頂点処理をハードウェアで行なう
 	if (FAILED(m_pD3D->CreateDevice(D3DADAPTER_DEFAULT,
 		D3DDEVTYPE_HAL,
 		hWnd,
@@ -178,7 +178,11 @@ void CRenderer::Update(void)
 void CRenderer::Draw(void)
 {
 	// バックバッファ＆Ｚバッファのクリア
+<<<<<<< HEAD
 	m_pD3DDevice->Clear(0, NULL, (D3DCLEAR_TARGET | D3DCLEAR_ZBUFFER), D3DCOLOR_RGBA(0, 0, 0, 255), 1.0f, 0);
+=======
+	m_pD3DDevice->Clear(0, NULL, (D3DCLEAR_TARGET | D3DCLEAR_ZBUFFER), D3DCOLOR_RGBA(0, 0, 0, 0), 1.0f, 0);
+>>>>>>> fe036598864e59002f8114b0bc229a4c6cb3031e
 	//フェードの取得
 	CFade * pFade = CManager::GetFade();
 	// Direct3Dによる描画の開始

@@ -14,6 +14,7 @@
 #include "keyboard.h"
 #include "joystick.h"
 #include "mode_tutorial.h"
+#include "bg_tutorial.h"
 
 //*****************************************************************************
 // マクロ定義
@@ -100,8 +101,8 @@ void CTutorialMode::Update(void)
 	//もしENTERかAボタンを押したとき
 	if (pKeyboard->GetKeyboardTrigger(DIK_RETURN) || lpDIDevice != NULL &&pJoystick->GetJoystickTrigger(JS_A))
 	{
-		//ランキングに移動
-		//CManager::StartFade(CManager::MODE_GAME);
+		//ゲームに移動
+		CManager::StartFade(CManager::MODE_GAME);
 	}
 }
 
@@ -117,4 +118,6 @@ void CTutorialMode::Draw(void)
 //=============================================================================
 void CTutorialMode::InitCreateAll(void)
 {
+	//チュートリアル画面の背景生成
+	CTutorialBG::Create();
 }

@@ -55,6 +55,7 @@
     <Filter Include="ヘッダー ファイル\Map">
       <UniqueIdentifier>{11bb259d-b134-4e3f-90b1-b15bc74f3f1d}</UniqueIdentifier>
     </Filter>
+<<<<<<< HEAD
     <Filter Include="ソース ファイル\Particle">
       <UniqueIdentifier>{062564e3-4048-4014-ace2-e90c702c3141}</UniqueIdentifier>
     </Filter>
@@ -72,6 +73,13 @@
     </Filter>
     <Filter Include="ヘッダー ファイル\Particle\Particle_Effect">
       <UniqueIdentifier>{51034b51-f6e5-4c88-b0ba-5210fa791cd0}</UniqueIdentifier>
+=======
+    <Filter Include="ソース ファイル\Polygon2d">
+      <UniqueIdentifier>{2bce29a6-a1f6-44ea-8975-f1800da6ebe3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Polygon2d">
+      <UniqueIdentifier>{a5c48a5b-4bd3-40da-80d8-842463b14166}</UniqueIdentifier>
+>>>>>>> fe036598864e59002f8114b0bc229a4c6cb3031e
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -147,6 +155,7 @@
     <ClCompile Include="normal_block.cpp">
       <Filter>ソース ファイル\Map</Filter>
     </ClCompile>
+<<<<<<< HEAD
     <ClCompile Include="particle.cpp">
       <Filter>ソース ファイル\Particle</Filter>
     </ClCompile>
@@ -158,6 +167,34 @@
     </ClCompile>
     <ClCompile Include="particle_effect.cpp">
       <Filter>ソース ファイル\Particle\Particle_Effect</Filter>
+=======
+    <ClCompile Include="board.cpp">
+      <Filter>ソース ファイル\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="bg_title.cpp">
+      <Filter>ソース ファイル\Polygon2d</Filter>
+    </ClCompile>
+    <ClCompile Include="bg_ranking.cpp">
+      <Filter>ソース ファイル\Polygon2d</Filter>
+    </ClCompile>
+    <ClCompile Include="bg_tutorial.cpp">
+      <Filter>ソース ファイル\Polygon2d</Filter>
+    </ClCompile>
+    <ClCompile Include="logo_title.cpp">
+      <Filter>ソース ファイル\Polygon2d</Filter>
+    </ClCompile>
+    <ClCompile Include="logo_start.cpp">
+      <Filter>ソース ファイル\Polygon2d</Filter>
+    </ClCompile>
+    <ClCompile Include="logo_over.cpp">
+      <Filter>ソース ファイル\Polygon2d</Filter>
+    </ClCompile>
+    <ClCompile Include="logo_clear.cpp">
+      <Filter>ソース ファイル\Polygon2d</Filter>
+    </ClCompile>
+    <ClCompile Include="logo_ranking.cpp">
+      <Filter>ソース ファイル\Polygon2d</Filter>
+>>>>>>> fe036598864e59002f8114b0bc229a4c6cb3031e
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -233,6 +270,7 @@
     <ClInclude Include="normal_block.h">
       <Filter>ヘッダー ファイル\Map</Filter>
     </ClInclude>
+<<<<<<< HEAD
     <ClInclude Include="particle.h">
       <Filter>ヘッダー ファイル\Particle</Filter>
     </ClInclude>
@@ -244,6 +282,34 @@
     </ClInclude>
     <ClInclude Include="particle_effect.h">
       <Filter>ヘッダー ファイル\Particle\Particle_Effect</Filter>
+=======
+    <ClInclude Include="board.h">
+      <Filter>ヘッダー ファイル\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="bg_title.h">
+      <Filter>ヘッダー ファイル\Polygon2d</Filter>
+    </ClInclude>
+    <ClInclude Include="bg_tutorial.h">
+      <Filter>ヘッダー ファイル\Polygon2d</Filter>
+    </ClInclude>
+    <ClInclude Include="bg_ranking.h">
+      <Filter>ヘッダー ファイル\Polygon2d</Filter>
+    </ClInclude>
+    <ClInclude Include="logo_title.h">
+      <Filter>ヘッダー ファイル\Polygon2d</Filter>
+    </ClInclude>
+    <ClInclude Include="logo_start.h">
+      <Filter>ヘッダー ファイル\Polygon2d</Filter>
+    </ClInclude>
+    <ClInclude Include="logo_over.h">
+      <Filter>ヘッダー ファイル\Polygon2d</Filter>
+    </ClInclude>
+    <ClInclude Include="logo_clear.h">
+      <Filter>ヘッダー ファイル\Polygon2d</Filter>
+    </ClInclude>
+    <ClInclude Include="logo_ranking.h">
+      <Filter>ヘッダー ファイル\Polygon2d</Filter>
+>>>>>>> fe036598864e59002f8114b0bc229a4c6cb3031e
     </ClInclude>
   </ItemGroup>
 </Project>

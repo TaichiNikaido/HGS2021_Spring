@@ -64,10 +64,10 @@ HRESULT CCamera::Init(void)
 		//プレイヤーの位置を設定
 		D3DXVECTOR3 PlayerPosition = pPlayer->GetPosition();
 		//プレイヤーとの距離を指定する
-		m_fPlayerDistance = 500.0f;
+		m_fPlayerDistance = pPlayer->GetCameraDistance();
 		//上方向ベクトルを指定する
 		m_VectorU = D3DXVECTOR3(0.0f, 1.0f, 0.0f);
-		m_PositionV = D3DXVECTOR3(PlayerPosition.x, PlayerPosition.y + 50.0f, PlayerPosition.z + m_fPlayerDistance);
+		m_PositionV = D3DXVECTOR3(PlayerPosition.x, PlayerPosition.y, PlayerPosition.z + m_fPlayerDistance);
 		m_PositionR = PlayerPosition;
 	}
 	return S_OK;
@@ -94,8 +94,8 @@ void CCamera::Update(void)
 		D3DXVECTOR3 PlayerPosition = pPlayer->GetPosition();
 		//上方向ベクトルを指定する
 		m_VectorU = D3DXVECTOR3(0.0f, 1.0f, 0.0f);
-		m_PositionV = D3DXVECTOR3(PlayerPosition.x, PlayerPosition.y + 50.0f, PlayerPosition.z + m_fPlayerDistance);
-		m_PositionR = PlayerPosition;
+		m_PositionV = D3DXVECTOR3(PlayerPosition.x + 550.0f, 0.0f, PlayerPosition.z + m_fPlayerDistance);
+		m_PositionR = D3DXVECTOR3(PlayerPosition.x + 550.0f, 0.0f, PlayerPosition.z);
 	}
 }
 
@@ -115,7 +115,7 @@ void CCamera::SetCamera(void)
 	//プロジェクションマトリックスの初期化
 	D3DXMatrixIdentity(&m_MtxProjection);
 	//プロジェクションマトリックスの作成
-	D3DXMatrixPerspectiveFovLH(&m_MtxProjection, D3DXToRadian(90.0f), (float)SCREEN_WIDTH / (float)SCREEN_HEIGHT, 10.0f, 10000.0f);
+	D3DXMatrixPerspectiveFovLH(&m_MtxProjection, D3DXToRadian(-90.0f), (float)SCREEN_WIDTH / (float)SCREEN_HEIGHT, 10.0f, 10000.0f);
 	//プロジェクションマトリックスの設定
 	pDevice->SetTransform(D3DTS_PROJECTION, &m_MtxProjection);
 }
