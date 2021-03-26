@@ -39,5 +39,6 @@ private:
 	D3DXVECTOR3 m_Rotation;			//回転
 	D3DXMATRIX m_MtxProjection;		//プロジェクションマトリックス
 	D3DXMATRIX m_MtxView;			//ビューマトリックス
+	float m_fDistance;				//距離
 };
 #endif

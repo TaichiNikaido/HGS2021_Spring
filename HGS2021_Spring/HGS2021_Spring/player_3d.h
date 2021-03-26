@@ -61,6 +61,7 @@ public:
 	void Uninit(void);
 	void Update(void);
 	void Draw(void);
+	float GetCameraDistance(void) { return m_fCameraDistance; }
 private:
 	void Input(void);
 	void Move(void);
@@ -68,6 +69,7 @@ private:
 	static LPDIRECT3DTEXTURE9 m_pTexture;	//テクスチャへのポインタ
 	D3DXVECTOR3 m_Move;						//移動量
 	float m_fSpeed;							//速さ
+	float m_fCameraDistance;				//カメラとの距離
 	STATE m_State;							//状態
 	INPUT m_Input;							//入力キー情報
 };

@@ -26,7 +26,7 @@
 class CPolygon3d :public CScene3d
 {
 public:
-	CPolygon3d();
+	CPolygon3d(int nPriority = DEFAULT_PRIORITY);
 	~CPolygon3d();
 	HRESULT Init(void);
 	void Uninit(void);

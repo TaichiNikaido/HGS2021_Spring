@@ -29,8 +29,9 @@
 // マクロ定義
 //*****************************************************************************
 #define TEXTURE ("")
-#define SIZE (D3DXVECTOR3(0.0f,0.0f,0.0))
+#define SIZE (D3DXVECTOR3(150.0f,150.0f,0.0))
 #define SPEED (0.0f)
+#define CAMERA_DISTANCE (100.0f)
 
 //*****************************************************************************
 // 静的メンバ変数の初期化
@@ -43,6 +44,7 @@ LPDIRECT3DTEXTURE9 CPlayer3d::m_pTexture = NULL;	//テクスチャへのポインタ
 CPlayer3d::CPlayer3d(int nPriority)
 {
 	m_Move = INITIAL_D3DXVECTOR3;						//移動量
+	m_fCameraDistance = 0.0f;							//カメラとの距離
 	m_State = STATE_NONE;								//状態
 	m_Input = INPUT_NONE;								//入力キー情報
 }
@@ -127,6 +129,8 @@ HRESULT CPlayer3d::Init(void)
 	CBillboard::Init();
 	//移動速度の初期設定
 	m_fSpeed = SPEED;
+	//カメラとの距離を初期設定
+	m_fCameraDistance = CAMERA_DISTANCE;
 	//テクスチャの設定
 	SetTexture(aTexture);
 	//テクスチャの割り当て

@@ -19,6 +19,8 @@
 //*****************************************************************************
 // 前方宣言
 //*****************************************************************************
+class CPlayer2d;
+class CPlayer3d;
 
 //*****************************************************************************
 // クラス定義
@@ -33,8 +35,12 @@ public:
 	void Uninit(void);
 	void Update(void);
 	void Draw(void);
+	static CPlayer2d * GetPlayer2d(void) { return m_pPlayer2d; }
+	static CPlayer3d * GetPlayer3d(void) { return m_pPlayer3d; }
 private:
 	void InitCreateAll(void);
 	void UpdateCreateAll(void);
+	static CPlayer2d * m_pPlayer2d;		//プレイヤー2Dのポインタ
+	static CPlayer3d * m_pPlayer3d;		//プレイヤー3Dのポインタ
 };
 #endif

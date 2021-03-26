@@ -21,7 +21,7 @@
 //=============================================================================
 // コンストラクタ
 //=============================================================================
-CScene3d::CScene3d()
+CScene3d::CScene3d(int nPriority) : CScene(nPriority)
 {
 	m_Position = INITIAL_D3DXVECTOR3;	//位置
 	m_Rotation = INITIAL_ROTATION;		//回転値

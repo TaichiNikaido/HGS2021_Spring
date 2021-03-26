@@ -15,6 +15,7 @@
 #include "keyboard.h"
 #include "joystick.h"
 #include "camera.h"
+#include "player_3d.h"
 
 //*****************************************************************************
 // マクロ定義
@@ -36,6 +37,7 @@ CCamera::CCamera()
 	m_PositionR = INITIAL_D3DXVECTOR3;	//注視点の位置
 	m_VectorU = INITIAL_D3DXVECTOR3;	//上方向ベクトル
 	m_Rotation = INITIAL_ROTATION;		//回転
+	m_fDistance = INIT_FLOAT;			//距離
 }
 
 //=============================================================================
@@ -50,15 +52,23 @@ CCamera::~CCamera()
 //=============================================================================
 HRESULT CCamera::Init(void)
 {
-	//視点を設定する
-	m_PositionV = INITIAL_D3DXVECTOR3;
-	//注視点の設定
-	m_PositionR = INITIAL_D3DXVECTOR3;
-	//上方向ベクトルの初期設定
-	m_VectorU = VECTOR;
-	//回転方向の初期設定
-	m_Rotation = ROTATION;
-	//視点と注視点の距離を設定
+	//プレイヤーの取得
+	CPlayer3d * pPlayer3d = CGameMode::GetPlayer3d();
+	if (pPlayer3d != NULL)
+	{
+		//プレイヤーの位置位置を取得する
+		D3DXVECTOR3 PlayerPosition = pPlayer3d->GetPosition();
+		float PlayerDistance = pPlayer3d->GetCameraDistance();
+		//視点を設定する
+		m_PositionV = D3DXVECTOR3(PlayerPosition.x, PlayerPosition.y, PlayerPosition.z + PlayerDistance);
+		//注視点の設定
+		m_PositionR = D3DXVECTOR3(PlayerPosition.x, PlayerPosition.y, PlayerPosition.z);
+	}
+		//上方向ベクトルの初期設定
+		m_VectorU = VECTOR;
+		//回転方向の初期設定
+		m_Rotation = ROTATION;
+		//視点と注視点の距離を設定
 	return S_OK;
 }
 
