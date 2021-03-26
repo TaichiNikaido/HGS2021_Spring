@@ -14,6 +14,9 @@
 #include "keyboard.h"
 #include "joystick.h"
 #include "mode_title.h"
+#include "bg_title.h"
+#include "logo_title.h"
+
 //*****************************************************************************
 // マクロ定義
 //*****************************************************************************
@@ -123,8 +126,8 @@ void CTitleMode::Input(void)
 	//もしENTERかAボタンを押したとき
 	if (pKeyboard->GetKeyboardTrigger(DIK_RETURN) || lpDIDevice != NULL &&pJoystick->GetJoystickTrigger(JS_A))
 	{
-		//ランキングに移動
-		CManager::StartFade(CManager::MODE_GAME);
+		//チュートリアルに移動
+		CManager::StartFade(CManager::MODE_TUTORIAL);
 	}
 }
 
@@ -133,4 +136,8 @@ void CTitleMode::Input(void)
 //=============================================================================
 void CTitleMode::InitCreateAll(void)
 {
+	//タイトル背景の生成
+	CTitleBG::Create();
+	//タイトルロゴの生成
+	CTitleLogo::Create();
 }

@@ -1,18 +1,9 @@
-<<<<<<< HEAD
-﻿  player_3d.cpp
-  コードを生成中...
-  コンパイル中...
-  mode_game.cpp
+﻿  polygon3d.cpp
   manager.cpp
-  camera.cpp
-  board.cpp
-  block.cpp
+  logo_start.cpp
+  logo_ranking.cpp
+  logo_over.cpp
+  logo_clear.cpp
   コードを生成中...
-c:\users\gsp025\desktop\hgs2021_spring\hgs2021_spring\hgs2021_spring\block.cpp(163): warning C4700: 初期化されていないローカル変数 'bCollision' が使用されます
   HGS2021_Spring.vcxproj -> C:\Users\gsp025\Desktop\HGS2021_Spring\HGS2021_Spring\Debug\HGS2021_Spring.exe
   HGS2021_Spring.vcxproj -> C:\Users\gsp025\Desktop\HGS2021_Spring\HGS2021_Spring\Debug\HGS2021_Spring.pdb (Full PDB)
-=======
-﻿  map_manager.cpp
-  HGS2021_Spring.vcxproj -> C:\Users\81902\Desktop\saisinHGS\HGS2021_Spring\HGS2021_Spring\Debug\HGS2021_Spring.exe
-  HGS2021_Spring.vcxproj -> C:\Users\81902\Desktop\saisinHGS\HGS2021_Spring\HGS2021_Spring\Debug\HGS2021_Spring.pdb (Full PDB)
->>>>>>> 296a8f33887d24dab4338283c2379c152acb8767

@@ -56,7 +56,7 @@ private:
 	D3DXVECTOR3 m_PositionOld;				//過去の位置
 	D3DXVECTOR3 m_Move;						//移動量
 	D3DXVECTOR3 m_CollisionSize;			//衝突判定用サイズ
-	int m_nSurvivalTime;							//生存時間
+	int m_nSurvivalTime;					//生存時間
 	float m_fSpeed;							//速さ
 	float m_fCameraDistance;				//カメラとの距離
 	bool m_bJump;							//ジャンプしたかどうか

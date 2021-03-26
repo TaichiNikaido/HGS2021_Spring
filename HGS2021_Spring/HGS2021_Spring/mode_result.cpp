@@ -14,6 +14,8 @@
 #include "keyboard.h"
 #include "joystick.h"
 #include "mode_result.h"
+#include "bg_ranking.h"
+
 //*****************************************************************************
 // マクロ定義
 //*****************************************************************************
@@ -107,9 +109,7 @@ void CResultMode::Update(void)
 	//もしENTERかAボタンを押したとき
 	if (pKeyboard->GetKeyboardTrigger(DIK_RETURN) || lpDIDevice != NULL &&pJoystick->GetJoystickTrigger(JS_A))
 	{
-		//サウンドの停止
-		pSound->StopSound();
-		//ランキングに移動
+		//タイトルに移動
 		CManager::StartFade(CManager::MODE_TITLE);
 	}
 }
@@ -126,4 +126,6 @@ void CResultMode::Draw(void)
 //=============================================================================
 void CResultMode::InitCreateAll(void)
 {
+	//ランキング背景
+	CRankingBG::Create();
 }

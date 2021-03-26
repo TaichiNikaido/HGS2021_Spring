@@ -23,11 +23,7 @@
 //*****************************************************************************
 // É}ÉNÉçíËã`
 //*****************************************************************************
-<<<<<<< HEAD
 #define TEXTURE ("Data/Texture/Player.png")
-=======
-#define TEXTURE ("Data/Textrue/bakuhatsu.png")
->>>>>>> 296a8f33887d24dab4338283c2379c152acb8767
 #define SIZE (D3DXVECTOR3(150.0f,150.0f,0.0))
 #define SPEED (0.01f)
 #define CAMERA_DISTANCE (500.0f)
