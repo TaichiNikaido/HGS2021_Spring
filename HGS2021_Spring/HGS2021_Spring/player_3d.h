@@ -62,11 +62,13 @@ public:
 	void Update(void);
 	void Draw(void);
 	float GetCameraDistance(void) { return m_fCameraDistance; }
+	D3DXVECTOR3 GetPositionOld(void) { return m_PositionOld; }
 private:
 	void Input(void);
 	void Move(void);
 	D3DXVECTOR3 MovableRange(void);
 	static LPDIRECT3DTEXTURE9 m_pTexture;	//テクスチャへのポインタ
+	D3DXVECTOR3 m_PositionOld;				//過去の位置
 	D3DXVECTOR3 m_Move;						//移動量
 	float m_fSpeed;							//速さ
 	float m_fCameraDistance;				//カメラとの距離

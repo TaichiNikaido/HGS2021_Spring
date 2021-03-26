@@ -49,6 +49,12 @@
     <Filter Include="ヘッダー ファイル\Background">
       <UniqueIdentifier>{0283d625-d85a-47d0-bcbc-f4754e6ecbe5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\Map">
+      <UniqueIdentifier>{abba1a38-31a1-47de-b96c-ed6adc9c35b7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Map">
+      <UniqueIdentifier>{11bb259d-b134-4e3f-90b1-b15bc74f3f1d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="scene.cpp">
@@ -114,6 +120,15 @@
     <ClCompile Include="background.cpp">
       <Filter>ソース ファイル\Background</Filter>
     </ClCompile>
+    <ClCompile Include="block.cpp">
+      <Filter>ソース ファイル\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="map_manager.cpp">
+      <Filter>ソース ファイル\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="normal_block.cpp">
+      <Filter>ソース ファイル\Map</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="scene.h">
@@ -178,6 +193,15 @@
     </ClInclude>
     <ClInclude Include="background.h">
       <Filter>ヘッダー ファイル\Background</Filter>
+    </ClInclude>
+    <ClInclude Include="block.h">
+      <Filter>ヘッダー ファイル\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="map_manager.h">
+      <Filter>ヘッダー ファイル\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="normal_block.h">
+      <Filter>ヘッダー ファイル\Map</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

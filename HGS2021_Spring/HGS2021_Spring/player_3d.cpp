@@ -44,6 +44,7 @@ LPDIRECT3DTEXTURE9 CPlayer3d::m_pTexture = NULL;	//テクスチャへのポインタ
 CPlayer3d::CPlayer3d(int nPriority)
 {
 	m_Move = INITIAL_D3DXVECTOR3;						//移動量
+	m_PositionOld = INITIAL_D3DXVECTOR3;				//過去の位置
 	m_fCameraDistance = 0.0f;							//カメラとの距離
 	m_State = STATE_NONE;								//状態
 	m_Input = INPUT_NONE;								//入力キー情報
@@ -156,6 +157,8 @@ void CPlayer3d::Uninit(void)
 //=============================================================================
 void CPlayer3d::Update(void)
 {
+	//過去の位置を保存する
+	m_PositionOld = GetPosition();
 	//ポリゴン3Dの更新処理関数呼び出し
 	CPolygon3d::Update();
 	////位置を取得

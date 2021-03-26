@@ -148,6 +148,7 @@
   <ItemGroup>
     <ClCompile Include="background.cpp" />
     <ClCompile Include="billboard.cpp" />
+    <ClCompile Include="block.cpp" />
     <ClCompile Include="camera.cpp" />
     <ClCompile Include="fade.cpp" />
     <ClCompile Include="input.cpp" />
@@ -155,10 +156,12 @@
     <ClCompile Include="keyboard.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="manager.cpp" />
+    <ClCompile Include="map_manager.cpp" />
     <ClCompile Include="mode_game.cpp" />
     <ClCompile Include="mode_result.cpp" />
     <ClCompile Include="mode_title.cpp" />
     <ClCompile Include="mode_tutorial.cpp" />
+    <ClCompile Include="normal_block.cpp" />
     <ClCompile Include="player_2d.cpp" />
     <ClCompile Include="player_3d.cpp" />
     <ClCompile Include="polygon3d.cpp" />
@@ -171,6 +174,7 @@
   <ItemGroup>
     <ClInclude Include="background.h" />
     <ClInclude Include="billboard.h" />
+    <ClInclude Include="block.h" />
     <ClInclude Include="camera.h" />
     <ClInclude Include="fade.h" />
     <ClInclude Include="input.h" />
@@ -178,10 +182,12 @@
     <ClInclude Include="keyboard.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="manager.h" />
+    <ClInclude Include="map_manager.h" />
     <ClInclude Include="mode_game.h" />
     <ClInclude Include="mode_result.h" />
     <ClInclude Include="mode_title.h" />
     <ClInclude Include="mode_tutorial.h" />
+    <ClInclude Include="normal_block.h" />
     <ClInclude Include="player_2d.h" />
     <ClInclude Include="player_3d.h" />
     <ClInclude Include="polygon3d.h" />
