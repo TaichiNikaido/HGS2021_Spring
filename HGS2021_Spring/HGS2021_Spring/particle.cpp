@@ -12,6 +12,8 @@
 #include "billboard.h"
 #include "particle_texture.h"
 #include "particle.h"
+#include "player_3d.h"
+#include "mode_game.h"
 //******************************************************************************
 // マクロ定義
 //******************************************************************************
@@ -73,7 +75,7 @@ CParticle *CParticle::Create(D3DXVECTOR3 pos, const char *cText)
 	pParticle = new CParticle;
 
 	// 位置代入
-	pParticle->m_pos = pos;
+	pParticle->SetPosition(pos);
 
 	// テキスト読み込み
 	pParticle->LoadParticle(cText);
@@ -92,9 +94,6 @@ HRESULT CParticle::Init(void)
 {
 	// 初期化
 	CBillboard::Init();
-
-	// 位置設定
-	SetPosition(m_pos);
 
 	// サイズ設定
 	SetSize(m_size);
@@ -203,6 +202,8 @@ void CParticle::Uninit(void)
 //******************************************************************************
 void CParticle::Update(void)
 {
+	CPlayer3d * pPlayer = CGameMode::GetPlayer3d();
+	m_pos = pPlayer->GetPosition();
 	// 更新
 	CBillboard::Update();
 
@@ -280,7 +281,6 @@ void CParticle::Update(void)
 	pos.y += sinf(D3DXToRadian(m_Angle.y))*m_move.y;
 	pos.z += sinf(D3DXToRadian(m_Angle.z))*m_move.z;
 
-	// 位置設定
 	SetPosition(pos);
 }
 

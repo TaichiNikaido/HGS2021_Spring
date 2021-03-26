@@ -93,13 +93,14 @@ void CParticle_Emitter::Update(void)
 	{
 		D3DXVECTOR3 PlayerPosition = pPlayer->GetPosition();
 		m_pos = PlayerPosition;
+		// —]‚è‚ª0‚Ìê‡
+		//if (m_nCount % m_nCreateCount == REMAINDER)
+		//{
+			CParticle::Create(PlayerPosition, m_cText);
+		//}
 	}
 
-	// —]‚è‚ª0‚Ìê‡
-	if (m_nCount % m_nCreateCount == REMAINDER)
-	{
-		CParticle::Create(m_pos, m_cText);
-	}
+
 }
 //******************************************************************************
 // •`‰æŠÖ”
