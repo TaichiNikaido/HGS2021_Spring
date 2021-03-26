@@ -23,7 +23,7 @@
 #include "joystick.h"
 #include "fade.h"
 #include "background.h"
-
+#include "particle_texture.h"
 //*****************************************************************************
 // マクロ定義
 //*****************************************************************************
@@ -38,6 +38,7 @@ CJoystick * CManager::m_pJoystick = NULL;		//マネージャーへのポインタ
 CGameMode * CManager::m_pGameMode = NULL;		//ゲームモードへのポインタ
 CResultMode * CManager::m_pResultMode = NULL;	//リザルトモードへのポインタ
 CFade * CManager::m_pFade = NULL;				//フェードへのポインタ
+CParticle_Texture * CManager::m_pParticle_Texture = NULL;	//パーティクルテクスチャのポインタ
 CManager::MODE  CManager::m_Mode = MODE_NONE;	//モード
 bool CManager::m_bUseFade = false;				//フェードしてるか
 
@@ -95,6 +96,15 @@ HRESULT CManager::Init(HINSTANCE hInsitance, HWND hWnd, bool bWindow)
 	{
 		//ジョイスティックのメモリ確保
 		m_pJoystick = new CJoystick;
+	}
+	// NULLの場合
+	if (m_pParticle_Texture == NULL)
+	{
+		// メモリ確保
+		m_pParticle_Texture = new CParticle_Texture;
+
+		// 初期化
+		m_pParticle_Texture->Init();
 	}
 	//ジョイスティックの初期化処理関数呼び出し
 	m_pJoystick->Init(hInsitance, hWnd);
@@ -239,6 +249,18 @@ void CManager::UnloadAll(void)
 //=============================================================================
 void CManager::DeleteAll(void)
 {
+	// テクスチャの終了
+	if (m_pParticle_Texture != NULL)
+	{
+		// 終了
+		m_pParticle_Texture->Uninit();
+
+		// メモリ開放
+		delete m_pParticle_Texture;
+
+		// NULLに
+		m_pParticle_Texture = NULL;
+	}
 	//もしジョイスティックのポインタがNULLじゃない場合
 	if (m_pJoystick != NULL)
 	{

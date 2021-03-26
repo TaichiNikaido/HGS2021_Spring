@@ -16,7 +16,7 @@
 #include "player_2d.h"
 #include "player_3d.h"
 #include "background.h"
-
+#include "particle_emitter.h"
 //*****************************************************************************
 // ƒ}ƒNƒ’è‹`
 //*****************************************************************************
@@ -149,6 +149,7 @@ void CGameMode::InitCreateAll(void)
 			m_pCamera->Init();
 		}
 	}
+	CParticle_Emitter::Create(D3DXVECTOR3(0.0f, 0.0f, 50.0f),CParticle_Emitter::TYPE_BOAD);
 }
 
 //=============================================================================
