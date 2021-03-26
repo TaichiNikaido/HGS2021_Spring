@@ -178,7 +178,11 @@ void CRenderer::Update(void)
 void CRenderer::Draw(void)
 {
 	// バックバッファ＆Ｚバッファのクリア
+<<<<<<< HEAD
+	m_pD3DDevice->Clear(0, NULL, (D3DCLEAR_TARGET | D3DCLEAR_ZBUFFER), D3DCOLOR_RGBA(0, 0, 0, 255), 1.0f, 0);
+=======
 	m_pD3DDevice->Clear(0, NULL, (D3DCLEAR_TARGET | D3DCLEAR_ZBUFFER), D3DCOLOR_RGBA(0, 0, 0, 0), 1.0f, 0);
+>>>>>>> fe036598864e59002f8114b0bc229a4c6cb3031e
 	//フェードの取得
 	CFade * pFade = CManager::GetFade();
 	// Direct3Dによる描画の開始

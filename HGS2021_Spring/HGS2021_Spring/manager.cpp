@@ -23,6 +23,9 @@
 #include "joystick.h"
 #include "fade.h"
 #include "background.h"
+<<<<<<< HEAD
+#include "particle_texture.h"
+=======
 #include "board.h"
 #include "block.h"
 #include "player_3d.h"
@@ -34,7 +37,9 @@
 #include "logo_over.h"
 #include "logo_clear.h"
 #include "logo_ranking.h"
+#include "logo_button.h"
 
+>>>>>>> fe036598864e59002f8114b0bc229a4c6cb3031e
 //*****************************************************************************
 // マクロ定義
 //*****************************************************************************
@@ -49,6 +54,7 @@ CJoystick * CManager::m_pJoystick = NULL;		//マネージャーへのポインタ
 CGameMode * CManager::m_pGameMode = NULL;		//ゲームモードへのポインタ
 CResultMode * CManager::m_pResultMode = NULL;	//リザルトモードへのポインタ
 CFade * CManager::m_pFade = NULL;				//フェードへのポインタ
+CParticle_Texture * CManager::m_pParticle_Texture = NULL;	//パーティクルテクスチャのポインタ
 CManager::MODE  CManager::m_Mode = MODE_NONE;	//モード
 bool CManager::m_bUseFade = false;				//フェードしてるか
 
@@ -106,6 +112,15 @@ HRESULT CManager::Init(HINSTANCE hInsitance, HWND hWnd, bool bWindow)
 	{
 		//ジョイスティックのメモリ確保
 		m_pJoystick = new CJoystick;
+	}
+	// NULLの場合
+	if (m_pParticle_Texture == NULL)
+	{
+		// メモリ確保
+		m_pParticle_Texture = new CParticle_Texture;
+
+		// 初期化
+		m_pParticle_Texture->Init();
 	}
 	//ジョイスティックの初期化処理関数呼び出し
 	m_pJoystick->Init(hInsitance, hWnd);
@@ -246,6 +261,7 @@ void CManager::LoadAll(void)
 	COverLogo::TextureLoad();
 	CClearLogo::TextureLoad();
 	CRankingLogo::TextureLoad();
+	CButtonLogo::TextureLoad();
 }
 
 //=============================================================================
@@ -265,6 +281,7 @@ void CManager::UnloadAll(void)
 	COverLogo::TextureUnload();
 	CClearLogo::TextureUnload();
 	CRankingLogo::TextureUnload();
+	CButtonLogo::TextureUnload();
 }
 
 //=============================================================================
@@ -272,6 +289,18 @@ void CManager::UnloadAll(void)
 //=============================================================================
 void CManager::DeleteAll(void)
 {
+	// テクスチャの終了
+	if (m_pParticle_Texture != NULL)
+	{
+		// 終了
+		m_pParticle_Texture->Uninit();
+
+		// メモリ開放
+		delete m_pParticle_Texture;
+
+		// NULLに
+		m_pParticle_Texture = NULL;
+	}
 	//もしジョイスティックのポインタがNULLじゃない場合
 	if (m_pJoystick != NULL)
 	{

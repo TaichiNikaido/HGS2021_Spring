@@ -71,8 +71,8 @@ HRESULT CResultMode::Init(void)
 	//もしサウンドのポインタがNULLじゃない場合
 	if (pSound != NULL)
 	{
-		//タイトルBGMの再生
-		//pSound->PlaySoundA(CSound::SOUND_LABEL_BGM_RESULT);
+		//ランキングBGMの再生
+		pSound->PlaySoundA(CSound::SOUND_LABEL_BGM_RESULT);
 	}
 	//全生成処理関数呼び出し
 	InitCreateAll();

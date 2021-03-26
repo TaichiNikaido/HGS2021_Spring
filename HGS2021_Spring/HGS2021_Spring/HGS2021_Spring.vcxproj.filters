@@ -55,11 +55,31 @@
     <Filter Include="ヘッダー ファイル\Map">
       <UniqueIdentifier>{11bb259d-b134-4e3f-90b1-b15bc74f3f1d}</UniqueIdentifier>
     </Filter>
+<<<<<<< HEAD
+    <Filter Include="ソース ファイル\Particle">
+      <UniqueIdentifier>{062564e3-4048-4014-ace2-e90c702c3141}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Particle">
+      <UniqueIdentifier>{a4ef6d3d-2928-4e7e-9b7e-95cf496a859d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Particle\Particle_Emitter">
+      <UniqueIdentifier>{a17ec2ed-6fb9-48de-9551-0c76569dcb23}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Particle\Particle_Effect">
+      <UniqueIdentifier>{bec7c528-c16f-4dd3-b69c-7dcdaeefb461}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Particle\Particle_Emitter">
+      <UniqueIdentifier>{3d4ffc0b-fc48-4099-89de-59f01fd8fb1c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Particle\Particle_Effect">
+      <UniqueIdentifier>{51034b51-f6e5-4c88-b0ba-5210fa791cd0}</UniqueIdentifier>
+=======
     <Filter Include="ソース ファイル\Polygon2d">
       <UniqueIdentifier>{2bce29a6-a1f6-44ea-8975-f1800da6ebe3}</UniqueIdentifier>
     </Filter>
     <Filter Include="ヘッダー ファイル\Polygon2d">
       <UniqueIdentifier>{a5c48a5b-4bd3-40da-80d8-842463b14166}</UniqueIdentifier>
+>>>>>>> fe036598864e59002f8114b0bc229a4c6cb3031e
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -135,6 +155,19 @@
     <ClCompile Include="normal_block.cpp">
       <Filter>ソース ファイル\Map</Filter>
     </ClCompile>
+<<<<<<< HEAD
+    <ClCompile Include="particle.cpp">
+      <Filter>ソース ファイル\Particle</Filter>
+    </ClCompile>
+    <ClCompile Include="particle_texture.cpp">
+      <Filter>ソース ファイル\Particle</Filter>
+    </ClCompile>
+    <ClCompile Include="particle_emitter.cpp">
+      <Filter>ソース ファイル\Particle\Particle_Emitter</Filter>
+    </ClCompile>
+    <ClCompile Include="particle_effect.cpp">
+      <Filter>ソース ファイル\Particle\Particle_Effect</Filter>
+=======
     <ClCompile Include="board.cpp">
       <Filter>ソース ファイル\Player</Filter>
     </ClCompile>
@@ -160,6 +193,10 @@
       <Filter>ソース ファイル\Polygon2d</Filter>
     </ClCompile>
     <ClCompile Include="logo_ranking.cpp">
+      <Filter>ソース ファイル\Polygon2d</Filter>
+>>>>>>> fe036598864e59002f8114b0bc229a4c6cb3031e
+    </ClCompile>
+    <ClCompile Include="logo_button.cpp">
       <Filter>ソース ファイル\Polygon2d</Filter>
     </ClCompile>
   </ItemGroup>
@@ -236,6 +273,19 @@
     <ClInclude Include="normal_block.h">
       <Filter>ヘッダー ファイル\Map</Filter>
     </ClInclude>
+<<<<<<< HEAD
+    <ClInclude Include="particle.h">
+      <Filter>ヘッダー ファイル\Particle</Filter>
+    </ClInclude>
+    <ClInclude Include="particle_texture.h">
+      <Filter>ヘッダー ファイル\Particle</Filter>
+    </ClInclude>
+    <ClInclude Include="particle_emitter.h">
+      <Filter>ヘッダー ファイル\Particle\Particle_Emitter</Filter>
+    </ClInclude>
+    <ClInclude Include="particle_effect.h">
+      <Filter>ヘッダー ファイル\Particle\Particle_Effect</Filter>
+=======
     <ClInclude Include="board.h">
       <Filter>ヘッダー ファイル\Player</Filter>
     </ClInclude>
@@ -261,6 +311,10 @@
       <Filter>ヘッダー ファイル\Polygon2d</Filter>
     </ClInclude>
     <ClInclude Include="logo_ranking.h">
+      <Filter>ヘッダー ファイル\Polygon2d</Filter>
+>>>>>>> fe036598864e59002f8114b0bc229a4c6cb3031e
+    </ClInclude>
+    <ClInclude Include="logo_button.h">
       <Filter>ヘッダー ファイル\Polygon2d</Filter>
     </ClInclude>
   </ItemGroup>

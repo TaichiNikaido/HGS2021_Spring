@@ -16,6 +16,7 @@
 #include "mode_title.h"
 #include "bg_title.h"
 #include "logo_title.h"
+#include "logo_button.h"
 
 //*****************************************************************************
 // マクロ定義
@@ -73,7 +74,7 @@ HRESULT CTitleMode::Init(void)
 	if (pSound != NULL)
 	{
 		//タイトルBGMの再生
-		//pSound->PlaySoundA(CSound::SOUND_LABEL_BGM_TITLE);
+		pSound->PlaySoundA(CSound::SOUND_LABEL_BGM_TITLE);
 	}
 	//初期全生成処理関数呼び出し
 	InitCreateAll();
@@ -126,6 +127,12 @@ void CTitleMode::Input(void)
 	//もしENTERかAボタンを押したとき
 	if (pKeyboard->GetKeyboardTrigger(DIK_RETURN) || lpDIDevice != NULL &&pJoystick->GetJoystickTrigger(JS_A))
 	{
+		//もしサウンドのポインタがNULLじゃない場合
+		if (pSound != NULL)
+		{
+			//決定の再生
+			pSound->PlaySoundA(CSound::SOUND_LABEL_SE_BUTTON);
+		}
 		//チュートリアルに移動
 		CManager::StartFade(CManager::MODE_TUTORIAL);
 	}
@@ -140,4 +147,6 @@ void CTitleMode::InitCreateAll(void)
 	CTitleBG::Create();
 	//タイトルロゴの生成
 	CTitleLogo::Create();
+	//ボタンロゴの生成
+	CButtonLogo::Create();
 }

@@ -1,57 +1,58 @@
-//=============================================================================
-//
+//******************************************************************************
 // ビルボード [billboard.h]
-// Author : 二階堂汰一
-//
-//=============================================================================
+// Author : 管原　司
+//******************************************************************************
 #ifndef _BILLBOARD_H_
 #define _BILLBOARD_H_
-
-//*****************************************************************************
-// ヘッダファイルのインクルード
-//*****************************************************************************
 #include "scene.h"
-
-//*****************************************************************************
-// マクロ定義
-//*****************************************************************************
-
-//*****************************************************************************
-// 前方宣言
-//*****************************************************************************
-
-//*****************************************************************************
-// クラス定義
-//*****************************************************************************
-class CBillboard :public CScene
+//******************************************************************************
+// クラス
+//******************************************************************************
+class CBillboard : public CScene
 {
 public:
-	CBillboard();
+	CBillboard(int nPriority = 3);
 	~CBillboard();
+
 	HRESULT Init(void);
 	void Uninit(void);
 	void Update(void);
 	void Draw(void);
-	void SetPosition(D3DXVECTOR3 Position) { m_Position = Position; }
-	void SetRotation(D3DXVECTOR3 Rotation) { m_Rotation = Rotation; }
-	void SetSize(D3DXVECTOR3 Size) { m_Size = Size; }
-	void SetColor(D3DXCOLOR Color) { m_Color = Color; }
-	void SetMove(D3DXVECTOR3 Move) { m_Move = Move; }
-	void SetTexture(D3DXVECTOR2 aTexture[NUM_VERTEX]);
-	void BindTexture(LPDIRECT3DTEXTURE9 pTexture) { m_pTexture = pTexture; }
-	D3DXVECTOR3 GetPosition(void) { return m_Position; };
-	D3DXVECTOR3 GetRotation(void) { return m_Rotation; };
-	D3DXVECTOR3 GetSize(void) { return m_Size; };
-	D3DXCOLOR GetColor(void) { return m_Color; };
+
+	//*********************************************
+	// セッター
+	//*********************************************
+	void SetPosition(D3DXVECTOR3 pos);
+	void SetRotation(D3DXVECTOR3 rot);
+	void SetSize(D3DXVECTOR3 size);
+	void SetColor(D3DXCOLOR col);
+	void SetTexture(float fTexX, float fTexY, float fTexX2, float fTexY2);
+	void SetScale(float fScale);
+	void SetAlpha(int nAlpha);
+	//*********************************************
+	// ゲッター
+	//*********************************************
+	D3DXVECTOR3 GetPosition(void) { return m_pos; }
+	D3DXVECTOR3 GetRotation(void) { return m_rot; }
+	D3DXVECTOR3 GetSize(void) { return m_size; }
+	D3DXCOLOR GetColor(void) { return m_col; }
+	float GetScale(void) { return m_fScale; }
+
+	void BindTexture(LPDIRECT3DTEXTURE9 pTexture);
+
 private:
-	LPDIRECT3DTEXTURE9 m_pTexture;			//テクスチャ
-	LPDIRECT3DVERTEXBUFFER9 m_pVtxBuff;		//頂点バッファ
-	D3DXMATRIX m_mtxWorld;					//行列計算用
-	D3DXVECTOR3 m_Position;					//位置
-	D3DXVECTOR3 m_Rotation;					//回転
-	D3DXVECTOR3 m_Size;						//サイズ
-	D3DXCOLOR m_Color;						//カラー
-	D3DXVECTOR3 m_Move;						//移動量
-	D3DXVECTOR2	m_aTexture[NUM_VERTEX];		//テクスチャのUV座標
+	LPDIRECT3DTEXTURE9		m_pTexture;		// テクスチャへのポインタ
+	LPDIRECT3DVERTEXBUFFER9 m_pVtxBuff;		// 頂点バッファへのポインタ
+	D3DXVECTOR3 m_pos;						// 位置座標
+	D3DXVECTOR3 m_size;						// サイズ
+	D3DXVECTOR3 m_rot;						// 向き
+	D3DXCOLOR m_col;						// カラー
+	float  m_fTexX;							// テクスチャX座標
+	float  m_fTexX2;						// テクスチャX2座標
+	float  m_fTexY;							// テクスチャY座標
+	float  m_fTexY2;						// テクスチャY座標
+	D3DXMATRIX m_mtxWorld;					// マトリックス
+	float m_fScale;							// 拡大
+	int m_nAlpha;							// 透過値
 };
 #endif
