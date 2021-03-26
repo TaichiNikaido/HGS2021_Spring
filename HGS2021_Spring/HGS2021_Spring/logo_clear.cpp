@@ -140,7 +140,7 @@ void CClearLogo::Update(void)
 	if (m_nTime >= 150)
 	{
 		//ƒQ[ƒ€‚ÉˆÚ“®
-		CManager::StartFade(CManager::MODE_RESULT);
+		CManager::StartFade(CManager::MODE_TITLE);
 	}
 }
 
