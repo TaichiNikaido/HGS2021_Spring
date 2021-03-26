@@ -55,6 +55,12 @@
     <Filter Include="ヘッダー ファイル\Map">
       <UniqueIdentifier>{11bb259d-b134-4e3f-90b1-b15bc74f3f1d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\Polygon2d">
+      <UniqueIdentifier>{2bce29a6-a1f6-44ea-8975-f1800da6ebe3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Polygon2d">
+      <UniqueIdentifier>{a5c48a5b-4bd3-40da-80d8-842463b14166}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="scene.cpp">
@@ -132,6 +138,30 @@
     <ClCompile Include="board.cpp">
       <Filter>ソース ファイル\Player</Filter>
     </ClCompile>
+    <ClCompile Include="bg_title.cpp">
+      <Filter>ソース ファイル\Polygon2d</Filter>
+    </ClCompile>
+    <ClCompile Include="bg_ranking.cpp">
+      <Filter>ソース ファイル\Polygon2d</Filter>
+    </ClCompile>
+    <ClCompile Include="bg_tutorial.cpp">
+      <Filter>ソース ファイル\Polygon2d</Filter>
+    </ClCompile>
+    <ClCompile Include="logo_title.cpp">
+      <Filter>ソース ファイル\Polygon2d</Filter>
+    </ClCompile>
+    <ClCompile Include="logo_start.cpp">
+      <Filter>ソース ファイル\Polygon2d</Filter>
+    </ClCompile>
+    <ClCompile Include="logo_over.cpp">
+      <Filter>ソース ファイル\Polygon2d</Filter>
+    </ClCompile>
+    <ClCompile Include="logo_clear.cpp">
+      <Filter>ソース ファイル\Polygon2d</Filter>
+    </ClCompile>
+    <ClCompile Include="logo_ranking.cpp">
+      <Filter>ソース ファイル\Polygon2d</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="scene.h">
@@ -208,6 +238,30 @@
     </ClInclude>
     <ClInclude Include="board.h">
       <Filter>ヘッダー ファイル\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="bg_title.h">
+      <Filter>ヘッダー ファイル\Polygon2d</Filter>
+    </ClInclude>
+    <ClInclude Include="bg_tutorial.h">
+      <Filter>ヘッダー ファイル\Polygon2d</Filter>
+    </ClInclude>
+    <ClInclude Include="bg_ranking.h">
+      <Filter>ヘッダー ファイル\Polygon2d</Filter>
+    </ClInclude>
+    <ClInclude Include="logo_title.h">
+      <Filter>ヘッダー ファイル\Polygon2d</Filter>
+    </ClInclude>
+    <ClInclude Include="logo_start.h">
+      <Filter>ヘッダー ファイル\Polygon2d</Filter>
+    </ClInclude>
+    <ClInclude Include="logo_over.h">
+      <Filter>ヘッダー ファイル\Polygon2d</Filter>
+    </ClInclude>
+    <ClInclude Include="logo_clear.h">
+      <Filter>ヘッダー ファイル\Polygon2d</Filter>
+    </ClInclude>
+    <ClInclude Include="logo_ranking.h">
+      <Filter>ヘッダー ファイル\Polygon2d</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

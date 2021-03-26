@@ -1,6 +1,6 @@
 //=============================================================================
 //
-// タイトルモード [mode_title.cpp]
+// タイトル背景 [bg_title.cpp]
 // Author : 二階堂汰一
 //
 //=============================================================================
@@ -8,136 +8,140 @@
 //*****************************************************************************
 // ヘッダファイルのインクルード
 //*****************************************************************************
+#include <stdio.h>
+#include <stdlib.h>
 #include "main.h"
 #include "manager.h"
-#include "sound.h"
-#include "keyboard.h"
-#include "joystick.h"
-#include "mode_title.h"
+#include "renderer.h"
 #include "bg_title.h"
-#include "logo_title.h"
 
 //*****************************************************************************
 // マクロ定義
 //*****************************************************************************
+#define TEXTURE_PASS ("Data/Texture/title_bg.png")
+#define POSITION (D3DXVECTOR3(SCREEN_WIDTH/2,SCREEN_HEIGHT/2,0.0f))
+#define SIZE (D3DXVECTOR3(SCREEN_WIDTH,SCREEN_HEIGHT,0.0f))
 
 //*****************************************************************************
 // 静的メンバ変数の初期化
 //*****************************************************************************
+LPDIRECT3DTEXTURE9 CTitleBG::m_pTexture;	//テクスチャのポインタ
 
 //=============================================================================
 // コンストラクタ
 //=============================================================================
-CTitleMode::CTitleMode()
+CTitleBG::CTitleBG()
 {
 }
 
 //=============================================================================
 // デストラクタ
 //=============================================================================
-CTitleMode::~CTitleMode()
+CTitleBG::~CTitleBG()
 {
 }
 
 //=============================================================================
-// 生成処理関数
+// テクスチャ読み込み関数
 //=============================================================================
-CTitleMode * CTitleMode::Create()
+HRESULT CTitleBG::TextureLoad(void)
 {
-	//タイトルモードのポインタ
-	CTitleMode * pTitleMode = NULL;
-	//もしタイトルモードのポインタがNULLの場合
-	if (pTitleMode == NULL)
+	//レンダラーの取得
+	CRenderer *pRenderer = CManager::GetRenderer();
+	//デバイスの取得
+	LPDIRECT3DDEVICE9 pDevice = pRenderer->GetDevice();
+	// テクスチャの生成
+	D3DXCreateTextureFromFile(pDevice,	// デバイスへのポインタ
+		TEXTURE_PASS,					// ファイルの名前
+		&m_pTexture);					// 読み込むメモリー
+	return S_OK;
+}
+
+//=============================================================================
+// テクスチャ破棄関数
+//=============================================================================
+void CTitleBG::TextureUnload(void)
+{
+	// テクスチャの破棄
+	if (m_pTexture != NULL)
 	{
-		//タイトルモードのメモリ確保
-		pTitleMode = new CTitleMode;
-		//もしタイトルモードのポインタがNULLじゃない場合
-		if (pTitleMode != NULL)
+		//テクスチャの破棄処理関数呼び出し
+		m_pTexture->Release();
+		//テクスチャをNULLにする
+		m_pTexture = NULL;
+	}
+}
+
+//=============================================================================
+// 生成処理関数呼び出し
+//=============================================================================
+CTitleBG * CTitleBG::Create()
+{
+	//タイトル背景のポインタ
+	CTitleBG * pTitleBG = NULL;
+	//タイトル背景のポインタがNULLの場合
+	if (pTitleBG == NULL)
+	{
+		//タイトル背景のメモリ確保
+		pTitleBG = new CTitleBG;
+		//タイトル背景のポインタがNULLではない場合
+		if (pTitleBG != NULL)
 		{
-			//初期化処理関数呼び出し
-			pTitleMode->Init();
+			//タイトル背景の位置設定
+			pTitleBG->SetPosition(POSITION);
+			//タイトル背景のサイズ設定
+			pTitleBG->SetSize(SIZE);
+			//タイトル背景の初期化処理関数呼び出し
+			pTitleBG->Init();
 		}
 	}
-	//タイトルモードのポインタを返す	
-	return pTitleMode;
+	//タイトルロゴのボタンのポインタを返す
+	return pTitleBG;
 }
 
 //=============================================================================
 // 初期化処理関数
 //=============================================================================
-HRESULT CTitleMode::Init(void)
+HRESULT CTitleBG::Init(void)
 {
-	//サウンドの取得
-	CSound * pSound = CManager::GetSound();
-	//もしサウンドのポインタがNULLじゃない場合
-	if (pSound != NULL)
-	{
-		//タイトルBGMの再生
-		//pSound->PlaySoundA(CSound::SOUND_LABEL_BGM_TITLE);
-	}
-	//初期全生成処理関数呼び出し
-	InitCreateAll();
+	//テクスチャのUV座標の設定
+	D3DXVECTOR2 aTexture[NUM_VERTEX];
+	aTexture[0] = D3DXVECTOR2(0.0f, 0.0f);
+	aTexture[1] = D3DXVECTOR2(1.0f, 0.0f);
+	aTexture[2] = D3DXVECTOR2(0.0f, 1.0f);
+	aTexture[3] = D3DXVECTOR2(1.0f, 1.0f);
+	//ボタンの初期化処理関数呼び出し
+	CScene2d::Init();
+	//テクスチャの設定
+	SetTexture(aTexture);
+	//テクスチャの割り当て
+	BindTexture(m_pTexture);
 	return S_OK;
 }
 
 //=============================================================================
 // 終了処理関数
 //=============================================================================
-void CTitleMode::Uninit(void)
+void CTitleBG::Uninit(void)
 {
+	//ボタンの終了処理関数呼び出し
+	CScene2d::Uninit();
 }
 
 //=============================================================================
 // 更新処理関数
 //=============================================================================
-void CTitleMode::Update(void)
+void CTitleBG::Update(void)
 {
-	//入力処理関数呼び出し
-	Input();
+	//ボタンの更新処理関数呼び出し
+	CScene2d::Update();
 }
 
 //=============================================================================
 // 描画処理関数
 //=============================================================================
-void CTitleMode::Draw(void)
+void CTitleBG::Draw(void)
 {
-}
-
-//=============================================================================
-// 入力処理関数
-//=============================================================================
-void CTitleMode::Input(void)
-{
-	//キーボードの取得
-	CKeyboard *pKeyboard = CManager::GetKeyboard();
-	//サウンドの取得
-	CSound * pSound = CManager::GetSound();
-	//ジョイスティックの取得
-	CJoystick * pJoystick = CManager::GetJoystick();
-	LPDIRECTINPUTDEVICE8 lpDIDevice = CJoystick::GetDevice();
-	DIJOYSTATE js;
-	//ジョイスティックの振動取得
-	LPDIRECTINPUTEFFECT pDIEffect = CJoystick::GetEffect();
-	if (lpDIDevice != NULL)
-	{
-		lpDIDevice->Poll();
-		lpDIDevice->GetDeviceState(sizeof(DIJOYSTATE), &js);
-	}
-	//もしENTERかAボタンを押したとき
-	if (pKeyboard->GetKeyboardTrigger(DIK_RETURN) || lpDIDevice != NULL &&pJoystick->GetJoystickTrigger(JS_A))
-	{
-		//チュートリアルに移動
-		CManager::StartFade(CManager::MODE_TUTORIAL);
-	}
-}
-
-//=============================================================================
-// 初期全生成処理関数
-//=============================================================================
-void CTitleMode::InitCreateAll(void)
-{
-	//タイトル背景の生成
-	CTitleBG::Create();
-	//タイトルロゴの生成
-	CTitleLogo::Create();
+	//ボタンの描画処理関数呼び出し
+	CScene2d::Draw();
 }

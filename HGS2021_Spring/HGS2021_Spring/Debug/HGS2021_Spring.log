@@ -1,4 +1,16 @@
+<<<<<<< HEAD
 ﻿  player_3d.cpp
 cl : コマンド ライン warning D9028: 簡易リビルド時のエラーです、通常のビルドに戻します
   HGS2021_Spring.vcxproj -> C:\Users\81902\Desktop\saisinHGS\HGS2021_Spring\HGS2021_Spring\Debug\HGS2021_Spring.exe
   HGS2021_Spring.vcxproj -> C:\Users\81902\Desktop\saisinHGS\HGS2021_Spring\HGS2021_Spring\Debug\HGS2021_Spring.pdb (Full PDB)
+=======
+﻿  polygon3d.cpp
+  manager.cpp
+  logo_start.cpp
+  logo_ranking.cpp
+  logo_over.cpp
+  logo_clear.cpp
+  コードを生成中...
+  HGS2021_Spring.vcxproj -> C:\Users\gsp025\Desktop\HGS2021_Spring\HGS2021_Spring\Debug\HGS2021_Spring.exe
+  HGS2021_Spring.vcxproj -> C:\Users\gsp025\Desktop\HGS2021_Spring\HGS2021_Spring\Debug\HGS2021_Spring.pdb (Full PDB)
+>>>>>>> 191fac5180dfac7797bea71ae256bc1177ae4ad1

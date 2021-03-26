@@ -1,16 +1,16 @@
 //=============================================================================
 //
-// ボード [board.h]
+// クリアロゴ [clear_over.h]
 // Author : 二階堂汰一
 //
 //=============================================================================
-#ifndef _BOARD_H_
-#define _BOARD_H_
+#ifndef _LOGO_CLEAR_H_
+#define _LOGO_CLEAR_H_
 
 //*****************************************************************************
 // ヘッダファイルのインクルード
 //*****************************************************************************
-#include "polygon3d.h"
+#include "scene2d.h"
 
 //*****************************************************************************
 // マクロ定義
@@ -21,25 +21,21 @@
 //*****************************************************************************
 
 //*****************************************************************************
-// 構造体定義
-//*****************************************************************************
-
-//*****************************************************************************
 // クラス定義
 //*****************************************************************************
-class CBoard :public CPolygon3d
+class CClearLogo :public CScene2d
 {
 public:
-	CBoard(int nPriority = OBJTYPE_PLAYER);
-	~CBoard();
+	CClearLogo();
+	~CClearLogo();
 	static HRESULT TextureLoad(void);
 	static void TextureUnload(void);
-	static CBoard * Create(void);
+	static CClearLogo * Create(void);
 	HRESULT Init(void);
 	void Uninit(void);
 	void Update(void);
 	void Draw(void);
 private:
-	static LPDIRECT3DTEXTURE9 m_pTexture;	//テクスチャへのポインタ
+	static LPDIRECT3DTEXTURE9 m_pTexture;	//テクスチャのポインタ
 };
 #endif
