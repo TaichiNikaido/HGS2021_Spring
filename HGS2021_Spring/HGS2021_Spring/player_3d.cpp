@@ -28,7 +28,7 @@
 #define TEXTURE ("Data/Texture/Player.png")
 #define SIZE (D3DXVECTOR3(200.0f,200.0f,0.0))
 #define SPEED (15.0f)
-#define CAMERA_DISTANCE (1500.0f)
+#define CAMERA_DISTANCE (1000.0f)
 #define GRAVITY (-4.5f)
 #define JUMP_POWER (80.0f)
 #define FLOOR (900.0f)
